@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/signupScreenLogo"
+        android:layout_width="400dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="70dp"
+        android:src="@drawable/live_clips_logo" />
+
+    <ImageView
+        android:id="@+id/signHeaderMessage"
+        android:layout_width="316dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/signin_heading" />
+
+    <ImageView
+        android:id="@+id/signInfacebookButton"
+        android:layout_width="wrap_content"
+        android:layout_height="54dp"
+        android:layout_gravity="center_horizontal"
+        android:clickable="true"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/signin_facebook" />
+
+    <ImageView
+        android:id="@+id/signUpEmailButton"
+        android:layout_width="wrap_content"
+        android:layout_height="55dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/signup_email" />
+
+    <ImageView
+        android:id="@+id/signInGuestUserButton"
+        android:layout_width="310dp"
+        android:layout_height="55dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/signin_guest" />
+
+    <ImageView
+        android:layout_width="314dp"
+        android:layout_height="20dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/horizontal_grey_footer" />
+
+    <LinearLayout
+        android:layout_width="314dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/account_present_confirmation_text"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/existingUserSignInPageLink"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blue_dark"
+            android:textSize="17sp"
+            android:text="@string/signin_now_text" />
+    </LinearLayout>
+
+</LinearLayout>

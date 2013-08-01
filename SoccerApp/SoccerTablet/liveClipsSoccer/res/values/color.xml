@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="white">#ffffffff</color>
+    <color name="black">#ff000000</color>
+	<color name="orange">#FF8B1D</color>
+	<color name="green">#00FF00</color>
+	<color name="grey">#6D6868</color>
+	<color name="blue">#607799</color>
+	<color name="blue_dark">#0079BC</color>
+	<color name="blue_grey">#647377</color>
+	<color name="gray_play_card">#1A1A1A</color>
+	<color name="grey_light">#BDC1B5</color>
+	<color name="grey_container">#262626</color>
+	<color name="red">#C40F0F</color>
+</resources>

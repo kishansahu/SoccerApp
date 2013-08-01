@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">LiveClipsSoccerTab</string>
+    <string name="action_settings">Settings</string>
+    <string name="launchScreenLoadingFirstPartMessageText">"You've never experienced"</string>
+	<string name="launchScreenLoadingSecondPartMessageText">"live sports like this!"</string>
+	<string name="signHeaderMessageText">"--- Connect to start watching clips ---"</string>
+	<string name="account_present_confirmation_text">"Already have an account?"</string>
+	<string name="signin_now_text">"  Sign In Now"</string>
+	<string name="createAccountByEmailHeaderMessageText">"Sign up with e-mail"</string>
+	<string name="createAccountByEmailHeaderBarMessageText">"Create Account"</string>
+	<string name="signInAccountByEmailHeaderBarMessageText">"Sign In Account"</string>
+	<string name="signInAccountByEmailHeaderMessageText">"Sign In with e-mail"</string>
+</resources>
