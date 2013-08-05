@@ -43,7 +43,7 @@ public class LCSQLiteHelper extends SQLiteOpenHelper {
 	private void deleteDatabase(Context context) {
 
 		File f = new File("/data/data/" + context.getPackageName()
-				+ "/databases/college_app.db");
+				+ "/databases/soccer_app.sqlite");
 
 		if (f.exists()) {
 			f.delete();
@@ -63,10 +63,10 @@ public class LCSQLiteHelper extends SQLiteOpenHelper {
 
 		try {
 			os = new FileOutputStream("/data/data/" + context.getPackageName()
-					+ "/databases/college_app.db");
+					+ "/databases/soccer_app.sqlite");
 			byte[] b = new byte[100];
 			int r;
-			InputStream is = am.open("college_app.db");
+			InputStream is = am.open("soccer_app.sqlite");
 			while ((r = is.read(b)) != -1) {
 				os.write(b, 0, r);
 			}

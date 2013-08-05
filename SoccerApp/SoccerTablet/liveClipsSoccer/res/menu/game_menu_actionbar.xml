@@ -1,0 +1,94 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/sliderButton"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:menuCategory="system"
+        android:orderInCategory="1"
+        android:showAsAction="always"
+        android:title="Slider"
+        android:visible="false"
+        android:icon="@drawable/menuicon"/>
+    
+   <!--  <item
+        android:id="@+id/spinnerMenuItem"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:actionLayout="@layout/app_widget_spinner_layout"
+        android:entries="@array/item_arrays"
+        android:menuCategory="system"
+        android:orderInCategory="3"
+        android:showAsAction="always"
+        android:title="Patriot"/>  -->
+    <!-- <item
+        android:id="@+id/sliderButton"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:icon="@drawable/menuicon"
+        android:menuCategory="system"
+        android:orderInCategory="2"
+        android:showAsAction="always"
+        android:visible="false"
+        android:title="@string/globalNavigationButtonContentDescription">
+    </item> -->
+  <!--  <item
+        android:id="@+id/game_schedule_menu"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:icon="@drawable/icon_schedule"
+        android:menuCategory="system"
+        android:orderInCategory="4"
+        android:showAsAction="always">
+    </item>
+     <item
+        android:id="@+id/game_drives_menu"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/patriot"
+        android:icon="@drawable/icon_drives"
+        android:menuCategory="system"
+        android:orderInCategory="5"
+        android:showAsAction="always">
+    </item>
+    <item
+        android:id="@+id/game_stats_menu"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/patriot"
+        android:icon="@drawable/icon_stats"
+        android:menuCategory="system"
+        android:orderInCategory="6"
+        android:showAsAction="always">
+    </item>
+    <item
+        android:id="@+id/game_players_menu"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/patriot"
+        android:icon="@drawable/icon_players"
+        android:menuCategory="system"
+        android:orderInCategory="7"
+        android:showAsAction="always">
+    </item>
+    <item
+        android:id="@+id/game_players_alerts"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/patriot"
+        android:actionLayout="@layout/button_layout"
+        android:menuCategory="system"
+        android:orderInCategory="8"
+        android:showAsAction="always"
+        android:text="alert:low">
+    </item> -->
+
+</menu>

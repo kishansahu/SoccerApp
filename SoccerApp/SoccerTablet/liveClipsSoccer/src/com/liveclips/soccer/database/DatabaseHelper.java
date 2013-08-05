@@ -3,12 +3,15 @@ package com.liveclips.soccer.database;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.R.string;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.liveclips.soccer.dto.LeagueTeamDto;
+import com.liveclips.soccer.model.League;
 import com.liveclips.soccer.model.TeamItem;
 
 public class DatabaseHelper
@@ -43,12 +46,13 @@ public class DatabaseHelper
 		// looping through all rows and adding to list
 		if (cursor.moveToFirst()) {
 			do {
+
 				TeamItem team = new TeamItem();
-				team.setId(Integer.parseInt(cursor.getString(0)));
-				team.setTeamId(cursor.getString(1));
-				team.setTeamName(cursor.getString(2));
-				team.setTeamAbbreviation(cursor.getString(3));
-				team.setTeamConfigAutoId(cursor.getInt(4));
+				team.setTeamId(cursor.getString(0));
+				team.setTeamName(cursor.getString(1));
+				team.setTeamAbbreviation(cursor.getString(2));
+				team.setLeagueId(cursor.getString(3));
+
 				// Adding contact to list
 				teamList.add(team);
 			} while (cursor.moveToNext());
@@ -63,7 +67,7 @@ public class DatabaseHelper
 	private void openDataBase() {
 		database = SQLiteDatabase.openDatabase(
 				"/data/data/" + context.getPackageName()
-						+ "/databases/college_app.db", null, 0);
+						+ "/databases/soccer_app.sqlite", null, 0);
 	}
 
 	/**
@@ -92,30 +96,65 @@ public class DatabaseHelper
 		return teamItem;
 	}
 
-	public void abc() {
-		
-		String MY_QUERY = "SELECT * FROM conference conf INNER JOIN team t ON conf.id=t.team_conf_auto_id";
+	public LeagueTeamDto getLeagueWithTeams() {
+
+		String MY_QUERY = "SELECT * FROM league leag INNER JOIN team t ON leag.league_id=t.league_id";
 		openDataBase();
 		Cursor cursor = database.rawQuery(MY_QUERY, null);
+
+		LeagueTeamDto leagueTeamDto = new LeagueTeamDto();
+
+		List<League> leagueList = new ArrayList<League>();
+
 	//	List<TeamItem> teamList = new ArrayList<TeamItem>();
+
+		String leagueName="undefined";
+		boolean leagueChanged = false;
+		
+		League league =null;
 		// looping through all rows and adding to list
 		if (cursor.moveToFirst()) {
 			do {
-		/*//		TeamItem team = new TeamItem();
-				team.setId(Integer.parseInt(cursor.getString(0)));
-				team.setTeamId(cursor.getString(1));
-				team.setTeamName(cursor.getString(2));
-				team.setTeamAbbreviation(cursor.getString(3));
-				team.setTeamConfigAutoId(cursor.getInt(4));
+				if( (!leagueName.equals(cursor.getString(1))) || league==null){
+					leagueName = cursor.getString(1);
+										
+					league = new League();
+					league.setTeamList(new ArrayList<TeamItem>());
+					league.setLeagueId(cursor.getString(0));
+					league.setLeagueName(cursor.getString(1));
+					league.setLeagueAbbreviation(cursor.getString(2));
+					
+					if(league!=null){
+						leagueChanged=true;
+					}
+					
+				}
+				TeamItem team = new TeamItem();
+				team.setTeamId(cursor.getString(3));
+				team.setTeamName(cursor.getString(4));
+				team.setTeamAbbreviation(cursor.getString(5));
+				team.setLeagueId(cursor.getString(6));
+				
+				league.getTeamList().add(team);
 				// Adding contact to list
-				teamList.add(team);*/
-				System.out.println(cursor.getString(0) + "*" + cursor.getString(1) + "*" + cursor.getString(2)+"*" + cursor.getString(3) + "*" + cursor.getString(4)+
-						"#" + cursor.getString(5) +"#" + cursor.getString(6) +"#" + cursor.getString(7) +"#" + cursor.getString(8) +"#" + cursor.getString(9));
+
+				if(leagueChanged){
+					leagueList.add(league);
+					leagueChanged=false;
+				}
+
+				System.out.println(cursor.getString(0) + "*"
+						+ cursor.getString(1) + "*" + cursor.getString(2) + "*"
+						+ cursor.getString(3) + "*" + cursor.getString(4) + "*" + cursor.getString(5)+ "*" + cursor.getString(6));
 			} while (cursor.moveToNext());
 		}
+		leagueTeamDto.setLeagueList(leagueList);
+		
+		System.out.println(leagueList.toString());
+		System.out.println(leagueTeamDto.toString());
+		
 		cursor.close();
 		close();
-
+		return leagueTeamDto;
 	}
-
 }

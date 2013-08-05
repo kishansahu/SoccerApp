@@ -1,0 +1,278 @@
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+    <RelativeLayout
+        android:id="@+id/gameRootView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" >
+
+        <RelativeLayout
+            android:id="@+id/matchScoreBoardBackground"
+            android:layout_width="fill_parent"
+            android:layout_height="160dp"
+            android:background="@drawable/black_backgound" >
+
+            <LinearLayout
+                android:id="@+id/firstTeamLargeIconContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentTop="true"
+                android:layout_margin="10dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="15dp" >
+
+                <ImageView
+                    android:id="@+id/firstTeamLargeIcon"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/teamlogo_ars_id" >
+                </ImageView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/secondTeamLargeIconContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_margin="10dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="15dp" >
+
+                <ImageView
+                    android:id="@+id/secondTeamLargeIcon"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/teamlogo_man_uni_id" >
+                </ImageView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/firstTeamDescriptionContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="55dp"
+                android:layout_toRightOf="@id/firstTeamLargeIconContainer"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/firstTeamSecondName"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="Arsenal"
+                    android:textColor="@color/white"
+                    android:textSize="26sp"
+                    android:textStyle="bold" >
+                </TextView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/secondTeamDescriptionContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="55dp"
+                android:layout_toLeftOf="@+id/secondTeamLargeIconContainer"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/secondTeamSecondName"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="Manchester United"
+                    android:textColor="@color/white"
+                    android:textSize="26sp"
+                    android:textStyle="bold" >
+                </TextView>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/matchScoreContainer"
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true" >
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_alignParentLeft="true" >
+
+                    <TextView
+                        android:id="@+id/firstTeamScore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="21"
+                        android:textColor="@color/white"
+                        android:textSize="45sp"
+                        android:textStyle="bold" >
+                    </TextView>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/matchScoreCardCentralContainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/gameQuarterTime"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="6:45"
+                        android:textColor="@color/white"
+                        android:textSize="32sp"
+                        android:textStyle="bold" >
+                    </TextView>
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_alignParentRight="true">
+
+                    <TextView
+                        android:id="@+id/secondTeamScore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="17"
+                        android:textColor="@color/white"
+                        android:textSize="45sp"
+                        android:textStyle="bold" >
+                    </TextView>
+                </RelativeLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/matchScoreBoardTabContainer"
+            android:layout_width="810dp"
+            android:layout_height="160dp"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="right"
+            android:orientation="vertical"
+            android:background="@drawable/scorecard_background"
+            android:visibility="invisible" >
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/filterBoardBackground"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="160dp" >
+
+            <TextView
+                android:id="@+id/allPlaysId"
+                android:layout_width="200dp"
+                android:layout_height="45dp"
+                android:background="@drawable/border"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="All Plays"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/topPlaysId"
+                android:layout_width="200dp"
+                android:layout_height="45dp"
+                android:layout_toRightOf="@id/allPlaysId"
+                android:background="@drawable/border"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="Top Plays"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/topRatedId"
+                android:layout_width="200dp"
+                android:layout_height="45dp"
+                android:layout_toRightOf="@id/topPlaysId"
+                android:background="@drawable/border"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="Top Rated"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/watchAllId"
+                android:layout_width="fill_parent"
+                android:layout_height="45dp"
+                android:layout_toRightOf="@id/topRatedId"
+                android:background="@drawable/border"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="122 Plays \u00A0\u00A0\u00A0\u00A0\u00A0\u00A0 \u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0 Watch All"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/combinedLayoutForSelectedCategoryAndPlayCardsId"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="205dp"
+            android:background="@drawable/black_backgound" >
+
+            <RelativeLayout
+                android:id="@+id/selectedCategoryLayoutId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_margin="10dp"
+                android:padding="10dp" >
+
+                <TextView
+                    android:id="@+id/selectedCategoryTextViewId"
+                    android:layout_width="500dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:typeface="serif" />
+            </RelativeLayout>
+
+            <HorizontalScrollView
+                android:id="@+id/horizontalScrollViewForVideosId"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_below="@id/selectedCategoryLayoutId" >
+
+                <LinearLayout
+                    android:id="@+id/parentLayoutOfPlayCardsId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:scrollbarAlwaysDrawHorizontalTrack="true" >
+                </LinearLayout>
+            </HorizontalScrollView>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/menuFragment"
+        android:layout_width="300dp"
+        android:layout_height="match_parent" />
+
+</merge>

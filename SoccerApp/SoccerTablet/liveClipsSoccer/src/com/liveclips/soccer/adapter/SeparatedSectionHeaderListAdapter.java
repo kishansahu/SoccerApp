@@ -13,9 +13,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.liveclips.nfl.R;
-import com.liveclips.nfl.model.DivisionsItem;
-import com.liveclips.nfl.model.SectionHeaderItem;
+import com.liveclips.soccer.R;
+import com.liveclips.soccer.model.SectionHeaderItem;
 
 /**
  * @author mohitkumar

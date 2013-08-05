@@ -1,13 +1,13 @@
 package com.liveclips.soccer.activity;
 
-import com.liveclips.soccer.R;
-import com.liveclips.soccer.database.LCSQLiteHelper;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
+
+import com.liveclips.soccer.R;
+import com.liveclips.soccer.database.LCSQLiteHelper;
 
 public class AppLaunchActivity extends Activity {
 

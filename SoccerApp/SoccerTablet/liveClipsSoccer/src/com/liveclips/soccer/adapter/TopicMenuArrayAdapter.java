@@ -11,8 +11,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.liveclips.nfl.R;
-import com.liveclips.nfl.model.LiveClipsContentListItem;
+import com.liveclips.soccer.R;
+import com.liveclips.soccer.model.LiveClipsContentListItem;
 import com.liveclips.soccer.utils.ImageProcessingUtil;
 
 public class TopicMenuArrayAdapter extends BaseAdapter {
