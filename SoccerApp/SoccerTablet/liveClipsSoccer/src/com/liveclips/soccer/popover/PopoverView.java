@@ -18,7 +18,7 @@
  * 
  **/
 
-package com.liveclips.nfl.popover;
+package com.liveclips.soccer.popover;
 import java.util.HashMap;
 import java.util.Map;
 

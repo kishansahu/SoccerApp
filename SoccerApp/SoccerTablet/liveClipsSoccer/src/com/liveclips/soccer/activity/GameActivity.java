@@ -34,10 +34,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
-import com.liveclips.nfl.popover.PopoverView;
-import com.liveclips.nfl.popover.PopoverView.PopoverViewDelegate;
 import com.liveclips.soccer.R;
 import com.liveclips.soccer.adapter.SeparatedListAdapter;
+import com.liveclips.soccer.popover.PopoverView;
+import com.liveclips.soccer.popover.PopoverView.PopoverViewDelegate;
 import com.liveclips.soccer.utils.ImageProcessingUtil;
 import com.liveclips.soccer.utils.NflUtils;
 import com.liveclips.soccer.utils.SharedPreferencesUtil;

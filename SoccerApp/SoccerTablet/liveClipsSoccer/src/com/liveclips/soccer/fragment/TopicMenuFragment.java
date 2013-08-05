@@ -60,7 +60,7 @@ public class TopicMenuFragment extends Fragment {
 
 		if (properties == null) {
 			properties = PropertyReader.getPropertiesFormAssetDirectory(
-					"nfltopicmenu.properties", getActivity());
+					"soccer_main_menu.properties", getActivity());
 		}
 		if (appCommonProperties == null) {
 			appCommonProperties = PropertyReader
