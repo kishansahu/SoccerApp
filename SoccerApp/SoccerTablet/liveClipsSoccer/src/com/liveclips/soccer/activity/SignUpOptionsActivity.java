@@ -8,6 +8,7 @@ import java.util.Properties;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -47,6 +48,7 @@ public class SignUpOptionsActivity extends Activity {
 	EditText emailAddress, signInPasswordEditbox;
 	TextView errorMessageForEmailSignIn;
 	Button signInButton;
+	ActionBar actionBar;
 
 	@SuppressWarnings("deprecation")
 	@Override
@@ -54,6 +56,10 @@ public class SignUpOptionsActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		activity = this;
 		context=this;
+		
+		actionBar = getActionBar();
+		actionBar.hide();
+		
 		appCommonProperties= PropertyReader
 				.getPropertiesFormAssetDirectory("appcommonproperties.properties",
 						activity);

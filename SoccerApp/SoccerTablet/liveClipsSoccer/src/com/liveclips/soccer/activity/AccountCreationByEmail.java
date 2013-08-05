@@ -1,5 +1,6 @@
 package com.liveclips.soccer.activity;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,10 +17,15 @@ public class AccountCreationByEmail extends Activity {
 	EditText emailAddress, signUpPasswordEditbox;
 	Button createAccountSignupButton, backToSignUpScreenButton;
 	TextView errorMessageForEmailSignUp;
+	ActionBar actionBar;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		actionBar = getActionBar();
+		actionBar.hide();
+		
 		setContentView(R.layout.createaccount_via_email);
 		emailAddress = (EditText) findViewById(R.id.signUpEmailEditbox);
 		signUpPasswordEditbox = (EditText) findViewById(R.id.signUpPasswordEditbox);

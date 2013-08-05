@@ -10,7 +10,7 @@
         android:layout_height="150dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="20dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="20dp"
         android:src="@drawable/live_clips_logo" />
 
     <EditText
@@ -53,7 +53,7 @@
 	
     <View 
         android:layout_width="1dp"
-        android:layout_height="50dp"
+        android:layout_height="20dp"
         android:layout_gravity="center_horizontal"/>    
     
     <TextView

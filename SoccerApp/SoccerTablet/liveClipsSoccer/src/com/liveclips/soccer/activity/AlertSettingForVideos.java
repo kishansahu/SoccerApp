@@ -3,6 +3,7 @@ package com.liveclips.soccer.activity;
 import java.util.Collections;
 import java.util.List;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -33,10 +34,14 @@ public class AlertSettingForVideos extends Activity {
 	ToggleButton alertsForAllteams;
 	TextView teamNameGameAlerts;
 	TeamAlertSetting teamAlertSetting;
+	ActionBar actionBar;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.user_settings_view_alerts);
+		
+		actionBar = getActionBar();
+		actionBar.hide();
 
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {

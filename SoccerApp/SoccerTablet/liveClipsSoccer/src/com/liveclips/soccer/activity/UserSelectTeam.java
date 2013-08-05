@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -28,6 +29,7 @@ public class UserSelectTeam extends Activity {
 	private Context context;
 	Button linkToSetAlertsButton;
 	private Properties appCommonProperties;
+	ActionBar actionBar;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,10 @@ public class UserSelectTeam extends Activity {
 		setContentView(R.layout.user_select_favourite_teams);
 		activity = this;
 		context = this;
+		
+		actionBar = getActionBar();
+		actionBar.hide();
+		
 		ListView listView = (ListView) findViewById(R.id.available_team_list);
 		setTeamsContent(listView, context);
 		linkToSetAlertsButton = (Button) findViewById(R.id.linkToSetAlertsButton);

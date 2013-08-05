@@ -1,5 +1,6 @@
 package com.liveclips.soccer.activity;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -11,9 +12,15 @@ import com.liveclips.soccer.database.LCSQLiteHelper;
 
 public class AppLaunchActivity extends Activity {
 
+	ActionBar actionBar;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		actionBar = getActionBar();
+		actionBar.hide();
+		
 		SQLiteDatabase sqLiteDatabase = new LCSQLiteHelper(this)
 				.getReadableDatabase();
 		sqLiteDatabase.close();
