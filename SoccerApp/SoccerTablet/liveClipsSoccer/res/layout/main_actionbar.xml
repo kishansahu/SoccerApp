@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:id="@+id/actionBarContainer"
+     >
+
+    <RelativeLayout
+        android:id="@+id/commonFragmentMenuHeader"
+        android:layout_width="300dp"
+        android:layout_height="fill_parent"
+        android:visibility="invisible" >
+
+         <ImageView
+            android:id="@+id/main_container_fragment"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:src="@drawable/liveclips_hori_text_logo" >
+        </ImageView>
+		 <ImageView
+            android:layout_alignParentRight="true"
+            android:id="@+id/closeButtonHeader"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/crossbutton" >
+        </ImageView>
+        
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/activityMenuHeader"
+        android:layout_width="300dp"
+        android:layout_height="fill_parent" >
+
+        <ImageView
+            android:id="@+id/sliderView"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/menuicon"
+            android:visibility="invisible" >
+        </ImageView>
+    </RelativeLayout>
+
+</RelativeLayout>

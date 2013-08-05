@@ -17,5 +17,5 @@
     <string name="alert_level_second">LOW</string>
     <string name="alert_level_third">MEDIUM</string>
     <string name="alert_level_fourth">HIGH</string>
-
+	<string name="Connect_now_to_start_watching_clips">--   Connect now to start watching clips   --</string>
 </resources>

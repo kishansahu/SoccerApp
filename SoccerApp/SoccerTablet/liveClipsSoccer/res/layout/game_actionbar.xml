@@ -17,7 +17,7 @@
             android:layout_height="50dp"
             android:src="@drawable/liveclips_hori_text_logo" >
         </ImageView>
-		 <ImageView
+		<ImageView
             android:layout_alignParentRight="true"
             android:id="@+id/closeButtonHeader"
             android:layout_width="45dp"

@@ -15,6 +15,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -42,6 +44,9 @@ public class SignUpOptionsActivity extends Activity {
 	String FILENAME = "AndroidSSO_data";
 	private SharedPreferences mPrefs;
 	ImageView signInfacebookButton, signUpEmailButton;
+	EditText emailAddress, signInPasswordEditbox;
+	TextView errorMessageForEmailSignIn;
+	Button signInButton;
 
 	@SuppressWarnings("deprecation")
 	@Override
@@ -75,18 +80,43 @@ public class SignUpOptionsActivity extends Activity {
 			}
 		});
 
-		existingUserSignInPageLink = (TextView) findViewById(R.id.existingUserSignInPageLink);
+		emailAddress = (EditText) findViewById(R.id.signInEmailEditbox);
+		signInPasswordEditbox = (EditText) findViewById(R.id.signInPasswordEditbox);
+		signInButton = (Button) findViewById(R.id.SignInButton);
+		errorMessageForEmailSignIn = (TextView) findViewById(R.id.errorMessageForEmailSignIn);
+		signInButton.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				
+				/*if (!NflUtils.isEmailValid(emailAddress.getText().toString())) {
+					errorMessageForEmailSignIn
+							.setText("Please Enter Valid Email Address");
+				} else {*/
+					Intent userSelectTeamActivityIntent = new Intent(
+							SignUpOptionsActivity.this,
+							UserSelectTeam.class);
+					SignUpOptionsActivity.this
+							.startActivity(userSelectTeamActivityIntent);
+			//	}
+
+			}
+		});
+		
+		
+		
+		/*existingUserSignInPageLink = (TextView) findViewById(R.id.existingUserSignInPageLink);
 		existingUserSignInPageLink.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Intent myIntent = new Intent(SignUpOptionsActivity.this,
 						ExistingUserSignIn.class);
 				SignUpOptionsActivity.this.startActivity(myIntent);
-				/*Intent myIntent = new Intent(SignUpOptionsActivity.this,
+				Intent myIntent = new Intent(SignUpOptionsActivity.this,
 						GameActivity.class);
-				SignUpOptionsActivity.this.startActivity(myIntent);*/
+				SignUpOptionsActivity.this.startActivity(myIntent);
 			}
-		});
+		});*/
 	}
 
 	@SuppressWarnings("deprecation")

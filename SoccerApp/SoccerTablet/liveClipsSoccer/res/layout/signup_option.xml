@@ -6,27 +6,72 @@
 
     <ImageView
         android:id="@+id/signupScreenLogo"
-        android:layout_width="400dp"
-        android:layout_height="200dp"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="70dp"
         android:src="@drawable/live_clips_logo" />
 
-    <ImageView
+    <EditText
+        android:id="@+id/signInEmailEditbox"
+        android:layout_width="316dp"
+        android:layout_height="54dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:hint="E-mail"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/signInPasswordEditbox"
+        android:layout_width="316dp"
+        android:layout_height="54dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="5dp"
+        android:hint="Password"
+        android:inputType="textPassword" />
+
+    <TextView
+        android:id="@+id/errorMessageForEmailSignIn"
+        android:layout_width="wrap_content"
+        android:layout_height="20sp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="5dp"
+        android:textColor="@color/red"
+        android:textSize="17sp" />
+
+    <Button
+        android:id="@+id/SignInButton"
+        android:layout_width="316dp"
+        android:layout_height="54dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/blue_dark"
+        android:clickable="true"
+        android:text="Sign In"
+        android:textColor="@color/white"
+        android:textSize="17sp" />
+	
+    <View 
+        android:layout_width="1dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"/>    
+    
+    <TextView
         android:id="@+id/signHeaderMessage"
         android:layout_width="316dp"
         android:layout_height="50dp"
-        android:layout_gravity="center_horizontal"
-        android:src="@drawable/signin_heading" />
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="@string/Connect_now_to_start_watching_clips"
+        android:textColor="@color/white"/>
 
     <ImageView
         android:id="@+id/signInfacebookButton"
         android:layout_width="wrap_content"
         android:layout_height="54dp"
         android:layout_gravity="center_horizontal"
-        android:clickable="true"
         android:layout_marginBottom="10dp"
+        android:clickable="true"
         android:src="@drawable/signin_facebook" />
 
     <ImageView
@@ -52,25 +97,5 @@
         android:layout_marginBottom="10dp"
         android:src="@drawable/horizontal_grey_footer" />
 
-    <LinearLayout
-        android:layout_width="314dp"
-        android:layout_height="30dp"
-        android:layout_gravity="center_horizontal"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/account_present_confirmation_text"
-            android:textSize="17sp" />
-
-        <TextView
-            android:id="@+id/existingUserSignInPageLink"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/blue_dark"
-            android:textSize="17sp"
-            android:text="@string/signin_now_text" />
-    </LinearLayout>
-
+   
 </LinearLayout>
