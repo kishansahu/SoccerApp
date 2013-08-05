@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="160dp"
+    android:layout_gravity="right"
+    android:layout_margin="15dp"
+    android:background="@drawable/scorecard_background" >
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="fill_parent"
+        android:background="@color/black" />
+
+    <RelativeLayout
+        android:id="@+id/selectedplayerMatchBanner"
+        android:layout_width="fill_parent"
+        android:layout_height="160dp"
+        android:layout_marginLeft="1dp" >
+
+        <ImageView
+            android:id="@+id/selectedPlayerPic"
+            android:layout_width="130dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"
+             >
+        </ImageView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/selectedPlayerTeamPic"
+                android:layout_width="180dp"
+                android:layout_height="102dp"
+                android:alpha=".5"
+                android:src="@drawable/ne" >
+            </ImageView>
+
+            <ImageView
+                android:id="@+id/selectedPlayerFavouritePic"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:layout_gravity="right"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/favourite" >
+            </ImageView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="22dp"
+            android:layout_toRightOf="@id/selectedPlayerPic"
+            android:gravity="top"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/selectedPlayerName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24dp"
+                android:textStyle="bold" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/selectedPlayerDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:textSize="18dp"
+                android:textStyle="bold" >
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="22dp"
+            android:layout_toRightOf="@id/selectedPlayerPic"
+            android:gravity="bottom"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/gameIdentifier"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="THIS GAME:"
+                android:textSize="18dp"
+                android:textStyle="bold" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/selectedPlayerGameDetailsIndexFirst"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:textSize="18dp" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/selectedPlayerGameDetailsIndexSecond"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:textSize="18dp" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/selectedPlayerGameDetailsIndexThird"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:textSize="18dp" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/selectedPlayerGameDetailsIndexFour"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:textSize="18dp" >
+            </TextView>
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

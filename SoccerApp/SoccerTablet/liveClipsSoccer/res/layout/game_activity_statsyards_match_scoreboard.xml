@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/statTab"
+    android:layout_width="810dp"
+    android:layout_height="160dp"
+    android:layout_alignParentRight="true"
+    android:layout_gravity="right"
+    android:background="@drawable/scorecard_background"
+    android:visibility="visible" >
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="fill_parent"
+        android:background="@color/black" />
+
+    <RelativeLayout
+        android:id="@+id/teamStatsYardsMatchBanner"
+        android:layout_width="fill_parent"
+        android:layout_height="160dp"
+        android:layout_marginLeft="25dp" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="22dp"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/statCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Heading"
+                android:textSize="20sp"
+                android:textStyle="bold" >
+            </TextView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="12dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/firstTeamNameStatYardsCategory"
+                    android:layout_width="55dp"
+                    android:layout_height="wrap_content"
+                    android:text="NE"
+                    android:textSize="15sp"
+                    android:textStyle="bold" >
+                </TextView>
+
+                <TextView
+                    android:id="@+id/firstTeamStatYardsWidth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    android:layout_marginLeft="25dp"
+                    android:background="@color/grey" >
+                </TextView>
+
+                <TextView
+                    android:id="@+id/firstTeamStatYardsScore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="57" >
+                </TextView>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="8dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/secondTeamNameStatYardsCategory"
+                    android:layout_width="55dp"
+                    android:layout_height="wrap_content"
+                    android:text="GB"
+                    android:textSize="15sp"
+                    android:textStyle="bold" >
+                </TextView>
+
+                <TextView
+                    android:id="@+id/secondTeamStatYardsWidth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    android:layout_marginLeft="25dp"
+                    android:background="@color/black" >
+                </TextView>
+
+                <TextView
+                    android:id="@+id/secondTeamStatYardsScore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="157" >
+                </TextView>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

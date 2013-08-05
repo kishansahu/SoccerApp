@@ -9,7 +9,7 @@
         android:layout_width="300dp"
         android:layout_height="fill_parent"
         android:background="@color/white"
-        android:visibility="visible" >
+        android:visibility="invisible" >
 
        <ImageView
             android:id="@+id/main_container_fragment"
@@ -17,7 +17,7 @@
             android:layout_height="50dp"
             android:src="@drawable/liveclips_hori_text_logo" >
         </ImageView>
-		<ImageView
+		 <ImageView
             android:layout_alignParentRight="true"
             android:id="@+id/closeButtonHeader"
             android:layout_width="45dp"
@@ -65,9 +65,9 @@
         >
     </Button>
 
-<!--     <TextView
+    <TextView
         android:id="@+id/scheduleView"
-        android:drawableTop="@drawable/icon_schedule"
+        android:drawableTop="@drawable/icon_stats"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginTop="3dp"
@@ -115,6 +115,6 @@
         android:textColor="@color/white"
         android:text="PLAYERS"
          >
-    </TextView> -->
+    </TextView>
  </RelativeLayout> 
 </RelativeLayout>
