@@ -117,6 +117,12 @@ public class SignUpOptionsActivity extends Activity {
 					errorMessageForEmailSignIn
 							.setText("Please Enter Valid Email Address");
 				} else {*/
+					
+					user.setEmail("dummyUser@liveClips.com");
+					user.setUserType(UserTypeEnum.LIVECLIPS);
+					user.setName("DummyUser");
+					SharedPreferencesUtil.saveObject(context, appCommonProperties.getProperty("userObject"), user);
+					
 					Intent userSelectTeamActivityIntent = new Intent(
 							SignUpOptionsActivity.this,
 							UserSelectTeam.class);

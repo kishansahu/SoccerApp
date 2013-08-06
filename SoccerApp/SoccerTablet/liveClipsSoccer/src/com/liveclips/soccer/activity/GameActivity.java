@@ -28,6 +28,7 @@ import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.liveclips.soccer.R;
+import com.liveclips.soccer.commons.PlayCards;
 import com.liveclips.soccer.popover.PopoverView;
 import com.liveclips.soccer.popover.PopoverView.PopoverViewDelegate;
 import com.liveclips.soccer.utils.SharedPreferencesUtil;
@@ -96,6 +97,7 @@ public class GameActivity extends BaseActivity implements PopoverViewDelegate {
 
 		createCustomActionBar();
 
+		PlayCards.getPlayCards(activity, "AllPlays");
 //		playCards();
 
 	}

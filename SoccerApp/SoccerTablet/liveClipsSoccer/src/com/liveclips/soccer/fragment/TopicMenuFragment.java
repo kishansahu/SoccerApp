@@ -147,10 +147,6 @@ public class TopicMenuFragment extends Fragment {
 						.get(position));
 				int selectedIndex = adapter.getSelectedIndex();
 
-				if (position != 3 && position != 4 && position != 5
-						&& selectedIndex == position) {
-					return;
-				}
 
 				view.findViewById(R.id.parentTextView).setSelected(true);
 
