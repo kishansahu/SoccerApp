@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/black"
+    android:orientation="vertical" >
+
+    <ListView
+        android:id="@+id/gameSettingList"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true" >
+    </ListView>  
+ 
+    <TextView
+        android:id="@+id/account_header"
+        style="?android:attr/listSeparatorTextViewStyle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/gameSettingList"
+        android:background="@drawable/blue_gradient_background"
+        android:paddingBottom="2dip"
+        android:paddingLeft="5dip"
+        android:paddingTop="2dip"
+        android:text="Account"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+    
+	<TextView 
+	    android:layout_below="@+id/account_header"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="Account Currently signed in as:"
+	    android:textColor="@color/white"
+	    />
+	<TextView 
+	    android:id="@+id/account_holder_name"
+	    android:layout_below="@id/account_header"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:textColor="@color/white"
+	    android:textSize="17sp"
+	    android:layout_marginTop="15dp"
+	    />
+	<ImageView 
+	    android:id="@+id/signout_button"
+	    android:layout_below="@id/account_holder_name"
+	    android:layout_width="wrap_content"
+	    android:layout_margin="10dp"
+	    android:layout_height="40dp"
+	    android:src="@drawable/signout_button"
+	    />
+</RelativeLayout>

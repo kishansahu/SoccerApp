@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.liveclips.soccer.R;
-import com.liveclips.soccer.utils.NflUtils;
+import com.liveclips.soccer.utils.SoccerUtils;
 
 
 public class AccountCreationByEmail extends Activity {
@@ -36,7 +36,7 @@ public class AccountCreationByEmail extends Activity {
 
 					@Override
 					public void onClick(View v) {
-						if (!NflUtils.isEmailValid(emailAddress.getText()
+						if (!SoccerUtils.isEmailValid(emailAddress.getText()
 								.toString())) {
 							errorMessageForEmailSignUp
 									.setText("Please Enter Valid Email Address");

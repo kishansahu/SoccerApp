@@ -68,9 +68,9 @@ public class TeamMenuListViewAdapter extends ArrayAdapter<TeamMenuItems> {
 		} else
 			holder = (MenuViewHolder) convertView.getTag();
 		if(rowItem.isUsersFavourite == false){
-		holder.teamSelectedOption.setImageResource(R.drawable.unchecked);
+		holder.teamSelectedOption.setImageResource(R.drawable.star_low);
 		}else{
-			holder.teamSelectedOption.setImageResource(R.drawable.checked);
+			holder.teamSelectedOption.setImageResource(R.drawable.star_high);
 		}
 		
 		holder.teamLogo.setImageResource(rowItem.teamLogo);
@@ -84,10 +84,10 @@ public class TeamMenuListViewAdapter extends ArrayAdapter<TeamMenuItems> {
 						.getFavouriteInSharedPreferencesList(context, "team");
 				if(favTeams.contains(rowItem.teamId)){
 					SharedPreferencesUtil.removeFavouriteFromSharedPreferencesList(context, rowItem.teamId, "team");
-					holder.teamSelectedOption.setImageResource(R.drawable.unchecked);
+					holder.teamSelectedOption.setImageResource(R.drawable.star_low);
 				}else{
 					SharedPreferencesUtil.saveFavouriteInSharedPreferencesList(context, rowItem.teamId, "team");
-					holder.teamSelectedOption.setImageResource(R.drawable.checked);
+					holder.teamSelectedOption.setImageResource(R.drawable.star_high);
 				}
 			}
 		});

@@ -3,6 +3,7 @@ package com.liveclips.soccer.activity;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.List;
 import java.util.Properties;
 
 import org.json.JSONException;
@@ -13,6 +14,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,6 +30,8 @@ import com.facebook.android.Facebook;
 import com.facebook.android.Facebook.DialogListener;
 import com.facebook.android.FacebookError;
 import com.liveclips.soccer.R;
+import com.liveclips.soccer.commons.UserTypeEnum;
+import com.liveclips.soccer.model.User;
 import com.liveclips.soccer.utils.PropertyReader;
 import com.liveclips.soccer.utils.SharedPreferencesUtil;
 
@@ -35,35 +39,38 @@ public class SignUpOptionsActivity extends Activity {
 	Activity activity;
 	Context context;
 	Properties appCommonProperties;
-	// Your Facebook APP ID
+	SharedPreferences appSharedPrefs;
 	private static String APP_ID;
 	TextView existingUserSignInPageLink;
-	// Instance of Facebook Class
 	private Facebook facebook;
 	@SuppressWarnings("deprecation")
 	private AsyncFacebookRunner mAsyncRunner;
 	String FILENAME = "AndroidSSO_data";
-	private SharedPreferences mPrefs;
-	ImageView signInfacebookButton, signUpEmailButton;
+	String jsonForUser;
+	private static SharedPreferences mPrefs;
+	ImageView signInfacebookButton, signUpEmailButton,signInGuestUserButton;
 	EditText emailAddress, signInPasswordEditbox;
 	TextView errorMessageForEmailSignIn;
 	Button signInButton;
 	ActionBar actionBar;
-
+	User user;
+	Editor prefsEditor;
+	
 	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		activity = this;
 		context=this;
-		
+		user = new User();
+				
 		actionBar = getActionBar();
 		actionBar.hide();
 		
 		appCommonProperties= PropertyReader
 				.getPropertiesFormAssetDirectory("appcommonproperties.properties",
 						activity);
-		 APP_ID= appCommonProperties.getProperty("facebookApplicationId");
+		APP_ID= appCommonProperties.getProperty("facebookApplicationId");
 		setContentView(R.layout.signup_option);
 		facebook = new Facebook(APP_ID);
 		mAsyncRunner = new AsyncFacebookRunner(facebook);
@@ -83,6 +90,17 @@ public class SignUpOptionsActivity extends Activity {
 				Intent myIntent = new Intent(SignUpOptionsActivity.this,
 						AccountCreationByEmail.class);
 				SignUpOptionsActivity.this.startActivity(myIntent);
+			}
+		});
+		
+		signInGuestUserButton = (ImageView) findViewById(R.id.signInGuestUserButton);
+		signInGuestUserButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				user.setUserType(UserTypeEnum.GUESTUSER);
+				SharedPreferencesUtil.saveObject(context, appCommonProperties.getProperty("userObject"), user);
+				SignUpOptionsActivity.this.startActivity(new Intent(SignUpOptionsActivity.this,
+						UserSelectTeam.class));
 			}
 		});
 
@@ -125,6 +143,13 @@ public class SignUpOptionsActivity extends Activity {
 		});*/
 	}
 
+	public static void logOutFromFaceBook(){
+		SharedPreferences.Editor editor = mPrefs.edit();
+		editor.putString("access_token",null);
+		editor.putLong("access_expires",0);
+		editor.commit();
+	}
+	
 	@SuppressWarnings("deprecation")
 	public void loginToFacebook() {
 		mPrefs = getPreferences(MODE_PRIVATE);
@@ -199,19 +224,13 @@ public class SignUpOptionsActivity extends Activity {
 					final String nameFromFaceBook = profile.getString("name");
 					// getting email of the user
 					final String emailIdFromFaceBook = profile.getString("email");
+				
+					user.setUserType(UserTypeEnum.FACEBOOKUSER);
+					user.setEmail(emailIdFromFaceBook);
+					user.setName(nameFromFaceBook);
+					SharedPreferencesUtil.saveObject(context, appCommonProperties.getProperty("userObject"), user);
 					
-					String UserEmailId= appCommonProperties.getProperty("userEmailId");
-					SharedPreferencesUtil.saveStringPreferences(context, UserEmailId, emailIdFromFaceBook);
-					
-					String nameOfUser= appCommonProperties.getProperty("nameOfUser");
-					SharedPreferencesUtil.saveStringPreferences(context, nameOfUser, nameFromFaceBook);
-					
-					Intent userSelectTeamActivityIntent = new Intent(
-							SignUpOptionsActivity.this,
-							UserSelectTeam.class);
-					SignUpOptionsActivity.this
-							.startActivity(userSelectTeamActivityIntent);
-					
+					SignUpOptionsActivity.this.startActivity(new Intent(SignUpOptionsActivity.this,UserSelectTeam.class));
 					runOnUiThread(new Runnable() {
 
 						@Override

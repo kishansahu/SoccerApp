@@ -1,0 +1,176 @@
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+    <RelativeLayout
+        android:id="@+id/gameRootView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" >
+
+        <HorizontalScrollView
+            android:id="@+id/myPlayersSwipper"
+            android:layout_width="fill_parent"
+            android:layout_height="160dp"
+            android:background="@drawable/black_backgound"
+            android:fillViewport="true" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <RelativeLayout
+                    android:id="@+id/myPlayersBannerContainer"
+                    android:layout_width="140dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/black" >
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:gravity="center" >
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/all_my_players_banner" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/myPlayersContainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:orientation="horizontal" >
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="140dp"
+                    android:layout_height="fill_parent"
+                    android:background="@color/black"
+                    android:gravity="center" >
+
+                    <ImageView
+                        android:id="@+id/addaplayerButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/addaplayer" >
+                    </ImageView>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="fill_parent"
+                    android:background="@color/black" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <RelativeLayout
+            android:id="@+id/filterBoardBackground"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="160dp" >
+
+            <TextView
+                android:id="@+id/allPlaysId"
+                android:layout_width="200dp"
+                android:layout_height="45dp"
+                android:background="@drawable/border"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="All Plays"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/topPlaysId"
+                android:layout_width="200dp"
+                android:layout_height="45dp"
+                android:layout_toRightOf="@id/allPlaysId"
+                android:background="@drawable/border"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="Top Plays"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/topRatedId"
+                android:layout_width="200dp"
+                android:layout_height="45dp"
+                android:layout_toRightOf="@id/topPlaysId"
+                android:background="@drawable/border"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="Top Rated"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/watchAllId"
+                android:layout_width="fill_parent"
+                android:layout_height="45dp"
+                android:layout_toRightOf="@id/topRatedId"
+                android:background="@drawable/border"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="122 Plays \u00A0\u00A0\u00A0\u00A0\u00A0\u00A0 \u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0 Watch All"
+                android:textAlignment="viewEnd"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/combinedLayoutForSelectedCategoryAndPlayCardsId"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="205dp"
+            android:background="@drawable/black_backgound" >
+
+            <RelativeLayout
+                android:id="@+id/selectedCategoryLayoutId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_margin="10dp"
+                android:alpha="0.5"
+                android:background="@color/white"
+                android:padding="10dp" >
+
+                <TextView
+                    android:id="@+id/selectedCategoryTextViewId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:typeface="serif" />
+            </RelativeLayout>
+
+            <HorizontalScrollView
+                android:id="@+id/horizontalScrollViewForVideosId"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_below="@id/selectedCategoryLayoutId" >
+
+                <LinearLayout
+                    android:id="@+id/parentLayoutOfPlayCardsId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:scrollbarAlwaysDrawHorizontalTrack="true" >
+                </LinearLayout>
+            </HorizontalScrollView>
+        </RelativeLayout>
+
+        <FrameLayout
+            android:id="@+id/menuFragment"
+            android:layout_width="300dp"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+
+</merge>

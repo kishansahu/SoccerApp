@@ -42,14 +42,12 @@
 
     <Button
         android:id="@+id/SignInButton"
-        android:layout_width="316dp"
+        android:layout_width="290dp"
         android:layout_height="54dp"
         android:layout_gravity="center_horizontal"
-        android:background="@color/blue_dark"
+        android:background="@drawable/btn_signin"
         android:clickable="true"
-        android:text="Sign In"
-        android:textColor="@color/white"
-        android:textSize="17sp" />
+        />
 	
     <View 
         android:layout_width="1dp"
@@ -67,28 +65,28 @@
 
     <ImageView
         android:id="@+id/signInfacebookButton"
-        android:layout_width="wrap_content"
+        android:layout_width="290dp"
         android:layout_height="54dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="10dp"
         android:clickable="true"
-        android:src="@drawable/signin_facebook" />
+        android:src="@drawable/btn_facebook" />
 
     <ImageView
         android:id="@+id/signUpEmailButton"
-        android:layout_width="wrap_content"
+       	android:layout_width="290dp"
         android:layout_height="55dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="10dp"
-        android:src="@drawable/signup_email" />
+        android:src="@drawable/btn_email" />
 
     <ImageView
         android:id="@+id/signInGuestUserButton"
-        android:layout_width="310dp"
+        android:layout_width="290dp"
         android:layout_height="55dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="10dp"
-        android:src="@drawable/signin_guest" />
+        android:src="@drawable/btn_guest" />
 
     <ImageView
         android:layout_width="314dp"

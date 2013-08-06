@@ -85,7 +85,7 @@ public class TopicMenuArrayAdapter extends BaseAdapter {
 // If Category chosen is activities
 				if (LiveClipsContentListItems.get(position).isTopicMenu() == true) {
 					String imageName =  LiveClipsContentListItems.get(position).getLeftSideImage().trim().toLowerCase().replaceAll("\\s",""); 
-					
+					ListRightImageView.setVisibility(View.GONE);
 					ListLeftImageView.setVisibility(View.VISIBLE);
 					ListLeftImageView.setImageResource(ImageProcessingUtil.getImageResourceByImageName((Activity)context, imageName.substring(1,imageName.length())));
 				}

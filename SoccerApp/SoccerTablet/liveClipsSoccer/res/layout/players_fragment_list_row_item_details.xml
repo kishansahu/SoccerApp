@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <ImageView
+        android:id="@+id/addplayerFavInFragmentList"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/star_low"
+        android:contentDescription="Team Logo"
+        android:gravity="center_vertical" >
+    </ImageView>
+
+    <TextView
+        android:id="@+id/playerNameInFragmentList"
+        android:layout_width="170dp"
+        android:layout_height="25dp"
+        android:layout_margin="5dp"
+        android:layout_marginTop="15dp"
+        android:layout_toRightOf="@id/addplayerFavInFragmentList"
+        android:gravity="center_vertical"
+        android:textStyle="bold" >
+    </TextView>
+     <TextView
+        android:id="@+id/addplayerNumInFragmentList"
+        android:layout_width="45dp"
+        android:layout_height="25dp"
+        android:layout_margin="5dp"
+        android:layout_marginTop="15dp"
+        android:layout_toRightOf="@id/playerNameInFragmentList"
+        android:gravity="center_vertical"
+        android:textStyle="bold" >
+    </TextView>
+     <TextView
+        android:id="@+id/addplayerposInFragmentList"
+        android:layout_width="45dp"
+        android:layout_height="25dp"
+        android:layout_margin="5dp"
+        android:layout_marginTop="15dp"
+        android:layout_toRightOf="@id/addplayerNumInFragmentList"
+        android:gravity="center_vertical"
+        android:textStyle="bold" >
+    </TextView>
+
+</RelativeLayout>

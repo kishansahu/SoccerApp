@@ -20,8 +20,9 @@
 
         <TextView
             android:id="@+id/textForList"
-            android:layout_width="150dp"
+            android:layout_width="0dp"
             android:layout_height="50dp"
+            android:layout_weight="1"
             android:layout_marginLeft="15dp"
             android:gravity="center_vertical"
             android:textColor="@color/white"

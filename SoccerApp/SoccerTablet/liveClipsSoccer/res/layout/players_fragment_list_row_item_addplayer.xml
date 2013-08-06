@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="@dimen/list_bar_default_height" >
+
+   <ImageView
+        android:id="@+id/team_category_team_icon"
+        android:layout_width="@dimen/list_bar_image_icon_default_width"
+        android:layout_height="@dimen/list_bar_image_icon_default_height"
+        android:contentDescription="Team Image"
+         >
+    </ImageView>
+
+    <TextView
+        android:id="@+id/team_category_team_player_name"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/list_bar_default_height"
+        android:layout_toRightOf="@id/team_category_team_icon"
+        android:gravity="center_vertical">
+    </TextView>
+</RelativeLayout>

@@ -11,10 +11,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Point;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
@@ -22,8 +25,17 @@ import android.widget.ToggleButton;
 
 import com.liveclips.soccer.R;
 import com.liveclips.soccer.model.TeamAlertSetting;
+import com.liveclips.soccer.popover.PopoverView;
+import com.liveclips.soccer.popover.PopoverView.PopoverViewDelegate;
 
-public class NflUtils {
+public class SoccerUtils {
+
+	private static boolean isScoreBannerShrinked;
+	
+	public static boolean isScoreBannerShrinked() {
+		return isScoreBannerShrinked;
+	}
+
 	static ToggleButton allPLaysToggleButton, topPLaysToggleButton,
 			scoringPLaysToggleButton, turnoversPLaysToggleButton,
 			redZonePLaysToggleButton, playsOfTheGameToggleButton;
@@ -31,14 +43,8 @@ public class NflUtils {
 	static SeekBar basicAlertLevelSeekbar, passingPlayAlertLevelSeekbar,
 			rushingPlayAlertLevelSeekbar;
 
-	private static boolean isScoreBannerShrinked;
-
-	public static boolean isScoreBannerShrinked() {
-		return isScoreBannerShrinked;
-	}
-
 	public static void setScoreBannerShrinked(boolean isScoreBannerShrinked) {
-		NflUtils.isScoreBannerShrinked = isScoreBannerShrinked;
+		SoccerUtils.isScoreBannerShrinked = isScoreBannerShrinked;
 	}
 
 	public static int getScreenWidthDimensions(Activity activity) {
@@ -521,26 +527,32 @@ public class NflUtils {
 					}
 				});
 	}
-	/*
-	 * public static void setAlertPopover(final Activity activity, final
-	 * PopoverView popoverView, final TextView alertButton) {
-	 * 
-	 * alertButton.setOnClickListener(new OnClickListener() {
-	 * 
-	 * @Override public void onClick(View v) { RelativeLayout rootView =
-	 * (RelativeLayout) activity .findViewById(R.id.gameRootView); if
-	 * (popoverView != null) { popoverView.dissmissPopover(false); } PopoverView
-	 * popoverView = new PopoverView(activity,
-	 * R.layout.common_popover_view_alerts);
-	 * 
-	 * popoverView.setContentSizeForViewInPopover(new Point(370, 630));
-	 * popoverView.setDelegate((PopoverViewDelegate) activity); View button =
-	 * (View) activity.findViewById(R.id.alertButton);
-	 * popoverView.showPopoverFromRectInViewGroup(rootView,
-	 * PopoverView.getFrameForView(button), PopoverView.PopoverArrowDirectionUp,
-	 * true); NflUtils.customizeAlertSetting(activity, alertButton);
-	 * NflUtils.setUserPreferredAlertSettings(activity, alertButton);
-	 * 
-	 * } }); }
-	 */
+
+	public static void setAlertPopover(final Activity activity,
+			final PopoverView popoverView, final Button alertButton) {
+
+		alertButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				RelativeLayout rootView = (RelativeLayout) activity
+						.findViewById(R.id.gameRootView);
+				if (popoverView != null) {
+					popoverView.dissmissPopover(false);
+				}
+				PopoverView popoverView = new PopoverView(activity,
+						R.layout.common_popover_view_alerts);
+
+				popoverView.setContentSizeForViewInPopover(new Point(370, 630));
+				popoverView.setDelegate((PopoverViewDelegate) activity);
+				View button = (View) activity.findViewById(R.id.alertButton);
+				popoverView.showPopoverFromRectInViewGroup(rootView,
+						PopoverView.getFrameForView(button),
+						PopoverView.PopoverArrowDirectionUp, true);
+				SoccerUtils.customizeAlertSetting(activity, alertButton);
+				SoccerUtils
+						.setUserPreferredAlertSettings(activity, alertButton);
+
+			}
+		});
+	}
 }

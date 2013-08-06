@@ -1,0 +1,49 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/emptyMyPlayersContainer"
+    android:layout_width="1130dp"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="horizontal" >
+
+    <ImageView
+        android:id="@+id/emptyMyPlayersNFLIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="128dp"
+        android:layout_margin="10dp"
+        android:src="@drawable/live_clips_logo" />
+
+    <TextView
+        android:id="@+id/emptyMyPlayersFirstLabel"
+        android:layout_width="380dp"
+        android:layout_height="90dp"
+        android:layout_margin="40dp"
+        android:text="@string/emptyMyPlayersFirstLabelText"
+        android:textSize="30sp"
+        android:textStyle="bold" >
+    </TextView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/emptyMyPlayersNFLIcon"
+            android:layout_width="70dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="400dp"
+            android:src="@drawable/arrow_right" />
+
+        <TextView
+            android:id="@+id/emptyMyPlayers"
+            android:layout_width="380dp"
+            android:layout_height="90dp"
+            android:layout_marginLeft="110dp"
+            android:text="@string/emptyMyPlayersSecondLabelText"
+            android:textSize="22sp"
+            android:textStyle="bold" >
+        </TextView>
+    </LinearLayout>
+
+</LinearLayout>

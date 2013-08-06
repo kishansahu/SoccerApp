@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -20,12 +21,17 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
+import com.google.gson.Gson;
 import com.liveclips.soccer.R;
 import com.liveclips.soccer.activity.GameActivity;
+import com.liveclips.soccer.activity.PlayersActivity;
+import com.liveclips.soccer.activity.SignUpOptionsActivity;
 import com.liveclips.soccer.adapter.TopicMenuArrayAdapter;
+import com.liveclips.soccer.commons.UserTypeEnum;
 import com.liveclips.soccer.database.DatabaseHelper;
 import com.liveclips.soccer.model.LiveClipsContentListItem;
 import com.liveclips.soccer.model.TeamItem;
+import com.liveclips.soccer.model.User;
 import com.liveclips.soccer.utils.PropertyReader;
 import com.liveclips.soccer.utils.SharedPreferencesUtil;
 
@@ -37,12 +43,14 @@ public class TopicMenuFragment extends Fragment {
 	ListView listView1;
 	DatabaseHelper databaseHelper;
 	private Properties properties, appCommonProperties;
-
+	Gson gson;
+	User user;
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle saveInstantState) {
 		Log.d("Fragment TopicMenuFragment", "onCreateView");
-
+		
 		return inflater.inflate(R.layout.main_fragment_view, container, false);
 
 	}
@@ -52,9 +60,6 @@ public class TopicMenuFragment extends Fragment {
 		super.onStart();
 		Log.d("Fragment TopicMenuFragment", "onStart");
 
-		//getActivity().findViewById(
-		
-		
 		listView1 = (ListView) getActivity().findViewById(
 				R.id.globalNavigationListView);
 
@@ -67,7 +72,9 @@ public class TopicMenuFragment extends Fragment {
 					.getPropertiesFormAssetDirectory(
 							"appcommonproperties.properties", getActivity());
 		}
-
+		gson = new Gson();
+		String json= SharedPreferencesUtil.getStringPreferences(getActivity(),appCommonProperties.getProperty("userObject"));
+		user= (User) gson.fromJson(json, User.class);
 		final List<LiveClipsContentListItem> liveClipsContentListItems = new ArrayList<LiveClipsContentListItem>();
 
 		List<TeamItem> teamItems = new DatabaseHelper((Context)getActivity()).getAllTeams();
@@ -92,9 +99,22 @@ public class TopicMenuFragment extends Fragment {
 
 		List<String> topicListKey = new ArrayList<String>();
 		Set<Object> keys = properties.keySet();
+		if(user.getUserType().equals(UserTypeEnum.GUESTUSER)){
+			LiveClipsContentListItem liveClipsContentListItem = new LiveClipsContentListItem();
+			liveClipsContentListItem.setCategoryType("1LoginToAddFav");
+			liveClipsContentListItem.setRowText(appCommonProperties.getProperty("1LoginToAddFav"));
+			liveClipsContentListItems.add(liveClipsContentListItem);
+		}
 		for (Object ob : keys) {
 			topicListKey.add((String) ob);
 		}
+		if(!user.getUserType().equals(UserTypeEnum.GUESTUSER)){
+			LiveClipsContentListItem liveClipsContentListItem = new LiveClipsContentListItem();
+			liveClipsContentListItem.setCategoryType("6settings");
+			liveClipsContentListItem.setRowText(appCommonProperties.getProperty("6settings"));
+			liveClipsContentListItems.add(liveClipsContentListItem);
+		}
+		
 		Collections.sort(topicListKey);
 
 		/**
@@ -121,7 +141,7 @@ public class TopicMenuFragment extends Fragment {
 
 			@Override
 			public void onItemClick(AdapterView<?> adapterView, View view,
-					int position, long arg3) {/*
+					int position, long arg3) {
 
 				LiveClipsContentListItem selectedItemFromList = (LiveClipsContentListItem) (liveClipsContentListItems
 						.get(position));
@@ -147,10 +167,14 @@ public class TopicMenuFragment extends Fragment {
 					gameActivityIntent.putExtra("favouriteTeamId", selectedItemFromList.getEntityId());
 					startActivity(gameActivityIntent);
 				} else if (selectedItemFromList.getCategoryType()
+						.equalsIgnoreCase("1LoginToAddFav")) {
+					startActivity(new Intent(getActivity(),
+							SignUpOptionsActivity.class));
+				} else if (selectedItemFromList.getCategoryType()
 						.equalsIgnoreCase("2players")) {
 					startActivity(new Intent(getActivity(),
 							PlayersActivity.class));
-				} else if (selectedItemFromList.getCategoryType()
+				} /*else if (selectedItemFromList.getCategoryType()
 						.equalsIgnoreCase("3highlights")) {
 					startActivity(new Intent(getActivity(),
 							NFLHighlightsActivity.class));
@@ -177,8 +201,9 @@ public class TopicMenuFragment extends Fragment {
 					ft.replace(R.id.menuFragment, gameScheduleFragment);
 					ft.commit();
 
-				} else if (selectedItemFromList.getCategoryType()
-						.equalsIgnoreCase("7settings")) {
+				}
+				*/ else if (selectedItemFromList.getCategoryType()
+						.equalsIgnoreCase("5settings")) {
 					FragmentManager fragmentManager = getFragmentManager();
 					FragmentTransaction ft = fragmentManager.beginTransaction();
 					Fragment gameSettingsFragment = new GameSettingsFragment();
@@ -187,7 +212,7 @@ public class TopicMenuFragment extends Fragment {
 
 				}
 
-			*/}
+			}
 
 		});
 	}

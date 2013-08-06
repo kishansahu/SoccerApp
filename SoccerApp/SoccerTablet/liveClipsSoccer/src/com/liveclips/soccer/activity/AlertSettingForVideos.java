@@ -19,7 +19,7 @@ import android.widget.ToggleButton;
 import com.google.gson.Gson;
 import com.liveclips.soccer.R;
 import com.liveclips.soccer.model.TeamAlertSetting;
-import com.liveclips.soccer.utils.NflUtils;
+import com.liveclips.soccer.utils.SoccerUtils;
 import com.liveclips.soccer.utils.SharedPreferencesUtil;
 
 public class AlertSettingForVideos extends Activity {
@@ -77,7 +77,7 @@ public class AlertSettingForVideos extends Activity {
 		}
 
 		presentFavouriteTeamId = favouriteTeamId;
-		teamAlertSetting = NflUtils.customizeAlertSettingForTeam(activity,
+		teamAlertSetting = SoccerUtils.customizeAlertSettingForTeam(activity,
 				teamAlertSetting);
 
 		favTeamIndex = favTeamList.indexOf(favouriteTeamId);
@@ -93,7 +93,6 @@ public class AlertSettingForVideos extends Activity {
 		openSelectedTeamPlayButton = (Button) findViewById(R.id.openSelectedTeamPlayButton);
 		backToAvailableTeamListButton = (Button) findViewById(R.id.backToAvailableTeamListButton);
 		alertsForAllteams = (ToggleButton) findViewById(R.id.alerts_for_allteams_toggle_button);
-		// backToAvailableTeamListButton.setText("<<Teams");
 		openSelectedTeamPlayButton
 				.setOnClickListener(new View.OnClickListener() {
 

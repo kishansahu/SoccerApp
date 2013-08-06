@@ -94,7 +94,6 @@ public class BaseActivity extends Activity {
 				.findViewById(R.id.commonFragmentMenuHeader);
 		sliderView.setOnClickListener(new View.OnClickListener() {
 
-			@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 			@Override
 			public void onClick(View v) {
 				fragmentTransaction = fragmentManager.beginTransaction();
