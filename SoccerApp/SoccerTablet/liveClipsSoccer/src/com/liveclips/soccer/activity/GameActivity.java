@@ -1,8 +1,6 @@
 package com.liveclips.soccer.activity;
 
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -10,19 +8,14 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Point;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
@@ -35,10 +28,8 @@ import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.liveclips.soccer.R;
-import com.liveclips.soccer.adapter.SeparatedListAdapter;
 import com.liveclips.soccer.popover.PopoverView;
 import com.liveclips.soccer.popover.PopoverView.PopoverViewDelegate;
-import com.liveclips.soccer.utils.ImageProcessingUtil;
 import com.liveclips.soccer.utils.NflUtils;
 import com.liveclips.soccer.utils.SharedPreferencesUtil;
 
@@ -168,12 +159,12 @@ public class GameActivity extends BaseActivity implements PopoverViewDelegate {
 			*/}
 		});
 
-		View drivesView = mActionBarView.findViewById(R.id.drivesView);
+		/*View drivesView = mActionBarView.findViewById(R.id.drivesView);
 
 		drivesView.setOnClickListener(new OnClickListener() {
 
 			@Override
-			public void onClick(View v) {/*
+			public void onClick(View v) {
 				RelativeLayout rootView = (RelativeLayout) findViewById(R.id.gameRootView);
 				if (popoverView != null) {
 					popoverView.dissmissPopover(false);
@@ -190,8 +181,8 @@ public class GameActivity extends BaseActivity implements PopoverViewDelegate {
 						PopoverView.getFrameForView(button),
 						PopoverView.PopoverArrowDirectionUp, true);
 
-			*/}
-		});
+			}
+		});*/
 
 		View playersView = mActionBarView.findViewById(R.id.playersView);
 
@@ -1002,21 +993,12 @@ public class GameActivity extends BaseActivity implements PopoverViewDelegate {
 	private OnClickListener allPlaysClickListener = new OnClickListener() {
 
 		@Override
-		public void onClick(View v) {/*
-			// TODO Auto-generated method stub
-			// allPlaysTextView.setBackgroundColor(2);
-			Drawable drawable = getResources().getDrawable(
-					R.drawable.active_border);
-			allPlaysTextView.setBackgroundDrawable(drawable);
-
-			
-			 * topPlaysTextView.setBackgroundResource(R.color.orange);
-			 * topRatedTextView.setBackgroundResource(R.color.orange);
-			 * watchAllTextView.setBackgroundResource(R.color.orange);
-			 
-			Toast.makeText(GameActivity.this, "all plays button clicked",
-					Toast.LENGTH_SHORT).show();
-		*/}
+		public void onClick(View v) {
+			allPlaysTextView.setTextColor(getResources().getColor(R.color.white));
+			topPlaysTextView.setTextColor(getResources().getColor(R.color.grey_light));
+			topRatedTextView.setTextColor(getResources().getColor(R.color.grey_light));
+			watchAllTextView.setTextColor(getResources().getColor(R.color.grey_light));
+			}
 	};
 
 	private OnClickListener topPlaysCilckListener = new OnClickListener() {
@@ -1024,11 +1006,10 @@ public class GameActivity extends BaseActivity implements PopoverViewDelegate {
 		@Override
 		public void onClick(View v) {
 
-			topPlaysTextView.setBackgroundResource(R.color.white);
-
-			allPlaysTextView.setBackgroundResource(R.color.orange);
-			topRatedTextView.setBackgroundResource(R.color.orange);
-			watchAllTextView.setBackgroundResource(R.color.orange);
+			topPlaysTextView.setTextColor(getResources().getColor(R.color.white));
+			allPlaysTextView.setTextColor(getResources().getColor(R.color.grey_light));
+			topRatedTextView.setTextColor(getResources().getColor(R.color.grey_light));
+			watchAllTextView.setTextColor(getResources().getColor(R.color.grey_light));
 
 			Toast.makeText(GameActivity.this, "top plays button clicked",
 					Toast.LENGTH_SHORT).show();
@@ -1040,12 +1021,11 @@ public class GameActivity extends BaseActivity implements PopoverViewDelegate {
 		@Override
 		public void onClick(View v) {
 
-			topRatedTextView.setBackgroundResource(R.color.white);
-
-			allPlaysTextView.setBackgroundResource(R.color.orange);
-			topPlaysTextView.setBackgroundResource(R.color.orange);
-			watchAllTextView.setBackgroundResource(R.color.orange);
-
+			topRatedTextView.setTextColor(getResources().getColor(R.color.white));
+			allPlaysTextView.setTextColor(getResources().getColor(R.color.grey_light));
+			topPlaysTextView.setTextColor(getResources().getColor(R.color.grey_light));
+			watchAllTextView.setTextColor(getResources().getColor(R.color.grey_light));
+			
 			Toast.makeText(GameActivity.this, "top Rated button clicked",
 					Toast.LENGTH_SHORT).show();
 		}
@@ -1055,11 +1035,10 @@ public class GameActivity extends BaseActivity implements PopoverViewDelegate {
 
 		@Override
 		public void onClick(View v) {
-			watchAllTextView.setBackgroundResource(R.color.white);
-
-			allPlaysTextView.setBackgroundResource(R.color.orange);
-			topPlaysTextView.setBackgroundResource(R.color.orange);
-			topRatedTextView.setBackgroundResource(R.color.orange);
+			watchAllTextView.setTextColor(getResources().getColor(R.color.white));
+			allPlaysTextView.setTextColor(getResources().getColor(R.color.grey_light));
+			topPlaysTextView.setTextColor(getResources().getColor(R.color.grey_light));
+			topRatedTextView.setTextColor(getResources().getColor(R.color.grey_light));
 
 			Toast.makeText(GameActivity.this, "watch all button clicked",
 					Toast.LENGTH_SHORT).show();

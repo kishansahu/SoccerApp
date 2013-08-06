@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/playCardBackSideId"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:id="@+id/playCardBackSideTopLayoutId"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" >
+
+        <ImageView
+            android:id="@+id/playCardBackSideTopLayoutTeamLogoId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/teamLogo" />
+
+        <TextView
+            android:id="@+id/playCardBackSideTopLayoutTextViewId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/playCardBackSideTopLayoutTeamLogoId"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/playCardBackSideTopLayoutDoneButtonId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/doneButtonImage"
+            android:src="@drawable/done_button" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:layout_alignParentBottom="true"
+            android:background="@color/black" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/playCardBackSideTimeLineLayoutId"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_below="@id/playCardBackSideTopLayoutId" >
+
+        <ImageView
+            android:id="@+id/playCardBackSideTimeLineLayoutImageId"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_centerInParent="true"
+            android:contentDescription="@string/timeLineImage"
+            android:src="@drawable/time_line" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:layout_alignParentBottom="true"
+            android:layout_centerVertical="true"
+            android:background="@color/black" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/playCardBackSidePlayerCardsLayoutCurrentPlayTextViewId"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_below="@id/playCardBackSideTimeLineLayoutId"
+        android:layout_marginTop="1dp"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <HorizontalScrollView
+        android:id="@+id/playCardBackSidePlayerCardsLayoutHorizontalScrollViewId"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_below="@id/playCardBackSidePlayerCardsLayoutCurrentPlayTextViewId">
+
+        <LinearLayout
+            android:id="@+id/playCardBackSidePlayerCardsLayoutHorizontalScrollViewLinearLayoutId"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" />
+    </HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/playCardBackSidePlayerCardsLayoutMorePlayTextViewId"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_below="@id/playCardBackSidePlayerCardsLayoutHorizontalScrollViewId"
+        android:layout_centerVertical="true"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <TableLayout
+        android:id="@+id/playCardBackSideMorePlaysId"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="350dp" >
+
+        <TableRow
+            android:id="@+id/playCardBackSideMorePlaysThisDriveId"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/playCardBackSideMorePlaysThisDriveTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical|left"
+                android:layout_marginLeft="10dp"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/playCardBackSideMorePlaysLongPassesTextViewId"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="80dp"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/playCardBackSideMorePlays1stDownTextViewId"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="120dp"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </TableRow>
+    </TableLayout>
+
+</RelativeLayout>

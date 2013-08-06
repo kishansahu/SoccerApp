@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/playCardFrontSideLayoutId"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:id="@+id/playCardFrontSideTopLayoutId"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" >
+
+        <ImageView
+            android:id="@+id/playCardFrontSideTopLayoutClipLogoId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/teamLogo"/>
+        
+        <TextView
+            android:id="@+id/playCardFrontSideTopLayoutClipInfoId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/playCardFrontSideTopLayoutClipLogoId"
+            android:paddingLeft="10dp"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/playCardFrontSideTopLayoutInfoButtonId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/infobutton"
+            android:src="@drawable/icon_info" />
+
+        <ImageView
+            android:id="@+id/playCardFrontSideTopLayoutClipShareId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+         	android:layout_marginRight="30dp"
+            android:background="@drawable/icon_share"
+            android:contentDescription="@string/clipShare"/>
+
+        <RatingBar
+            android:id="@+id/playCardFrontSideTopLayoutRatingBarId"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+          	android:layout_marginRight="70dp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/playCardFrontSidePlaySectionlayoutId"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_below="@id/playCardFrontSideTopLayoutId"
+        android:background="@color/black" >
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/playCardFrontSideBottomLayoutId"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/playCardFrontSidePlaySectionlayoutId" >
+
+        <TextView
+            android:id="@+id/playCardFrontSideBottomLayoutTextViewId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textSize="14sp"
+            android:textStyle="bold" >
+        </TextView>
+
+        <ImageButton
+            android:id="@+id/playCardFrontSideBottomLayoutImageButtonId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+
+</RelativeLayout>

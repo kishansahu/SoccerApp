@@ -139,7 +139,7 @@
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
-                    android:layout_alignParentRight="true">
+                    android:layout_alignParentRight="true" >
 
                     <TextView
                         android:id="@+id/secondTeamScore"
@@ -161,69 +161,104 @@
             android:layout_height="160dp"
             android:layout_alignParentRight="true"
             android:layout_gravity="right"
-            android:orientation="vertical"
             android:background="@drawable/scorecard_background"
+            android:orientation="vertical"
             android:visibility="invisible" >
         </LinearLayout>
 
-        <RelativeLayout
+        <!--
+             <RelativeLayout
             android:id="@+id/filterBoardBackground"
             android:layout_width="fill_parent"
             android:layout_height="50dp"
+            android:layout_marginTop="160dp" >
+        -->
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
             android:layout_marginTop="160dp" >
 
             <TextView
                 android:id="@+id/allPlaysId"
                 android:layout_width="200dp"
-                android:layout_height="45dp"
-                android:background="@drawable/border"
+                android:layout_height="40dp"
+                android:background="@color/grey_deep"
                 android:clickable="true"
+                android:drawableBottom="@color/white"
                 android:gravity="center"
                 android:text="All Plays"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
+            <View
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/grey_light" />
+
             <TextView
                 android:id="@+id/topPlaysId"
                 android:layout_width="200dp"
-                android:layout_height="45dp"
+                android:layout_height="40dp"
                 android:layout_toRightOf="@id/allPlaysId"
-                android:background="@drawable/border"
+                android:background="@color/grey_deep"
                 android:clickable="true"
                 android:gravity="center"
                 android:text="Top Plays"
-                android:textColor="@color/white"
+                android:textColor="@color/grey_light"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/grey_light" />
 
             <TextView
                 android:id="@+id/topRatedId"
                 android:layout_width="200dp"
-                android:layout_height="45dp"
+                android:layout_height="40dp"
                 android:layout_toRightOf="@id/topPlaysId"
-                android:background="@drawable/border"
+                android:background="@color/grey_deep"
                 android:clickable="true"
                 android:gravity="center"
                 android:text="Top Rated"
-                android:textColor="@color/white"
+                android:textColor="@color/grey_light"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/grey_light" />
 
             <TextView
                 android:id="@+id/watchAllId"
                 android:layout_width="fill_parent"
-                android:layout_height="45dp"
+                android:layout_height="40dp"
                 android:layout_toRightOf="@id/topRatedId"
-                android:background="@drawable/border"
+                android:background="@color/grey_deep"
                 android:clickable="true"
                 android:gravity="center"
                 android:text="122 Plays \u00A0\u00A0\u00A0\u00A0\u00A0\u00A0 \u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0 Watch All"
                 android:textAlignment="viewEnd"
-                android:textColor="@color/white"
+                android:textColor="@color/grey_light"
                 android:textSize="20sp"
                 android:textStyle="bold" />
-        </RelativeLayout>
+        </TableRow>
+        <!-- </RelativeLayout> -->
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="5dp"
+            android:layout_marginTop="200dp" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white" />
+        </TableRow>
 
         <RelativeLayout
             android:id="@+id/combinedLayoutForSelectedCategoryAndPlayCardsId"

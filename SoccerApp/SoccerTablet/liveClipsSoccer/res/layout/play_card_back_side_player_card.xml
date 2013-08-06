@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/playCardBackSidePlayerCardLayoutId"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ImageView
+        android:id="@+id/playCardBackSidePlayerCardLayoutPlayerImageViewId"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/playerImage" />
+
+    <TextView
+        android:id="@+id/playCardBackSidePlayerCardLayoutPlayerNameId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/playCardBackSidePlayerCardLayoutPlayerImageViewId"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/playCardBackSidePlayerCardLayoutPlayerJerseyNumberId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/playCardBackSidePlayerCardLayoutPlayerNameId"
+        android:layout_toRightOf="@id/playCardBackSidePlayerCardLayoutPlayerImageViewId"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/playCardBackSidePlayerCardLayoutPlayerPositionId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/playCardBackSidePlayerCardLayoutPlayerNameId"
+        android:layout_toRightOf="@id/playCardBackSidePlayerCardLayoutPlayerJerseyNumberId"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/playCardBackSidePlayerCardLayoutPlayInfoId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/playCardBackSidePlayerCardLayoutPlayerPositionId"
+        android:layout_toRightOf="@id/playCardBackSidePlayerCardLayoutPlayerImageViewId" />
+
+</RelativeLayout>
