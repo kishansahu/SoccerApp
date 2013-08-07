@@ -81,26 +81,11 @@ public class PlayCardView {
 		playCardLayout.setLayoutParams(playCardLayoutParameters);
 
 		playCardLayout.setBackgroundResource(R.color.gray_play_card);
-		/*if (index % 2 == 0) {*/
-			//playCardLayout.setBackgroundResource(R.drawable.gray_background);
-	/*	} else {
-			playCardLayout
-					.setBackgroundColor(resources.getColor(R.color.green));
-		}*/
-
+	
 		playCardLayout.setPadding(15, 15, 15, 15);
 
-		/*
-		final LayoutInflater inflator = (LayoutInflater) activity
-				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		
-		RelativeLayout parentOfPlayCard = (RelativeLayout) inflator.inflate(R.layout.play_card, null);
-		final ViewAnimator playCardViewAnimator = (ViewAnimator) parentOfPlayCard.findViewById(R.id.playCardViewFlipperId);
-		
-		final RelativeLayout playCardLayout = (RelativeLayout) playCardViewAnimator.findViewById(R.id.playCardLayoutId);
-		playCardLayout.setPadding(15, 15, 15, 15);
-		*/
 		// play card front side detail ********************
+				
 		final LayoutInflater inflator = (LayoutInflater) activity
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -108,7 +93,7 @@ public class PlayCardView {
 				.inflate(R.layout.play_card_front_side, null);
 		
 		ImageView playCardFrontSideTopLayoutClipType = (ImageView) playCardFrontSide.findViewById(R.id.playCardFrontSideTopLayoutClipLogoId);
-		playCardFrontSideTopLayoutClipType.setBackgroundResource(R.drawable.clip_type_pass);
+		playCardFrontSideTopLayoutClipType.setBackgroundResource(R.drawable.teamlogo_ars_id_small);
 
 		ImageView playCardFrontSideTopLayoutInfoButton = (ImageView) playCardFrontSide
 				.findViewById(R.id.playCardFrontSideTopLayoutInfoButtonId);
@@ -142,7 +127,7 @@ public class PlayCardView {
 		videoSizeButton.setVisibility(View.INVISIBLE);
 		
 		new DownloadImageTask(playCardFrontSidePlaySectionImage)
-				.execute("http://si.wsj.net/public/resources/images/NA-BU548_NFL_G_20130111183225.jpg");
+				.execute("http://www4.pictures.zimbio.com/gi/Theo+Walcott+Arsenal+v+Manchester+United+Premier+r0XuCess83jl.jpg");
 
 		//downloadImagesThreadPool.submit(playCardFrontSidePlaySectionImage, "http://si.wsj.net/public/resources/images/NA-BU548_NFL_G_20130111183225.jpg");
 		playCardFrontSidePlaySectionImage.setId(index * 90000);
@@ -223,11 +208,11 @@ public class PlayCardView {
         });
 		
 
-		int playerPic[] = { R.drawable.cri_ron_pic, R.drawable.messi,
-				R.drawable.cri_ron_pic, R.drawable.messi,
-				R.drawable.cri_ron_pic };
-		String playerName[] = { "Tom Brady", "Stevan Ridley", "Wes Welker",
-				"Rob Gronkowski", "Brad Jones" };
+		int playerPic[] = { R.drawable.messi, R.drawable.cri_ron_pic,
+				R.drawable.messi, R.drawable.cri_ron_pic,
+				R.drawable.messi };
+		String playerName[] = { "Messi", "Ronaldo", "Messi",
+				"Ronaldo", "Messi" };
 		String playerPosition[] = { "#12 | QB", "#22 | RB 7REC-",
 				"#83 | WR 7REC-", "#87 | TR", "#59 | LB" };
 		String playerDetail[] = { "YDS , 2TD , 1 INT", "83 YDS 0 TD",

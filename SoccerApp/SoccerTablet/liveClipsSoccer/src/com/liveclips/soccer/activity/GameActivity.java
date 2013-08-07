@@ -97,7 +97,7 @@ public class GameActivity extends BaseActivity implements PopoverViewDelegate {
 
 		createCustomActionBar();
 
-		PlayCards.getPlayCards(activity, "AllPlays");
+		PlayCards.getPlayCards(activity,context, "AllPlays");
 //		playCards();
 
 	}
