@@ -32,7 +32,7 @@ public class UserSelectTeam extends Activity {
 	private Activity activity;
 	private Context context;
 	Button linkToSetAlertsButton;
-	private Properties appCommonProperties;
+	Properties appCommonProperties;
 	ActionBar actionBar;
 	Gson gson;
 	User user;

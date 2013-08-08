@@ -20,7 +20,7 @@ public class TopicMenuArrayAdapter extends BaseAdapter {
 	private List<LiveClipsContentListItem> LiveClipsContentListItems;
 	private final Context context;
 	int layoutResourceId;
-	static int selectedIndex = -1;
+	int selectedIndex = -1;
 
 	public int getSelectedIndex() {
 		return selectedIndex;

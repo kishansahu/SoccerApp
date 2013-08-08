@@ -213,7 +213,7 @@ public class GameActivity extends BaseActivity implements PopoverViewDelegate {
 		Button alertButton = (Button) mActionBarView
 				.findViewById(R.id.alertButton);
 		String alertButtonText = SharedPreferencesUtil.getStringPreferences(activity, "alert_button_status");
-		if(!alertButtonText.isEmpty() && alertButtonText!=null){
+		if(alertButtonText!=null && !alertButtonText.isEmpty()){
 			alertButton.setText("Alerts: " +alertButtonText);
 		}else{
 			alertButton.setText("Alerts: " + activity.getString(R.string.alert_level_first));

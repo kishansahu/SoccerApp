@@ -21,8 +21,10 @@ import android.widget.TextView;
 
 import com.liveclips.soccer.R;
 import com.liveclips.soccer.adapter.AddPlayerCategoriesBySettingsListAdapter;
+import com.liveclips.soccer.adapter.AddPlayerListAdapter;
 import com.liveclips.soccer.adapter.SeparatedListAdapter;
 import com.liveclips.soccer.model.LiveClipsContentListItem;
+import com.liveclips.soccer.model.PlayerItem;
 import com.liveclips.soccer.utils.ImageProcessingUtil;
 import com.liveclips.soccer.utils.SharedPreferencesUtil;
 
@@ -85,7 +87,32 @@ public class AddPlayerFromFavouriteTeamMenuFragment extends Fragment {
 		super.onActivityCreated(savedInstanceState);
 	}
 	
-	
+	public List<PlayerItem> getPlayersForAddition() {
+
+		
+		String playerNames[] = { "Ballard, Jake", "Aiken, Danny",
+				"Allen, Will", "Arrignton, Kyle", "Barrett, Josh",
+				"Bequette, Jake", "Bolden, Brandon", "Brace, Ron" };
+		String playerNumber[] = { "48", "26", "24", "88", "30", "92", "38",
+				"97" };
+		String playerPosition[] = { "LS", "DB", "CB", "TE", "SS", "DE", "RB",
+				"DT" };
+
+		boolean isPlayerFavouriteActive[] = { false, false, true, false, false,
+				true, false, false };
+		PlayerItem item;
+		List<PlayerItem> playerList = new ArrayList<PlayerItem>();
+		for (int i = 0; i < playerNames.length; i++) {
+			item = new PlayerItem();
+			item.setPlayerName(playerNames[i]);
+			item.setPlayerPosition(playerPosition[i]);
+			item.setPlayerNumber(playerNumber[i]);
+			item.setPLayerFavouriteActive(isPlayerFavouriteActive[i]);
+			playerList.add(item);
+		}
+		return playerList;
+	}
+
 	@Override
 	public void onStart() {
 
@@ -108,6 +135,8 @@ public class AddPlayerFromFavouriteTeamMenuFragment extends Fragment {
 		
 		List<LiveClipsContentListItem> quarterBackaddPlayerContentList = new ArrayList<LiveClipsContentListItem>(); 
 		List<LiveClipsContentListItem> runningBackaddPlayerContentList = new ArrayList<LiveClipsContentListItem>(); 
+		
+		
 		
 		
 		for(String player: quarterBackPlayers){
@@ -136,7 +165,8 @@ public class AddPlayerFromFavouriteTeamMenuFragment extends Fragment {
 		
 		
 		SeparatedListAdapter adapter = new SeparatedListAdapter(getActivity());
-		adapter.addSection("Quarter backs", new AddPlayerCategoriesBySettingsListAdapter(quarterBackaddPlayerContentList, (Context)getActivity()));
+	//	adapter.addSection("Quarter backs", new AddPlayerCategoriesBySettingsListAdapter(quarterBackaddPlayerContentList, (Context)getActivity()));
+		adapter.addSection("Quarter back", new AddPlayerListAdapter((Context)getActivity(), getPlayersForAddition()));
 		adapter.addSection("Running backs", new AddPlayerCategoriesBySettingsListAdapter(runningBackaddPlayerContentList, (Context)getActivity()));
 		//adapter.addSection("Wide Recievers", new AddPlayerCategoriesBySettingsListAdapter(addPlayerContentList, (Context)getActivity()));
 		
@@ -172,5 +202,7 @@ public class AddPlayerFromFavouriteTeamMenuFragment extends Fragment {
 		findPLayerByCategoryListView.setAdapter(adapter);
 
 	}
+	
+	
 
 }

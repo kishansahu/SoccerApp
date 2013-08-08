@@ -89,9 +89,9 @@ public class DatabaseHelper
 				teamItem.setTeamName(cursor.getString(0));
 				teamItem.setTeamAbbreviation(cursor.getString(1));
 			}
+			cursor.close();
 		}
 
-		cursor.close();
 		close();
 		return teamItem;
 	}
@@ -143,9 +143,9 @@ public class DatabaseHelper
 					leagueChanged=false;
 				}
 
-				System.out.println(cursor.getString(0) + "*"
+				/*System.out.println(cursor.getString(0) + "*"
 						+ cursor.getString(1) + "*" + cursor.getString(2) + "*"
-						+ cursor.getString(3) + "*" + cursor.getString(4) + "*" + cursor.getString(5)+ "*" + cursor.getString(6));
+						+ cursor.getString(3) + "*" + cursor.getString(4) + "*" + cursor.getString(5)+ "*" + cursor.getString(6));*/
 			} while (cursor.moveToNext());
 		}
 		leagueTeamDto.setLeagueList(leagueList);

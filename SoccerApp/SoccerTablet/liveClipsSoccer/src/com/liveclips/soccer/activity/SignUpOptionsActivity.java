@@ -29,6 +29,7 @@ import com.facebook.android.DialogError;
 import com.facebook.android.Facebook;
 import com.facebook.android.Facebook.DialogListener;
 import com.facebook.android.FacebookError;
+import com.google.gson.Gson;
 import com.liveclips.soccer.R;
 import com.liveclips.soccer.commons.UserTypeEnum;
 import com.liveclips.soccer.model.User;
@@ -47,7 +48,7 @@ public class SignUpOptionsActivity extends Activity {
 	private AsyncFacebookRunner mAsyncRunner;
 	String FILENAME = "AndroidSSO_data";
 	String jsonForUser;
-	private static SharedPreferences mPrefs;
+	static SharedPreferences mPrefs;
 	ImageView signInfacebookButton, signUpEmailButton,signInGuestUserButton;
 	EditText emailAddress, signInPasswordEditbox;
 	TextView errorMessageForEmailSignIn;
@@ -55,7 +56,7 @@ public class SignUpOptionsActivity extends Activity {
 	ActionBar actionBar;
 	User user;
 	Editor prefsEditor;
-	
+	Gson gson;
 	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -63,13 +64,21 @@ public class SignUpOptionsActivity extends Activity {
 		activity = this;
 		context=this;
 		user = new User();
-				
-		actionBar = getActionBar();
-		actionBar.hide();
-		
+		gson = new Gson();
 		appCommonProperties= PropertyReader
 				.getPropertiesFormAssetDirectory("appcommonproperties.properties",
 						activity);
+		String jsonUser= SharedPreferencesUtil.getStringPreferences(activity,appCommonProperties.getProperty("userObject"));
+		if(!jsonUser.isEmpty()){
+			user= (User) gson.fromJson(jsonUser, User.class);
+			if(user.getUserType().equals(UserTypeEnum.FACEBOOKUSER) || user.getUserType().equals(UserTypeEnum.LIVECLIPS)){
+				SignUpOptionsActivity.this.startActivity(new Intent(SignUpOptionsActivity.this,UserSelectTeam.class));
+			}
+			
+		}		
+		actionBar = getActionBar();
+		actionBar.hide();
+		
 		APP_ID= appCommonProperties.getProperty("facebookApplicationId");
 		setContentView(R.layout.signup_option);
 		facebook = new Facebook(APP_ID);
@@ -133,20 +142,6 @@ public class SignUpOptionsActivity extends Activity {
 			}
 		});
 		
-		
-		
-		/*existingUserSignInPageLink = (TextView) findViewById(R.id.existingUserSignInPageLink);
-		existingUserSignInPageLink.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent myIntent = new Intent(SignUpOptionsActivity.this,
-						ExistingUserSignIn.class);
-				SignUpOptionsActivity.this.startActivity(myIntent);
-				Intent myIntent = new Intent(SignUpOptionsActivity.this,
-						GameActivity.class);
-				SignUpOptionsActivity.this.startActivity(myIntent);
-			}
-		});*/
 	}
 
 	public static void logOutFromFaceBook(){

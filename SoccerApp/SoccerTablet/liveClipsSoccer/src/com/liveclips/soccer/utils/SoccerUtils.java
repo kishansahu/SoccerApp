@@ -55,7 +55,7 @@ public class SoccerUtils {
 		return width;
 	}
 
-	public static void changeAbilityContentOfView(View v, boolean ability) {
+	/*public static void changeAbilityContentOfView(View v, boolean ability) {
 		int size = (int) ((ViewGroup) v).getChildCount();
 		for (int j = 0; j <= size; j++) {
 			View child = null;
@@ -95,7 +95,7 @@ public class SoccerUtils {
 			}
 		}
 
-	}
+	}*/
 
 	public static int getScreenHeightDimensions(Activity activity) {
 		DisplayMetrics displaymetrics = new DisplayMetrics();

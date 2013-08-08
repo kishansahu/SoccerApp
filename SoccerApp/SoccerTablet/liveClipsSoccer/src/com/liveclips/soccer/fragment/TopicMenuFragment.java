@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -35,8 +34,6 @@ import com.liveclips.soccer.model.User;
 import com.liveclips.soccer.utils.PropertyReader;
 import com.liveclips.soccer.utils.SharedPreferencesUtil;
 
-
-
 public class TopicMenuFragment extends Fragment {
 
 	TopicMenuArrayAdapter adapter;
@@ -45,12 +42,12 @@ public class TopicMenuFragment extends Fragment {
 	private Properties properties, appCommonProperties;
 	Gson gson;
 	User user;
-	
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle saveInstantState) {
 		Log.d("Fragment TopicMenuFragment", "onCreateView");
-		
+
 		return inflater.inflate(R.layout.main_fragment_view, container, false);
 
 	}
@@ -73,12 +70,14 @@ public class TopicMenuFragment extends Fragment {
 							"appcommonproperties.properties", getActivity());
 		}
 		gson = new Gson();
-		String json= SharedPreferencesUtil.getStringPreferences(getActivity(),appCommonProperties.getProperty("userObject"));
-		user= (User) gson.fromJson(json, User.class);
+		String json = SharedPreferencesUtil.getStringPreferences(getActivity(),
+				appCommonProperties.getProperty("userObject"));
+		user = (User) gson.fromJson(json, User.class);
 		final List<LiveClipsContentListItem> liveClipsContentListItems = new ArrayList<LiveClipsContentListItem>();
 
-		List<TeamItem> teamItems = new DatabaseHelper((Context)getActivity()).getAllTeams();
-		
+		List<TeamItem> teamItems = new DatabaseHelper((Context) getActivity())
+				.getAllTeams();
+
 		List<String> favTeams = SharedPreferencesUtil
 				.getFavouriteInSharedPreferencesList(getActivity(), "team");
 		for (String favTeamId : favTeams) {
@@ -87,41 +86,35 @@ public class TopicMenuFragment extends Fragment {
 			liveClipsContentListItem.setLeftSideImage(favTeamId);
 			liveClipsContentListItem.setEntityId(favTeamId);
 			liveClipsContentListItem.setRowText(favTeamId);
-			for(TeamItem teamItem:teamItems){
-				if(teamItem.getTeamId().equalsIgnoreCase(favTeamId)){
+			for (TeamItem teamItem : teamItems) {
+				if (teamItem.getTeamId().equalsIgnoreCase(favTeamId)) {
 					liveClipsContentListItem.setRowText(teamItem.getTeamName());
 					break;
 				}
 			}
-			
+
 			liveClipsContentListItems.add(liveClipsContentListItem);
 		}
 
 		List<String> topicListKey = new ArrayList<String>();
 		Set<Object> keys = properties.keySet();
-		if(user.getUserType().equals(UserTypeEnum.GUESTUSER)){
+		if (user.getUserType().equals(UserTypeEnum.GUESTUSER)) {
 			LiveClipsContentListItem liveClipsContentListItem = new LiveClipsContentListItem();
 			liveClipsContentListItem.setCategoryType("1LoginToAddFav");
-			liveClipsContentListItem.setRowText(appCommonProperties.getProperty("1LoginToAddFav"));
+			liveClipsContentListItem.setRowText(appCommonProperties
+					.getProperty("1LoginToAddFav"));
 			liveClipsContentListItems.add(liveClipsContentListItem);
 		}
 		for (Object ob : keys) {
 			topicListKey.add((String) ob);
 		}
-		if(!user.getUserType().equals(UserTypeEnum.GUESTUSER)){
-			LiveClipsContentListItem liveClipsContentListItem = new LiveClipsContentListItem();
-			liveClipsContentListItem.setCategoryType("6settings");
-			liveClipsContentListItem.setRowText(appCommonProperties.getProperty("6settings"));
-			liveClipsContentListItems.add(liveClipsContentListItem);
-		}
-		
+
 		Collections.sort(topicListKey);
 
 		/**
 		 * Get User favourite team by teamId from shared preference if not
 		 * available set to default team
 		 */
-		
 
 		for (String key : topicListKey) {
 			LiveClipsContentListItem liveClipsContentListItem = new LiveClipsContentListItem();
@@ -129,6 +122,13 @@ public class TopicMenuFragment extends Fragment {
 			liveClipsContentListItem.setTopicMenu(true);
 			liveClipsContentListItem.setLeftSideImage(key);
 			liveClipsContentListItem.setRowText(properties.getProperty(key));
+			liveClipsContentListItems.add(liveClipsContentListItem);
+		}
+		if (!user.getUserType().equals(UserTypeEnum.GUESTUSER)) {
+			LiveClipsContentListItem liveClipsContentListItem = new LiveClipsContentListItem();
+			liveClipsContentListItem.setCategoryType("6settings");
+			liveClipsContentListItem.setRowText(appCommonProperties
+					.getProperty("6settings"));
 			liveClipsContentListItems.add(liveClipsContentListItem);
 		}
 
@@ -147,7 +147,6 @@ public class TopicMenuFragment extends Fragment {
 						.get(position));
 				int selectedIndex = adapter.getSelectedIndex();
 
-
 				view.findViewById(R.id.parentTextView).setSelected(true);
 
 				if (selectedIndex != -1) {
@@ -159,8 +158,10 @@ public class TopicMenuFragment extends Fragment {
 				adapter.setSelectedIndex(position);
 				if (selectedItemFromList.getCategoryType().equalsIgnoreCase(
 						"favouriteTeams")) {
-					Intent gameActivityIntent= new Intent(getActivity(), GameActivity.class);
-					gameActivityIntent.putExtra("favouriteTeamId", selectedItemFromList.getEntityId());
+					Intent gameActivityIntent = new Intent(getActivity(),
+							GameActivity.class);
+					gameActivityIntent.putExtra("favouriteTeamId",
+							selectedItemFromList.getEntityId());
 					startActivity(gameActivityIntent);
 				} else if (selectedItemFromList.getCategoryType()
 						.equalsIgnoreCase("1LoginToAddFav")) {
@@ -170,36 +171,36 @@ public class TopicMenuFragment extends Fragment {
 						.equalsIgnoreCase("2players")) {
 					startActivity(new Intent(getActivity(),
 							PlayersActivity.class));
-				} /*else if (selectedItemFromList.getCategoryType()
-						.equalsIgnoreCase("3highlights")) {
-					startActivity(new Intent(getActivity(),
-							NFLHighlightsActivity.class));
-				} else if (selectedItemFromList.getCategoryType()
-						.equalsIgnoreCase("4divisions")) {
-					FragmentManager fragmentManager = getFragmentManager();
-					FragmentTransaction ft = fragmentManager.beginTransaction();
-					Fragment divisionMenuFragment = new DivisionMenuFragment();
-					ft.replace(R.id.menuFragment, divisionMenuFragment);
-					ft.commit();
-				} else if (selectedItemFromList.getCategoryType()
-						.equalsIgnoreCase("5teams")) {
-					FragmentManager fragmentManager = getFragmentManager();
-					FragmentTransaction ft = fragmentManager.beginTransaction();
-					Fragment teamMenuFragment = new TeamsMenuFragment();
-					ft.replace(R.id.menuFragment, teamMenuFragment);
-
-					ft.commit();
-				} else if (selectedItemFromList.getCategoryType()
-						.equalsIgnoreCase("6gameSchedule")) {
-					FragmentManager fragmentManager = getFragmentManager();
-					FragmentTransaction ft = fragmentManager.beginTransaction();
-					Fragment gameScheduleFragment = new GameScheduleFragment();
-					ft.replace(R.id.menuFragment, gameScheduleFragment);
-					ft.commit();
-
-				}
-				*/ else if (selectedItemFromList.getCategoryType()
-						.equalsIgnoreCase("5settings")) {
+				} /*
+				 * else if (selectedItemFromList.getCategoryType()
+				 * .equalsIgnoreCase("3highlights")) { startActivity(new
+				 * Intent(getActivity(), NFLHighlightsActivity.class)); } else
+				 * if (selectedItemFromList.getCategoryType()
+				 * .equalsIgnoreCase("4divisions")) { FragmentManager
+				 * fragmentManager = getFragmentManager(); FragmentTransaction
+				 * ft = fragmentManager.beginTransaction(); Fragment
+				 * divisionMenuFragment = new DivisionMenuFragment();
+				 * ft.replace(R.id.menuFragment, divisionMenuFragment);
+				 * ft.commit(); } else if
+				 * (selectedItemFromList.getCategoryType()
+				 * .equalsIgnoreCase("5teams")) { FragmentManager
+				 * fragmentManager = getFragmentManager(); FragmentTransaction
+				 * ft = fragmentManager.beginTransaction(); Fragment
+				 * teamMenuFragment = new TeamsMenuFragment();
+				 * ft.replace(R.id.menuFragment, teamMenuFragment);
+				 * 
+				 * ft.commit(); } else if
+				 * (selectedItemFromList.getCategoryType()
+				 * .equalsIgnoreCase("6gameSchedule")) { FragmentManager
+				 * fragmentManager = getFragmentManager(); FragmentTransaction
+				 * ft = fragmentManager.beginTransaction(); Fragment
+				 * gameScheduleFragment = new GameScheduleFragment();
+				 * ft.replace(R.id.menuFragment, gameScheduleFragment);
+				 * ft.commit();
+				 * 
+				 * }
+				 */else if (selectedItemFromList.getCategoryType()
+						.equalsIgnoreCase("6settings")) {
 					FragmentManager fragmentManager = getFragmentManager();
 					FragmentTransaction ft = fragmentManager.beginTransaction();
 					Fragment gameSettingsFragment = new GameSettingsFragment();

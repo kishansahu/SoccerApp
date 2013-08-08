@@ -1,16 +1,15 @@
 package com.liveclips.soccer.model;
+
 import java.util.Comparator;
 
-import android.R.integer;
-import android.graphics.Bitmap;
-
-public class PlayerItem implements Comparable<PlayerItem>{
+public class PlayerItem implements Comparable<PlayerItem> {
 	public String playerdata1;
 	public String playerdata2;
 	public String playerdata3;
 	public String playerdata4;
 	public String playerName;
 	public String playerDetails;
+	public String playerGameDetails;
 	public String playerImage;
 	public String teamName;
 	public int teamLogo;
@@ -18,7 +17,14 @@ public class PlayerItem implements Comparable<PlayerItem>{
 	public String playerPosition;
 	public int playerFavourite;
 	public boolean isPLayerFavouriteActive;
-		
+
+	public String getPlayerGameDetails() {
+		return playerGameDetails;
+	}
+
+	public void setPlayerGameDetails(String playerGameDetails) {
+		this.playerGameDetails = playerGameDetails;
+	}
 
 	public boolean isPLayerFavouriteActive() {
 		return isPLayerFavouriteActive;
@@ -67,8 +73,6 @@ public class PlayerItem implements Comparable<PlayerItem>{
 	public void setplayerDetails(String playerDetails) {
 		this.playerDetails = playerDetails;
 	}
-
-	
 
 	public String getPlayerdata1() {
 		return playerdata1;
@@ -129,10 +133,10 @@ public class PlayerItem implements Comparable<PlayerItem>{
 	public PlayerItem() {
 
 	}
-	
-	public PlayerItem(String playerName, String playerDetails, String playerImage,
-			String playerdata1, String playerdata2, String playerdata3,
-			String playerdata4) {
+
+	public PlayerItem(String playerName, String playerDetails,
+			String playerImage, String playerdata1, String playerdata2,
+			String playerdata3, String playerdata4) {
 		super();
 		this.playerName = playerName;
 		this.playerDetails = playerDetails;
@@ -142,7 +146,7 @@ public class PlayerItem implements Comparable<PlayerItem>{
 		this.playerdata3 = playerdata3;
 		this.playerdata4 = playerdata4;
 	}
-	
+
 	public String getPlayerImage() {
 		return playerImage;
 	}
@@ -151,17 +155,18 @@ public class PlayerItem implements Comparable<PlayerItem>{
 		this.playerImage = playerImage;
 	}
 
-	public PlayerItem(int playerFavourite,String playerName,
-			String playerNumber, String playerPosition, boolean isPlayerFavouriteActive) {
+	public PlayerItem(int playerFavourite, String playerName,
+			String playerNumber, String playerPosition,
+			boolean isPlayerFavouriteActive) {
 		super();
 		this.playerFavourite = playerFavourite;
 		this.playerPosition = playerPosition;
 		this.playerName = playerName;
 		this.playerNumber = playerNumber;
-		this.isPLayerFavouriteActive= isPlayerFavouriteActive;
+		this.isPLayerFavouriteActive = isPlayerFavouriteActive;
 	}
 
-	public  PlayerItem(String teamName, int teamLogo) {
+	public PlayerItem(String teamName, int teamLogo) {
 		super();
 		this.teamName = teamName;
 		this.teamLogo = teamLogo;
@@ -169,112 +174,117 @@ public class PlayerItem implements Comparable<PlayerItem>{
 	}
 
 	/*
-     * Comparator implementation to Player Item object based on playerName
-     */
-    public static class playerNameInAscendingOrder implements Comparator<PlayerItem> {
+	 * Comparator implementation to Player Item object based on playerName
+	 */
+	public static class playerNameInAscendingOrder implements
+			Comparator<PlayerItem> {
 
-        @Override
-        public int compare(PlayerItem o1, PlayerItem o2) {
-        	return o1.playerName.compareTo(o2.playerName);
-        }
-    }
-    
-    /*
-     * Comparator implementation to Player Item object based on playerName
-     */
-    public static class playerNameInDescendingOrder implements Comparator<PlayerItem> {
+		@Override
+		public int compare(PlayerItem o1, PlayerItem o2) {
+			return o1.playerName.compareTo(o2.playerName);
+		}
+	}
 
-        @Override
-        public int compare(PlayerItem o1, PlayerItem o2) {
-        	return o2.playerName.compareTo(o1.playerName);
-        }
-    }
-    
-    /*
-     * Comparator implementation to Player Item object based on playerPosition
-     */
-    public static class playerPosInAscendingOrder implements Comparator<PlayerItem> {
+	/*
+	 * Comparator implementation to Player Item object based on playerName
+	 */
+	public static class playerNameInDescendingOrder implements
+			Comparator<PlayerItem> {
 
-        @Override
-        public int compare(PlayerItem o1, PlayerItem o2) {
-        	return o1.playerPosition.compareTo(o2.playerPosition);
-        }
-    }
-    
-    /*
-     * Comparator implementation to Player Item object based on playerPosition
-     */
-    public static class playerPosInDescendingOrder implements Comparator<PlayerItem> {
+		@Override
+		public int compare(PlayerItem o1, PlayerItem o2) {
+			return o2.playerName.compareTo(o1.playerName);
+		}
+	}
 
-        @Override
-        public int compare(PlayerItem o1, PlayerItem o2) {
-        	return o2.playerPosition.compareTo(o1.playerPosition);
-        }
-    }
-    
-    
-    /*
-     * Comparator implementation to Player Item object based on playerNum
-     */
-    public static class playerNumInAscendingOrder implements Comparator<PlayerItem> {
+	/*
+	 * Comparator implementation to Player Item object based on playerPosition
+	 */
+	public static class playerPosInAscendingOrder implements
+			Comparator<PlayerItem> {
 
-        @Override
-        public int compare(PlayerItem o1, PlayerItem o2) {
-        	int num1 = (Integer.parseInt(o1.playerNumber));
-        	int num2 = (Integer.parseInt(o2.playerNumber));
-        	
-        	return num1 > num2 ? 1 : (num1 < num2 ? -1 : 0);
-        }
-    }
-    
-    /*
-     * Comparator implementation to Player Item object based on playerNum
-     */
-    public static class playerNumInDescendingOrder implements Comparator<PlayerItem> {
-    	
-        @Override
-        public int compare(PlayerItem o1, PlayerItem o2) {
-        	int num1 = (Integer.parseInt(o1.playerNumber));
-        	int num2 = (Integer.parseInt(o2.playerNumber));
-        	
-        	return num2 > num1 ? 1 : (num2 < num1 ? -1 : 0);
-        }
-    }
+		@Override
+		public int compare(PlayerItem o1, PlayerItem o2) {
+			return o1.playerPosition.compareTo(o2.playerPosition);
+		}
+	}
 
-    /*
-     * Comparator implementation to Player Item object based on playerFav
-     */
-    public static class playerFavInAscendingOrder implements Comparator<PlayerItem> {
+	/*
+	 * Comparator implementation to Player Item object based on playerPosition
+	 */
+	public static class playerPosInDescendingOrder implements
+			Comparator<PlayerItem> {
 
-        @Override
-        public int compare(PlayerItem o1, PlayerItem o2) {
-        	int num1 =o1.isPLayerFavouriteActive? 1 : 0;
-        	int num2 =o2.isPLayerFavouriteActive? 1 : 0;
-        	
-        	return num1 > num2 ? 1 : (num1 < num2 ? -1 : 0);
-        }
-    }
-    
-    /*
-     * Comparator implementation to Player Item object based on playerFav
-     */
-    public static class playerFavInDescendingOrder implements Comparator<PlayerItem> {
-    	
-        @Override
-        public int compare(PlayerItem o1, PlayerItem o2) {
-        	int num1 =o1.isPLayerFavouriteActive? 1 : 0;
-        	int num2 =o2.isPLayerFavouriteActive? 1 : 0;
-        	
-        	return num2 > num1 ? 1 : (num2 < num1 ? -1 : 0);
-        }
-    }
-    
+		@Override
+		public int compare(PlayerItem o1, PlayerItem o2) {
+			return o2.playerPosition.compareTo(o1.playerPosition);
+		}
+	}
+
+	/*
+	 * Comparator implementation to Player Item object based on playerNum
+	 */
+	public static class playerNumInAscendingOrder implements
+			Comparator<PlayerItem> {
+
+		@Override
+		public int compare(PlayerItem o1, PlayerItem o2) {
+			int num1 = (Integer.parseInt(o1.playerNumber));
+			int num2 = (Integer.parseInt(o2.playerNumber));
+
+			return num1 > num2 ? 1 : (num1 < num2 ? -1 : 0);
+		}
+	}
+
+	/*
+	 * Comparator implementation to Player Item object based on playerNum
+	 */
+	public static class playerNumInDescendingOrder implements
+			Comparator<PlayerItem> {
+
+		@Override
+		public int compare(PlayerItem o1, PlayerItem o2) {
+			int num1 = (Integer.parseInt(o1.playerNumber));
+			int num2 = (Integer.parseInt(o2.playerNumber));
+
+			return num2 > num1 ? 1 : (num2 < num1 ? -1 : 0);
+		}
+	}
+
+	/*
+	 * Comparator implementation to Player Item object based on playerFav
+	 */
+	public static class playerFavInAscendingOrder implements
+			Comparator<PlayerItem> {
+
+		@Override
+		public int compare(PlayerItem o1, PlayerItem o2) {
+			int num1 = o1.isPLayerFavouriteActive ? 1 : 0;
+			int num2 = o2.isPLayerFavouriteActive ? 1 : 0;
+
+			return num1 > num2 ? 1 : (num1 < num2 ? -1 : 0);
+		}
+	}
+
+	/*
+	 * Comparator implementation to Player Item object based on playerFav
+	 */
+	public static class playerFavInDescendingOrder implements
+			Comparator<PlayerItem> {
+
+		@Override
+		public int compare(PlayerItem o1, PlayerItem o2) {
+			int num1 = o1.isPLayerFavouriteActive ? 1 : 0;
+			int num2 = o2.isPLayerFavouriteActive ? 1 : 0;
+
+			return num2 > num1 ? 1 : (num2 < num1 ? -1 : 0);
+		}
+	}
+
 	@Override
 	public int compareTo(PlayerItem another) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
-	
 
 }

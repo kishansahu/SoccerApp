@@ -34,7 +34,8 @@ public class AddPlayersFragment extends Fragment {
 
 	View currentView;
 	Activity currentActivity;
-	static ArrayAdapter<String> adapterForCategoryList, adapterForSearchList;
+	 ArrayAdapter<String> adapterForCategoryList;
+	static ArrayAdapter<String> adapterForSearchList;
 	Context context;
 	List<LiveClipsContentListItem> addPlayerContentList;
 	String[] anySearchForPlayersMenuItems = { "Tom Brady", "Rob Gronkowski", };

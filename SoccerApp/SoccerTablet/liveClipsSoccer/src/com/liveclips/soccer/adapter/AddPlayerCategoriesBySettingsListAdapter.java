@@ -58,12 +58,13 @@ public class AddPlayerCategoriesBySettingsListAdapter extends BaseAdapter {
 					leftImage.setImageResource(R.drawable.star_high);
 					liveClipsContentListItem.setUsersFavourite(true);
 					SharedPreferencesUtil.saveFavouriteInSharedPreferencesList(context, liveClipsContentListItem.getEntityId(), "player");
-					}else{
+				//	context.getClass().getSimpleName();
+				}else{
 						leftImage.setImageResource(R.drawable.star_low);
 						liveClipsContentListItem.setUsersFavourite(false);
 						SharedPreferencesUtil.removeFavouriteFromSharedPreferencesList(context, liveClipsContentListItem.getEntityId(), "player");
 					}
-				
+			//	AddPlayerListAdapter.addRemovePlayerFromFavourites();
 			}
 		} );
         }
