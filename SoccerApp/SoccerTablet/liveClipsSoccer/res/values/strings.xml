@@ -32,4 +32,16 @@
 	<string name="infobutton">Info Button</string>
 	<string name="clipShare">Share</string>
 	
+	 <string-array name="highLights_items">
+        <item>NFL Highlights</item>
+        <item>2013 Best of J.J. Watt: Swats</item>
+        <item>2013 Best of J.J. Watt: Sacks</item>
+        <item>2013: Best of Reggie Bush</item>
+        <item>2013: Best of Matthew Stafford</item>
+        <item>2013: Best of Doug Martin</item>
+        <item>Niners fail on two-point conversion attempt</item>
+        <item>Super Bowl XLVII: Colin Kaepernick highlights</item>
+        <item>Super Bowl XLVII: Joe Flacco highlights</item>
+    </string-array>
+	
 </resources>

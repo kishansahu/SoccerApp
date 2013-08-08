@@ -23,6 +23,7 @@ import android.widget.ListView;
 import com.google.gson.Gson;
 import com.liveclips.soccer.R;
 import com.liveclips.soccer.activity.GameActivity;
+import com.liveclips.soccer.activity.HighlightsActivity;
 import com.liveclips.soccer.activity.PlayersActivity;
 import com.liveclips.soccer.activity.SignUpOptionsActivity;
 import com.liveclips.soccer.adapter.TopicMenuArrayAdapter;
@@ -171,11 +172,13 @@ public class TopicMenuFragment extends Fragment {
 						.equalsIgnoreCase("2players")) {
 					startActivity(new Intent(getActivity(),
 							PlayersActivity.class));
-				} /*
+				} else if (selectedItemFromList.getCategoryType()
+						.equalsIgnoreCase("3highlights")) {
+					startActivity(new Intent(getActivity(),
+							HighlightsActivity.class));
+				}
+				/*
 				 * else if (selectedItemFromList.getCategoryType()
-				 * .equalsIgnoreCase("3highlights")) { startActivity(new
-				 * Intent(getActivity(), NFLHighlightsActivity.class)); } else
-				 * if (selectedItemFromList.getCategoryType()
 				 * .equalsIgnoreCase("4divisions")) { FragmentManager
 				 * fragmentManager = getFragmentManager(); FragmentTransaction
 				 * ft = fragmentManager.beginTransaction(); Fragment

@@ -53,7 +53,7 @@ public class SeparatedSectionHeaderListAdapter extends  ArrayAdapter<SectionHead
 			
 			if (convertView == null) {
 				convertView = mInflater.inflate(
-						R.layout.nfl_highlights_popover_header_standing, null);
+						R.layout.highlights_popover_header_standing, null);
 				holder = new HeaderViewHolder();
 				
 				holder.textView1 = (TextView) convertView

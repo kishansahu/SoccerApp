@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <TableRow
+        android:id="@+id/passingtableRow1"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/list_bar_default_height"
+        android:background="@color/white"
+        android:gravity="center_vertical" >
+
+        <TextView
+            android:id="@+id/passing_player_name"
+            android:layout_width="160dp"
+            android:layout_height="@dimen/list_bar_default_height"
+            android:layout_marginLeft="5dp"
+            android:gravity="center_vertical" />
+
+        <TextView
+            android:id="@+id/passing_team_name"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:id="@+id/passing_yards"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp" />
+
+        <ImageView
+            android:id="@+id/disclosure_button"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="2dp"
+            android:src="@drawable/disclosure" />
+    </TableRow>
+
+</TableLayout>

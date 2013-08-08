@@ -3,7 +3,6 @@ package com.liveclips.soccer.database;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.R.string;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
