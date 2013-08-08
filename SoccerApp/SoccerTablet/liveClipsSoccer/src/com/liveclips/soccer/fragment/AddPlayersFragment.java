@@ -40,6 +40,7 @@ public class AddPlayersFragment extends Fragment {
 	List<LiveClipsContentListItem> addPlayerContentList;
 	String[] anySearchForPlayersMenuItems = { "Tom Brady", "Rob Gronkowski", };
 	ListView findPLayerByCategoryListView;
+	boolean showSettingFragment;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -87,7 +88,7 @@ public class AddPlayersFragment extends Fragment {
 		final RelativeLayout actionBarLayout = (RelativeLayout) actionBar
 				.getCustomView();
 		Bundle bundle = this.getArguments();
-		boolean showSettingFragment = false;
+		
 		if (bundle != null) {
 			showSettingFragment = bundle.getBoolean("showSettingFragment",
 					false);
@@ -114,12 +115,14 @@ public class AddPlayersFragment extends Fragment {
 									.beginTransaction();
 							Bundle bundle = new Bundle();
 							bundle.putBoolean("showSettingFragment", true);
+							
 							GameSettingsFragment gameSettingsFragment = new GameSettingsFragment();
 							gameSettingsFragment.setArguments(bundle);
 							ft.replace(R.id.menuFragment, gameSettingsFragment);
 							ft.commit();
 						}
 					});
+			
 		} else {
 			newfragMenuHeader = getActivity().getLayoutInflater().inflate(
 					R.layout.players_fragment_actionbar_header_find_player,
@@ -239,6 +242,8 @@ public class AddPlayersFragment extends Fragment {
 				Fragment addPlayerFromFavouriteTeamMenuFragment = new AddPlayerFromFavouriteTeamMenuFragment();
 				Bundle bundle = new Bundle();
 				bundle.putString("favouriteTeamId", itemSelected.getEntityId());
+				bundle.putBoolean("showSettingFragment", showSettingFragment);
+				
 				addPlayerFromFavouriteTeamMenuFragment.setArguments(bundle);
 				ft.replace(R.id.menuFragment,
 						addPlayerFromFavouriteTeamMenuFragment);

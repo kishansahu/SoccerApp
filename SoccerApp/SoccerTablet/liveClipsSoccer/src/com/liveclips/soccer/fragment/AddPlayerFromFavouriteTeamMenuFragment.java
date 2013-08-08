@@ -33,13 +33,16 @@ public class AddPlayerFromFavouriteTeamMenuFragment extends Fragment {
 
 	ListView findPLayerByCategoryListView;
 	String favouriteTeamId;
+	boolean showSettingFragment;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle saveInstantState) {
 		
-		Bundle args = getArguments();
-	    if(args != null) {
-	    	favouriteTeamId = args.getString("favouriteTeamId");
+		Bundle bundle = getArguments();
+	    if(bundle != null) {
+	    	favouriteTeamId = bundle.getString("favouriteTeamId");
+	    	showSettingFragment = bundle.getBoolean("showSettingFragment",
+					false);
 	    }
 		/*
 		if (bundle != null) {
@@ -76,7 +79,7 @@ public class AddPlayerFromFavouriteTeamMenuFragment extends Fragment {
 						FragmentTransaction ft = fragmentManager
 								.beginTransaction();
 						Bundle bundle = new Bundle();
-						bundle.putBoolean("showSettingFragment", true);
+						bundle.putBoolean("showSettingFragment", showSettingFragment);
 						AddPlayersFragment addPlayersFragment = new AddPlayersFragment();
 						addPlayersFragment.setArguments(bundle);
 						ft.replace(R.id.menuFragment, addPlayersFragment);
