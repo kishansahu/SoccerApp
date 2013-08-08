@@ -12,8 +12,27 @@ public class PlayerItem implements Comparable<PlayerItem> {
 	public String playerGameDetails;
 	public String playerImage;
 	public String teamName;
+	public String playerTeamId;
 	public int teamLogo;
 	public String playerNumber;
+	public String playerId;
+	
+	public String getPlayerTeamId() {
+		return playerTeamId;
+	}
+
+	public void setPlayerTeamId(String playerTeamId) {
+		this.playerTeamId = playerTeamId;
+	}
+	
+	public String getPlayerId() {
+		return playerId;
+	}
+
+	public void setPlayerId(String playerId) {
+		this.playerId = playerId;
+	}
+
 	public String playerPosition;
 	public int playerFavourite;
 	public boolean isPLayerFavouriteActive;

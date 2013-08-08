@@ -87,32 +87,6 @@ public class AddPlayerFromFavouriteTeamMenuFragment extends Fragment {
 		super.onActivityCreated(savedInstanceState);
 	}
 	
-	public List<PlayerItem> getPlayersForAddition() {
-
-		
-		String playerNames[] = { "Ballard, Jake", "Aiken, Danny",
-				"Allen, Will", "Arrignton, Kyle", "Barrett, Josh",
-				"Bequette, Jake", "Bolden, Brandon", "Brace, Ron" };
-		String playerNumber[] = { "48", "26", "24", "88", "30", "92", "38",
-				"97" };
-		String playerPosition[] = { "LS", "DB", "CB", "TE", "SS", "DE", "RB",
-				"DT" };
-
-		boolean isPlayerFavouriteActive[] = { false, false, true, false, false,
-				true, false, false };
-		PlayerItem item;
-		List<PlayerItem> playerList = new ArrayList<PlayerItem>();
-		for (int i = 0; i < playerNames.length; i++) {
-			item = new PlayerItem();
-			item.setPlayerName(playerNames[i]);
-			item.setPlayerPosition(playerPosition[i]);
-			item.setPlayerNumber(playerNumber[i]);
-			item.setPLayerFavouriteActive(isPlayerFavouriteActive[i]);
-			playerList.add(item);
-		}
-		return playerList;
-	}
-
 	@Override
 	public void onStart() {
 
@@ -131,45 +105,39 @@ public class AddPlayerFromFavouriteTeamMenuFragment extends Fragment {
 		runningBackPlayers.add("38 Brandon Bolden");
 		runningBackPlayers.add("46 James Develin");
 		runningBackPlayers.add("22 Steven Ridley");
-		
-		
-		List<LiveClipsContentListItem> quarterBackaddPlayerContentList = new ArrayList<LiveClipsContentListItem>(); 
-		List<LiveClipsContentListItem> runningBackaddPlayerContentList = new ArrayList<LiveClipsContentListItem>(); 
-		
-		
-		
-		
-		for(String player: quarterBackPlayers){
-			LiveClipsContentListItem quarterBackaddPlayerContent = new LiveClipsContentListItem();
-			quarterBackaddPlayerContent.setCategoryType("player");
-			quarterBackaddPlayerContent.setRowText(player);
-			quarterBackaddPlayerContent.setEntityId(player.trim());
-			if(playersIdList.contains(quarterBackaddPlayerContent.getEntityId())){
-				quarterBackaddPlayerContent.setUsersFavourite(true);
+	
+			List<PlayerItem> quarterBackPlayersList = new ArrayList<PlayerItem>();
+			for (String player: quarterBackPlayers){
+			PlayerItem	item = new PlayerItem();
+				item.setPlayerName(player);
+				item.setPlayerPosition("");
+				item.setPlayerNumber("");
+				item.setPlayerId(player.trim());
+				item.setPlayerTeamId(favouriteTeamId);
+				if(playersIdList.contains(item.getPlayerId())){
+					item.setPLayerFavouriteActive(true);
+				}
+				quarterBackPlayersList.add(item);
 			}
-			quarterBackaddPlayerContent.setUpdateInSharedPreference(true);
-			quarterBackaddPlayerContentList.add(quarterBackaddPlayerContent);
-		}
-		
-		for(String player: runningBackPlayers){
-			LiveClipsContentListItem runningBackaddPlayerContent = new LiveClipsContentListItem();
-			runningBackaddPlayerContent.setCategoryType("player");
-			runningBackaddPlayerContent.setRowText(player);
-			runningBackaddPlayerContent.setEntityId(player.trim());
-			if(playersIdList.contains(runningBackaddPlayerContent.getEntityId())){
-				runningBackaddPlayerContent.setUsersFavourite(true);
+			
+			
+			List<PlayerItem> runningBackPlayersList = new ArrayList<PlayerItem>();
+			for (String player: runningBackPlayers){
+			PlayerItem	item = new PlayerItem();
+				item.setPlayerName(player);
+				item.setPlayerPosition("");
+				item.setPlayerNumber("");
+				item.setPlayerId(player.trim());
+				item.setPlayerTeamId(favouriteTeamId);
+				if(playersIdList.contains(item.getPlayerId())){
+					item.setPLayerFavouriteActive(true);
+				}
+				runningBackPlayersList.add(item);
 			}
-			runningBackaddPlayerContent.setUpdateInSharedPreference(true);
-			runningBackaddPlayerContentList.add(runningBackaddPlayerContent);
-		}
-		
-		
+			
 		SeparatedListAdapter adapter = new SeparatedListAdapter(getActivity());
-	//	adapter.addSection("Quarter backs", new AddPlayerCategoriesBySettingsListAdapter(quarterBackaddPlayerContentList, (Context)getActivity()));
-		adapter.addSection("Quarter back", new AddPlayerListAdapter((Context)getActivity(), getPlayersForAddition()));
-		adapter.addSection("Running backs", new AddPlayerCategoriesBySettingsListAdapter(runningBackaddPlayerContentList, (Context)getActivity()));
-		//adapter.addSection("Wide Recievers", new AddPlayerCategoriesBySettingsListAdapter(addPlayerContentList, (Context)getActivity()));
-		
+		adapter.addSection("Quarter back", new AddPlayerListAdapter((Context)getActivity(), quarterBackPlayersList));
+		adapter.addSection("Running backs", new AddPlayerListAdapter((Context)getActivity(), runningBackPlayersList));
 		findPLayerByCategoryListView = (ListView) getActivity().findViewById(
 				R.id.findPLayerByCategoryListView);
 		ImageView favouriteTeamLogo = (ImageView) getActivity().findViewById(R.id.setting_addplayer_favteam_Logo);

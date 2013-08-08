@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_height="fill_parent" 
+    android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/addplayerFavInFragmentList"
@@ -14,11 +15,11 @@
 
     <TextView
         android:id="@+id/playerNameInFragmentList"
-        android:layout_width="170dp"
+        android:layout_width="0dp"
+        android:layout_weight=".8"
         android:layout_height="25dp"
         android:layout_margin="5dp"
         android:layout_marginTop="15dp"
-        android:layout_toRightOf="@id/addplayerFavInFragmentList"
         android:gravity="center_vertical"
         android:textStyle="bold" >
     </TextView>
@@ -28,7 +29,6 @@
         android:layout_height="25dp"
         android:layout_margin="5dp"
         android:layout_marginTop="15dp"
-        android:layout_toRightOf="@id/playerNameInFragmentList"
         android:gravity="center_vertical"
         android:textStyle="bold" >
     </TextView>
@@ -38,9 +38,8 @@
         android:layout_height="25dp"
         android:layout_margin="5dp"
         android:layout_marginTop="15dp"
-        android:layout_toRightOf="@id/addplayerNumInFragmentList"
         android:gravity="center_vertical"
         android:textStyle="bold" >
     </TextView>
 
-</RelativeLayout>
+</LinearLayout>

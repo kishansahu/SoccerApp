@@ -68,6 +68,7 @@ public class PlayersActivity extends BaseActivity implements
 			for (String favouritePlayerId : favouritePlayerIds) {
 				PlayerItem player = new PlayerItem();
 				player.setPlayerName(favouritePlayerId + "name");
+				player.setPlayerId(favouritePlayerId);
 				player.setPlayerDetails("#12 | QB");
 				player.setPlayerGameDetails("20 / 29, 268 YDS");
 				player.setPlayerImage("http://a.espncdn.com/combiner/i?img=/i/headshots/nfl/players/full/13229.png&w=350&h=254");
@@ -76,7 +77,7 @@ public class PlayersActivity extends BaseActivity implements
 			/** include a xml multiple time in a parent xml */
 
 			
-			for (PlayerItem playerItem : PlayerList) {
+			for (final PlayerItem playerItem : PlayerList) {
 
 				{	int colors[] = SoccerUtils.getDefaultColorTheme();
 					GradientDrawable gradientDrawable = new GradientDrawable(
@@ -122,8 +123,11 @@ public class PlayersActivity extends BaseActivity implements
 														.findViewById(R.id.favPlayerDetailHolderSeperator);
 												favPlayerDetailHolderSeperator
 														.setVisibility(View.GONE);
-												favPlayersCount = favPlayersCount - 1;
-												if (favPlayersCount == 0) {
+												if(playerItem.getPlayerId()!= null && !playerItem.getPlayerId().isEmpty()){
+													SharedPreferencesUtil.removeFavouriteFromSharedPreferencesList(context, playerItem.getPlayerId(), "player");
+												}
+											
+												if (SharedPreferencesUtil.getFavouriteInSharedPreferencesList(context, "player").isEmpty()) {
 													showEmptyMyPlayerBanner(wrapper);
 												}
 

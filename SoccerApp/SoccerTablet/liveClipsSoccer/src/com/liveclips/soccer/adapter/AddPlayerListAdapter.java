@@ -4,9 +4,13 @@ import java.util.List;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.GradientDrawable;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,18 +22,17 @@ import android.widget.TextView;
 
 import com.liveclips.soccer.R;
 import com.liveclips.soccer.activity.PlayersActivity;
+import com.liveclips.soccer.fragment.AddPlayerFromFavouriteTeamMenuFragment;
 import com.liveclips.soccer.model.PlayerItem;
+import com.liveclips.soccer.utils.SharedPreferencesUtil;
 import com.liveclips.soccer.utils.SoccerUtils;
 
 
 public class AddPlayerListAdapter extends BaseAdapter {
-	boolean isplayerFavouriteActive;
 	Context context;
 	View favPlayerDetailHolderSeperator;
 	RelativeLayout favPlayerDetailHolder, allMyPlayersIcon;
 	LinearLayout emptyMyPlayersContainer, wrapper;
-	String message = "";
-	ImageView playerFavImage;
 	PlayersActivity playersActivity;
 	List<PlayerItem> playerDetailsListForFavourite;
 	boolean isPlayerActivity;
@@ -77,34 +80,38 @@ public class AddPlayerListAdapter extends BaseAdapter {
 			view = inflater.inflate(
 					R.layout.players_fragment_list_row_item_details, arg2,
 					false);
-			PlayerItem PI = playerDetailsListForFavourite.get(arg0);
-			int playerFav = PI.getPlayerFavourite();
-			final String playerName = PI.getPlayerName();
-			final String playerNum = PI.getPlayerNumber();
-			final String playerPos = PI.getPlayerPosition();
-			final String TeamCode = PI.getTeamName();
-			isplayerFavouriteActive = PI.isPLayerFavouriteActive();
+			final PlayerItem playerItem = playerDetailsListForFavourite.get(arg0);
+			final String playerName = playerItem.getPlayerName();
+			final String playerNum = playerItem.getPlayerNumber();
+			final String playerPos = playerItem.getPlayerPosition();
+			final String TeamCode = playerItem.getTeamName();
+			final String playerId= playerItem.getPlayerId(); 
+			
 			TextView playerNameView = (TextView) view
 					.findViewById(R.id.playerNameInFragmentList);
 			playerNameView.setText(playerName);
 
 			TextView playerNumView = (TextView) view
 					.findViewById(R.id.addplayerNumInFragmentList);
-			playerNumView.setText(playerNum);
+			if(!playerNum.isEmpty()){
+				playerNumView.setText(playerNum);
+			}else{
+				playerNumView.setVisibility(View.GONE);
+			}
+			
 
 			TextView playerPosView = (TextView) view
 					.findViewById(R.id.addplayerposInFragmentList);
-			playerPosView.setText(playerPos);
-
-			if (isplayerFavouriteActive) {
-				message = "Do you really want to remove this player from My Players ?";
-			} else {
-				message = "Do you really want to add this player to My Players ?";
+			if(!playerPos.isEmpty()){
+				playerPosView.setText(playerPos);
+			}else{
+				playerPosView.setVisibility(View.GONE);
 			}
-
-			playerFavImage = (ImageView) view
+			
+			
+			final ImageView playerFavImage = (ImageView) view
 					.findViewById(R.id.addplayerFavInFragmentList);
-			if (isplayerFavouriteActive) {
+			if (playerItem.isPLayerFavouriteActive()) {
 				playerFavImage.setImageResource(R.drawable.star_high);
 			} else {
 				playerFavImage.setImageResource(R.drawable.star_low);
@@ -122,14 +129,18 @@ public class AddPlayerListAdapter extends BaseAdapter {
 							switch (which) {
 							case DialogInterface.BUTTON_POSITIVE:
 								// Yes button clicked
-								if (isplayerFavouriteActive) {
+								if (playerItem.isPLayerFavouriteActive()) {
 									// remove player
 									playerFavImage
 											.setImageResource(R.drawable.star_low);
+									playerItem.setPLayerFavouriteActive(false);
+									notifyDataSetChanged();
+									if(!playerId.isEmpty()){
+										SharedPreferencesUtil.removeFavouriteFromSharedPreferencesList(context, playerId, "player");
+									}
 									if(isPlayerActivity == true){
-										playersActivity.favPlayersCount = playersActivity.favPlayersCount - 1;
-										if (playersActivity.favPlayersCount == 0) {
-
+									//	playersActivity.favPlayersCount = playersActivity.favPlayersCount - 1;
+										if (SharedPreferencesUtil.getFavouriteInSharedPreferencesList(context, "player").isEmpty()) {
 											playersActivity
 													.showEmptyMyPlayerBanner(wrapper);
 										}
@@ -137,10 +148,15 @@ public class AddPlayerListAdapter extends BaseAdapter {
 									
 								} else {
 									playerFavImage.setImageResource(R.drawable.star_high);
-
+									playerItem.setPLayerFavouriteActive(true);
+									
+									notifyDataSetChanged();
+									if(!playerId.isEmpty()){
+										SharedPreferencesUtil.saveFavouriteInSharedPreferencesList(context, playerId, "player");
+									}
 									if(isPlayerActivity == true){
 									// Add player
-									if (playersActivity.favPlayersCount == 0) {
+									if (SharedPreferencesUtil.getFavouriteInSharedPreferencesList(context, "player").size() == 1) {
 
 										allMyPlayersIcon = (RelativeLayout) playersActivity
 												.findViewById(R.id.myPlayersBannerContainer);
@@ -149,10 +165,7 @@ public class AddPlayerListAdapter extends BaseAdapter {
 
 										wrapper.removeAllViews();
 									}
-									playersActivity.favPlayersCount = playersActivity.favPlayersCount + 1;
-									/*playerFavImage
-											.setImageResource(R.drawable.star_high);
-*/
+								
 									final LinearLayout inflatedView;
 									inflatedView = (LinearLayout) View.inflate(
 											context,
@@ -206,11 +219,14 @@ public class AddPlayerListAdapter extends BaseAdapter {
 																		.findViewById(R.id.favPlayerDetailHolderSeperator);
 																favPlayerDetailHolderSeperator
 																		.setVisibility(View.GONE);
-																playersActivity.favPlayersCount = playersActivity.favPlayersCount - 1;
-																if (playersActivity.favPlayersCount == 0) {
+																if(!playerId.isEmpty()){
+																	SharedPreferencesUtil.removeFavouriteFromSharedPreferencesList(context, playerId, "player");
+																}
+																if (SharedPreferencesUtil.getFavouriteInSharedPreferencesList(context, "player").isEmpty()) {
 																	playersActivity
 																			.showEmptyMyPlayerBanner(wrapper);
 																}
+																notifyDataSetChanged();
 																break;
 
 															case DialogInterface.BUTTON_NEGATIVE:
@@ -248,6 +264,13 @@ public class AddPlayerListAdapter extends BaseAdapter {
 
 					AlertDialog.Builder builder = new AlertDialog.Builder(
 							context);
+					String message = "";
+					if (playerItem.isPLayerFavouriteActive()) {
+						message = "Do you really want to remove this player from My Players ?";
+					} else {
+						message = "Do you really want to add this player to My Players ?";
+					}
+
 					builder.setMessage(message)
 							.setPositiveButton("Yes", dialogClickListener)
 							.setNegativeButton("No", dialogClickListener)
