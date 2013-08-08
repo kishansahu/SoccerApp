@@ -22,6 +22,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.liveclips.soccer.R;
+import com.liveclips.soccer.commons.PlayCards;
 import com.liveclips.soccer.fragment.AddPlayersFragment;
 import com.liveclips.soccer.imageutils.ImageLoader;
 import com.liveclips.soccer.model.PlayerItem;
@@ -53,7 +54,8 @@ public class PlayersActivity extends BaseActivity implements
 		imgLoader = new ImageLoader(this);
 		activity = this;
 		fragmentManager = getFragmentManager();
-		playCards();
+		PlayCards.getPlayCards(activity,context, "AllPlays");
+		//playCards();
 		appCommonProperties = PropertyReader.getPropertiesFormAssetDirectory(
 				"appcommonproperties.properties", activity);
 		List<String> favouritePlayerIds = SharedPreferencesUtil

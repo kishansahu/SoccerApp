@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_vertical" >
+
+        <TextView
+            android:id="@+id/week_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:paddingLeft="15dp"
+            android:textColor="@color/black" />
+        
+        <TextView
+            android:id="@+id/team_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:textColor="@color/black"
+             />
+
+        <TextView
+            android:id="@+id/versus_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:textColor="@color/black" />
+
+        <ImageView
+            android:id="@+id/team_logo"
+            android:layout_width="@dimen/list_bar_image_icon_default_width"
+            android:layout_height="@dimen/list_bar_image_icon_default_height"
+            android:layout_marginLeft="2dp"
+            android:paddingLeft="15dp" />
+
+        <TextView
+            android:id="@+id/team_name"
+            android:layout_width="105dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:paddingLeft="15dp"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/team_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:textColor="@color/black"/>
+    </TableRow>
+
+</TableLayout>
