@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" 
-    android:background="@color/white">
+    android:layout_height="fill_parent"
+    android:background="@color/white" >
 
     <ImageView
         android:id="@+id/popover_player_pic"
@@ -16,59 +16,53 @@
         android:id="@+id/popover_player_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-         android:textSize="18sp" 
         android:layout_toRightOf="@id/popover_player_pic"
-         >
-    </TextView>
+        android:textColor="@color/black"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/popover_player_details"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp" 
         android:layout_below="@id/popover_player_name"
-        android:layout_toRightOf="@+id/popover_player_pic" >
-    </TextView>
+        android:layout_toRightOf="@+id/popover_player_pic"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/popover_player_data1"
         android:layout_width="70dp"
         android:layout_height="wrap_content"
-        android:textSize="15sp" 
         android:layout_below="@id/popover_player_details"
         android:layout_toRightOf="@id/popover_player_pic"
-         >
-    </TextView>
+        android:textColor="@color/black"
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/popover_player_data2"
         android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/popover_player_details"
-        android:textSize="15sp" 
         android:layout_toRightOf="@id/popover_player_data1"
-         >
-    </TextView>
+        android:textColor="@color/black"
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/popover_player_data3"
-         android:layout_width="70dp"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/popover_player_details"
-        android:textSize="15sp" 
         android:layout_toRightOf="@id/popover_player_data2"
-         >
-    </TextView>
-    
+        android:textColor="@color/black"
+        android:textSize="15sp" />
+
     <TextView
         android:id="@+id/popover_player_data4"
-         android:layout_width="70dp"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/popover_player_details"
-        android:textSize="15sp" 
         android:layout_toRightOf="@id/popover_player_data3"
-        >
-    </TextView>
-    
+        android:textColor="@color/black"
+        android:textSize="15sp" />
 
 </RelativeLayout>
