@@ -41,6 +41,7 @@ public class TeamMenuListViewAdapter extends ArrayAdapter<TeamMenuItems> {
 
 		ImageView teamLogo;
 		TextView teamShortName;
+		TextView teamId;
 		ImageView teamSelectedOption;
 		boolean isUserFavourite;
 		boolean showteamSelectedOption;
@@ -63,7 +64,10 @@ public class TeamMenuListViewAdapter extends ArrayAdapter<TeamMenuItems> {
 					.findViewById(R.id.team_logo);
 			holder.teamShortName = (TextView) convertView
 					.findViewById(R.id.team_name);
-
+			if(convertView.findViewById(R.id.team_id) != null){
+			holder.teamId = (TextView) convertView
+					.findViewById(R.id.team_id);
+			}
 			convertView.setTag(holder);
 		} else
 			holder = (MenuViewHolder) convertView.getTag();
@@ -106,7 +110,9 @@ public class TeamMenuListViewAdapter extends ArrayAdapter<TeamMenuItems> {
 		}
 		holder.teamLogo.setImageResource(rowItem.teamLogo);
 		holder.teamShortName.setText(rowItem.teamShortName);
-
+		if(rowItem.teamId!= null && !rowItem.teamId.isEmpty()){
+			holder.teamId.setText(rowItem.teamId);
+		}
 		return convertView;
 	}
 

@@ -37,9 +37,11 @@ import com.liveclips.soccer.adapter.ScheduleListViewAdapter;
 import com.liveclips.soccer.adapter.SeparatedListAdapter;
 import com.liveclips.soccer.adapter.StatsListViewAdapter;
 import com.liveclips.soccer.commons.PlayCards;
+import com.liveclips.soccer.database.DatabaseHelper;
 import com.liveclips.soccer.model.PlayerItem;
 import com.liveclips.soccer.model.ScheduleItem;
 import com.liveclips.soccer.model.StatsItem;
+import com.liveclips.soccer.model.TeamItem;
 import com.liveclips.soccer.popover.PopoverView;
 import com.liveclips.soccer.popover.PopoverView.PopoverViewDelegate;
 import com.liveclips.soccer.utils.ImageProcessingUtil;
@@ -55,25 +57,20 @@ public class GameActivity extends BaseActivity implements PopoverViewDelegate {
 	FragmentTransaction ft;
 	boolean showSlider;
 	ListView listView;
-	PopoverView popoverView;
-	PopoverView popoverViewDrive;
-	TextView allPlaysTextView;
-	TextView topPlaysTextView;
-	TextView topRatedTextView;
-	TextView watchAllTextView;
+	PopoverView popoverView, popoverViewDrive;
+	TextView allPlaysTextView, topPlaysTextView,topRatedTextView, watchAllTextView;
 	RelativeLayout playCardLayout;
 	VideoView playCardVideoView;
-	TextView team1BtnPlayers;
-	TextView team2BtnPlayers;
+	TextView team1BtnPlayers,secondTeamSecondName,team2BtnPlayers;
 	LayoutInflater layoutInflater;
-	View fragmentMenuHeaderView;
-	View activityMenuHeaderView;
+	ImageView RightSideTeamLargeIcon;
+	View fragmentMenuHeaderView, activityMenuHeaderView;
 	int playCardVideoId = 0;
 	LinearLayout statTab, playerTab, drivesTab, matchScoreBoardTabContainer;
 	private Activity activity;
 	private String leftSideTeamId = "cs_id";
 	private String rightSideTeamId;
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -85,9 +82,14 @@ public class GameActivity extends BaseActivity implements PopoverViewDelegate {
 		if (extras != null) {
 			rightSideTeamId = extras.getString("favouriteTeamId");
 		} else {
-			rightSideTeamId = "ks_id";
+			rightSideTeamId = "man_uni_id";
 		}
-
+		DatabaseHelper databaseHelper = new DatabaseHelper((Context)activity);
+		TeamItem rightSideTeamItem=databaseHelper.getTeamInfoByTeamId(rightSideTeamId);
+		RightSideTeamLargeIcon =(ImageView) findViewById(R.id.secondTeamLargeIcon);
+		RightSideTeamLargeIcon.setImageDrawable(ImageProcessingUtil.getTeamLogoImageDrawableByTeamId(activity, rightSideTeamId));
+		secondTeamSecondName = (TextView) findViewById(R.id.secondTeamSecondName);
+		secondTeamSecondName.setText(rightSideTeamItem.getTeamName());	
 		allPlaysTextView = (TextView) findViewById(R.id.allPlaysId);
 		topPlaysTextView = (TextView) findViewById(R.id.topPlaysId);
 		topRatedTextView = (TextView) findViewById(R.id.topRatedId);
@@ -108,8 +110,7 @@ public class GameActivity extends BaseActivity implements PopoverViewDelegate {
 		createCustomActionBar();
 
 		PlayCards.getPlayCards(activity, context, "AllPlays");
-		// playCards();
-
+		
 	}
 
 	protected void createCustomActionBar() {

@@ -48,7 +48,7 @@
                     android:id="@+id/secondTeamLargeIcon"
                     android:layout_width="130dp"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/teamlogo_man_uni_id" >
+                     >
                 </ImageView>
             </LinearLayout>
 
@@ -87,7 +87,6 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:gravity="left"
-                    android:text="Manchester United"
                     android:textColor="@color/white"
                     android:textSize="26sp"
                     android:textStyle="bold" >

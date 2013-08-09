@@ -33,5 +33,12 @@
             android:gravity="center"
             android:textColor="@color/white"
             android:textStyle="bold" />
+       
+        <TextView
+            android:id="@+id/team_id"
+            android:layout_width="50dp"
+            android:layout_height="1dp"
+            android:visibility="invisible">
+        </TextView>
 
 </LinearLayout>

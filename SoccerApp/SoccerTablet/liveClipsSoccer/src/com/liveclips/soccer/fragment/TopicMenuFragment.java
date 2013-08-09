@@ -176,23 +176,15 @@ public class TopicMenuFragment extends Fragment {
 						.equalsIgnoreCase("3highlights")) {
 					startActivity(new Intent(getActivity(),
 							HighlightsActivity.class));
+				} else if (selectedItemFromList.getCategoryType()
+						.equalsIgnoreCase("4teams")) {
+					FragmentManager fragmentManager = getFragmentManager();
+					FragmentTransaction ft = fragmentManager.beginTransaction();
+					Fragment teamMenuFragment = new TeamsMenuFragment();
+					ft.replace(R.id.menuFragment, teamMenuFragment);
+					ft.commit();
 				}
-				/*
-				 * else if (selectedItemFromList.getCategoryType()
-				 * .equalsIgnoreCase("4divisions")) { FragmentManager
-				 * fragmentManager = getFragmentManager(); FragmentTransaction
-				 * ft = fragmentManager.beginTransaction(); Fragment
-				 * divisionMenuFragment = new DivisionMenuFragment();
-				 * ft.replace(R.id.menuFragment, divisionMenuFragment);
-				 * ft.commit(); } else if
-				 * (selectedItemFromList.getCategoryType()
-				 * .equalsIgnoreCase("5teams")) { FragmentManager
-				 * fragmentManager = getFragmentManager(); FragmentTransaction
-				 * ft = fragmentManager.beginTransaction(); Fragment
-				 * teamMenuFragment = new TeamsMenuFragment();
-				 * ft.replace(R.id.menuFragment, teamMenuFragment);
-				 * 
-				 * ft.commit(); } else if
+				/*else if
 				 * (selectedItemFromList.getCategoryType()
 				 * .equalsIgnoreCase("6gameSchedule")) { FragmentManager
 				 * fragmentManager = getFragmentManager(); FragmentTransaction

@@ -34,7 +34,6 @@ Context context;
 				R.layout.game_setting_addfavteam_fragment_view, container, false);
 		ListView listView = (ListView) gamesettingAddTeamView
 				.findViewById(R.id.teamsListForUserFavorites);
-		UserSelectTeam userSelectTeam = new UserSelectTeam(); 
 		SoccerUtils.setTeamsContent(listView, getActivity(),true);
 	//	listView.setOnItemClickListener(listItemListener);
 		return gamesettingAddTeamView;
