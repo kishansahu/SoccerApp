@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,6 +19,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
@@ -24,7 +27,14 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.liveclips.soccer.R;
+import com.liveclips.soccer.adapter.SeparatedListAdapter;
+import com.liveclips.soccer.adapter.TeamMenuListViewAdapter;
+import com.liveclips.soccer.database.DatabaseHelper;
+import com.liveclips.soccer.dto.LeagueTeamDto;
+import com.liveclips.soccer.model.League;
 import com.liveclips.soccer.model.TeamAlertSetting;
+import com.liveclips.soccer.model.TeamItem;
+import com.liveclips.soccer.model.TeamMenuItems;
 import com.liveclips.soccer.popover.PopoverView;
 import com.liveclips.soccer.popover.PopoverView.PopoverViewDelegate;
 
@@ -554,5 +564,34 @@ public class SoccerUtils {
 
 			}
 		});
+	}
+	
+	public static void setTeamsContent(ListView listView, Activity activity, boolean showteamSelectedOption) {
+
+		DatabaseHelper databaseHelper = new DatabaseHelper((Context)activity);
+		LeagueTeamDto leagueTeamDto = databaseHelper.getLeagueWithTeams();
+
+		List<String> favouriteTeamsList = SharedPreferencesUtil
+				.getFavouriteInSharedPreferencesList((Context)activity, "team");
+		SeparatedListAdapter adapter = new SeparatedListAdapter((Context)activity);
+		for (League league : leagueTeamDto.getLeagueList()) {
+			List<TeamMenuItems> rowItemsForQ = new ArrayList<TeamMenuItems>();
+			for (TeamItem teamItem : league.getTeamList()) {
+				if (favouriteTeamsList.contains(teamItem.getTeamId())) {
+					teamItem.setUserFavourite(true);
+				}
+				int teamLogo = ImageProcessingUtil
+						.getTeamLogoImageResourceByTeamId(activity,
+								teamItem.getTeamId());
+				TeamMenuItems teamMenuItems = new TeamMenuItems(teamLogo,
+						teamItem.getTeamName(), teamItem.isUserFavourite(),
+						teamItem.getTeamId());
+				rowItemsForQ.add(teamMenuItems);
+			}
+			adapter.addSection(league.getLeagueName(),
+					new TeamMenuListViewAdapter((Context)activity,
+							R.layout.team_menu_list_item, rowItemsForQ, showteamSelectedOption));
+		}
+		listView.setAdapter(adapter);
 	}
 }

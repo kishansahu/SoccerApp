@@ -26,6 +26,7 @@ public class TeamItem implements Serializable {
 	private int wins;
 	private int losses;
 	private String leagueId;
+	private boolean isUserFavourite;
 	
 	
 
@@ -131,6 +132,14 @@ public class TeamItem implements Serializable {
 	 */
 	public void setTeamLogo(int teamLogo) {
 		this.teamLogo = teamLogo;
+	}
+
+	public boolean isUserFavourite() {
+		return isUserFavourite;
+	}
+
+	public void setUserFavourite(boolean isUserFavourite) {
+		this.isUserFavourite = isUserFavourite;
 	}
 
 }

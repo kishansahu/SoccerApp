@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,7 @@ import android.widget.RelativeLayout;
 import com.liveclips.soccer.R;
 import com.liveclips.soccer.adapter.AddPlayerListAdapter;
 import com.liveclips.soccer.model.PlayerItem;
+import com.liveclips.soccer.utils.SharedPreferencesUtil;
 
 
 public class ShowAvailablePlayersFragment extends Fragment {
@@ -178,30 +180,32 @@ public class ShowAvailablePlayersFragment extends Fragment {
 	}
 
 	public List<PlayerItem> getPlayersForAddition(String teamName) {
+		List<String> playersIdList = SharedPreferencesUtil.getFavouriteInSharedPreferencesList((Context)getActivity(), "player");
+		final List<PlayerItem> playerItemsList = new ArrayList<PlayerItem>();
+				List<String> playersList= new ArrayList<String>();
+				playersList.add("Ben Bartholomew");
+				playersList.add("LeGarrette Blout");
+				playersList.add("Brandon Bolden");
+				playersList.add("James Develin");
+				playersList.add("Steven Ridley");
+			
+					List<PlayerItem> PlayersListForSelection = new ArrayList<PlayerItem>();
+					for (String player: playersList){
+					PlayerItem	item = new PlayerItem();
+						item.setPlayerName(player);
+						item.setPlayerPosition("AG");
+						
+						item.setPlayerNumber("25");
+						item.setPlayerId(player.trim());
+						//item.setPlayerTeamId(favouriteTeamId);
+						if(playersIdList.contains(item.getPlayerId())){
+							item.setPLayerFavouriteActive(true);
+						}
+						PlayersListForSelection.add(item);
+					}
+		
 
-		final List<PlayerItem> playerList = new ArrayList<PlayerItem>();
-		String playerNames[] = { "Ballard, Jake", "Aiken, Danny",
-				"Allen, Will", "Arrignton, Kyle", "Barrett, Josh",
-				"Bequette, Jake", "Bolden, Brandon", "Brace, Ron" };
-		String playerNumber[] = { "48", "26", "24", "88", "30", "92", "38",
-				"97" };
-		String playerPosition[] = { "LS", "DB", "CB", "TE", "SS", "DE", "RB",
-				"DT" };
-
-		boolean isPlayerFavouriteActive[] = { false, false, true, false, false,
-				true, false, false };
-		PlayerItem item;
-
-		for (int i = 0; i < playerNames.length; i++) {
-			item = new PlayerItem();
-			item.setPlayerName(playerNames[i]);
-			item.setPlayerPosition(playerPosition[i]);
-			item.setPlayerNumber(playerNumber[i]);
-			item.setPLayerFavouriteActive(isPlayerFavouriteActive[i]);
-			playerList.add(item);
-		}
-		playersList = playerList;
-		return playersList;
+		return PlayersListForSelection;
 	}
 
 	OnClickListener nameColumnClickedListener = new View.OnClickListener() {

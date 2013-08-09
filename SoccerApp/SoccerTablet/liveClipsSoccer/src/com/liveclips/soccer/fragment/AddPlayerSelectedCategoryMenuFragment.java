@@ -22,10 +22,11 @@ import com.liveclips.soccer.R;
 import com.liveclips.soccer.adapter.SeparatedListAdapter;
 import com.liveclips.soccer.adapter.TeamsPlayerListViewAdapter;
 import com.liveclips.soccer.model.PlayerItem;
+import com.liveclips.soccer.utils.SoccerUtils;
 
 
 public class AddPlayerSelectedCategoryMenuFragment extends Fragment {
-
+	
 	ListView findPLayerByCategoryListView;
 
 	@Override
@@ -107,16 +108,17 @@ public class AddPlayerSelectedCategoryMenuFragment extends Fragment {
 
 		super.onStart();
 
-		SeparatedListAdapter adapter = new SeparatedListAdapter(getActivity());
+		/*SeparatedListAdapter adapter = new SeparatedListAdapter(getActivity());
 		adapter.addSection("AFC EAST", new TeamsPlayerListViewAdapter(getActivity(),
 				R.layout.players_fragment_list_row_item_addplayer,
 				getPlayersByTeam("AFC EAST")));
 		adapter.addSection("AFC NORTH", new TeamsPlayerListViewAdapter(
 				getActivity(), R.layout.players_fragment_list_row_item_addplayer,
-				getPlayersByTeam("AFC NORTH")));
+				getPlayersByTeam("AFC NORTH")));*/
 
 		findPLayerByCategoryListView = (ListView) getActivity().findViewById(
 				R.id.findPLayerByCategoryListView);
+		SoccerUtils.setTeamsContent(findPLayerByCategoryListView, getActivity(),false);
 
 		/* On click of category specific player selection*/
 		findPLayerByCategoryListView
@@ -138,11 +140,11 @@ public class AddPlayerSelectedCategoryMenuFragment extends Fragment {
 					}
 				});
 
-		findPLayerByCategoryListView.setAdapter(adapter);
+		//findPLayerByCategoryListView.setAdapter(adapter);
 
 	}
 
-	public List<PlayerItem> getPlayersByTeam(String teamName) {
+	/*public List<PlayerItem> getPlayersByTeam(String teamName) {
 
 		List<PlayerItem> playerListByTeam = null;
 
@@ -185,5 +187,5 @@ public class AddPlayerSelectedCategoryMenuFragment extends Fragment {
 		}
 		return playerListByTeam;
 	}
-
+*/
 }

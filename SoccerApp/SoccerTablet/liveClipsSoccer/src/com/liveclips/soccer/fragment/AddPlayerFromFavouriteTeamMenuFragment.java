@@ -44,12 +44,7 @@ public class AddPlayerFromFavouriteTeamMenuFragment extends Fragment {
 	    	showSettingFragment = bundle.getBoolean("showSettingFragment",
 					false);
 	    }
-		/*
-		if (bundle != null) {
-		    //favouriteTeamId = saveInstantState.getBundle("favouriteTeamId");
-		//	bundle.gets
-		}		
-		*/return inflater.inflate(R.layout.setting_players_fragment_view_by_favteam,
+		return inflater.inflate(R.layout.setting_players_fragment_view_by_favteam,
 				container, false);
 
 	}
@@ -143,6 +138,7 @@ public class AddPlayerFromFavouriteTeamMenuFragment extends Fragment {
 		adapter.addSection("Running backs", new AddPlayerListAdapter((Context)getActivity(), runningBackPlayersList));
 		findPLayerByCategoryListView = (ListView) getActivity().findViewById(
 				R.id.findPLayerByCategoryListView);
+		findPLayerByCategoryListView.setAdapter(adapter);
 		ImageView favouriteTeamLogo = (ImageView) getActivity().findViewById(R.id.setting_addplayer_favteam_Logo);
 		favouriteTeamLogo.setImageDrawable(ImageProcessingUtil.getTeamLogoImageDrawableByTeamId(getActivity(), favouriteTeamId));
 		

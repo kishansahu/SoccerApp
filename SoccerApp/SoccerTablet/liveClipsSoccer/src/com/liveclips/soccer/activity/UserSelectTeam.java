@@ -27,6 +27,7 @@ import com.liveclips.soccer.model.User;
 import com.liveclips.soccer.utils.ImageProcessingUtil;
 import com.liveclips.soccer.utils.PropertyReader;
 import com.liveclips.soccer.utils.SharedPreferencesUtil;
+import com.liveclips.soccer.utils.SoccerUtils;
 
 public class UserSelectTeam extends Activity {
 	private Activity activity;
@@ -61,7 +62,7 @@ public class UserSelectTeam extends Activity {
 		actionBar.hide();
 		
 		ListView listView = (ListView) findViewById(R.id.available_team_list);
-		setTeamsContent(listView, context);
+		SoccerUtils.setTeamsContent(listView, activity,true);
 		linkToSetAlertsButton = (Button) findViewById(R.id.linkToSetAlertsButton);
 		linkToSetAlertsButton.setOnClickListener(new View.OnClickListener() {
 
@@ -82,36 +83,5 @@ public class UserSelectTeam extends Activity {
 		});
 	}
 
-	public void setTeamsContent(ListView listView, Context context) {
-
-		DatabaseHelper databaseHelper = new DatabaseHelper(context);
-		LeagueTeamDto leagueTeamDto = databaseHelper.getLeagueWithTeams();
-
-		List<String> favouriteTeamsList = SharedPreferencesUtil
-				.getFavouriteInSharedPreferencesList(context, "team");
-		SeparatedListAdapter adapter = new SeparatedListAdapter(context);
-
-		boolean isUserFavouriteTeam = false;
-
-		for (League league : leagueTeamDto.getLeagueList()) {
-			List<TeamMenuItems> rowItemsForQ = new ArrayList<TeamMenuItems>();
-			for (TeamItem teamItem : league.getTeamList()) {
-				isUserFavouriteTeam = false;
-				if (favouriteTeamsList.contains(teamItem.getTeamId())) {
-					isUserFavouriteTeam = true;
-				}
-				int teamLogo = ImageProcessingUtil
-						.getTeamLogoImageResourceByTeamId(activity,
-								teamItem.getTeamId());
-				TeamMenuItems teamMenuItems = new TeamMenuItems(teamLogo,
-						teamItem.getTeamName(), isUserFavouriteTeam,
-						teamItem.getTeamId());
-				rowItemsForQ.add(teamMenuItems);
-			}
-			adapter.addSection(league.getLeagueName(),
-					new TeamMenuListViewAdapter(context,
-							R.layout.team_menu_list_item, rowItemsForQ));
-		}
-		listView.setAdapter(adapter);
-	}
+	
 }

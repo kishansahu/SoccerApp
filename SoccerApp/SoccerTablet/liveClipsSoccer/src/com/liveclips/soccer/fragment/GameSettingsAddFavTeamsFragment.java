@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.liveclips.soccer.R;
 import com.liveclips.soccer.activity.UserSelectTeam;
+import com.liveclips.soccer.utils.SoccerUtils;
 
 
 public class GameSettingsAddFavTeamsFragment extends Fragment {
@@ -34,7 +35,7 @@ Context context;
 		ListView listView = (ListView) gamesettingAddTeamView
 				.findViewById(R.id.teamsListForUserFavorites);
 		UserSelectTeam userSelectTeam = new UserSelectTeam(); 
-		userSelectTeam.setTeamsContent(listView, context);
+		SoccerUtils.setTeamsContent(listView, getActivity(),true);
 	//	listView.setOnItemClickListener(listItemListener);
 		return gamesettingAddTeamView;
 	}

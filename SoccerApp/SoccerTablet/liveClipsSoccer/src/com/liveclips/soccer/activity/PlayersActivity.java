@@ -213,9 +213,6 @@ public class PlayersActivity extends BaseActivity implements
 
 	}
 
-	private void playCards() {
-
-	}
 
 	@Override
 	public void popoverViewWillShow(PopoverView view) {

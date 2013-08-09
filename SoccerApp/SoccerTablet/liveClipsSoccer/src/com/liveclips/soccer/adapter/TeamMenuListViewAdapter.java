@@ -21,13 +21,14 @@ public class TeamMenuListViewAdapter extends ArrayAdapter<TeamMenuItems> {
 	Context context;
 	List<TeamMenuItems> items;
 	private Properties appCommonProperties;
-	
+	boolean showteamSelectedOption;
+
 	public TeamMenuListViewAdapter(Context context, int resourceId,
-			List<TeamMenuItems> items) {
+			List<TeamMenuItems> items, boolean showteamSelectedOption) {
 		super(context, resourceId, items);
 		this.context = context;
 		this.items = items;
-
+		this.showteamSelectedOption = showteamSelectedOption;
 	}
 
 	@Override
@@ -37,15 +38,16 @@ public class TeamMenuListViewAdapter extends ArrayAdapter<TeamMenuItems> {
 	}
 
 	private class MenuViewHolder {
-		
+
 		ImageView teamLogo;
 		TextView teamShortName;
 		ImageView teamSelectedOption;
-		
+		boolean isUserFavourite;
+		boolean showteamSelectedOption;
 	}
 
 	public View getView(int position, View convertView, ViewGroup parent) {
-		//appCommonProperties = PropertyReader.getPropertiesFormAssetDirectory("appcommonproperties.properties", (Activity) context);
+		
 		final MenuViewHolder holder;
 
 		final TeamMenuItems rowItem = getItem(position);
@@ -57,40 +59,54 @@ public class TeamMenuListViewAdapter extends ArrayAdapter<TeamMenuItems> {
 			holder = new MenuViewHolder();
 			holder.teamSelectedOption = (ImageView) convertView
 					.findViewById(R.id.team_selected_option);
-			
 			holder.teamLogo = (ImageView) convertView
 					.findViewById(R.id.team_logo);
 			holder.teamShortName = (TextView) convertView
 					.findViewById(R.id.team_name);
-			
-			
+
 			convertView.setTag(holder);
 		} else
 			holder = (MenuViewHolder) convertView.getTag();
-		if(rowItem.isUsersFavourite == false){
-		holder.teamSelectedOption.setImageResource(R.drawable.star_low);
-		}else{
-			holder.teamSelectedOption.setImageResource(R.drawable.star_high);
+		if (showteamSelectedOption == true) {
+			if (rowItem.isUsersFavourite == false) {
+				holder.teamSelectedOption.setImageResource(R.drawable.star_low);
+			} else {
+				holder.teamSelectedOption
+						.setImageResource(R.drawable.star_high);
+			}
+			holder.teamSelectedOption
+					.setOnClickListener(new View.OnClickListener() {
+
+						@Override
+						public void onClick(View v) {
+							List<String> favTeams = SharedPreferencesUtil
+									.getFavouriteInSharedPreferencesList(
+											context, "team");
+							if (favTeams.contains(rowItem.teamId)) {
+								SharedPreferencesUtil
+										.removeFavouriteFromSharedPreferencesList(
+												context, rowItem.teamId, "team");
+								holder.teamSelectedOption
+										.setImageResource(R.drawable.star_low);
+								rowItem.isUsersFavourite = false;
+								notifyDataSetChanged();
+							} else {
+								SharedPreferencesUtil
+										.saveFavouriteInSharedPreferencesList(
+												context, rowItem.teamId, "team");
+								holder.teamSelectedOption
+										.setImageResource(R.drawable.star_high);
+								rowItem.isUsersFavourite = true;
+								notifyDataSetChanged();
+							}
+						}
+					});
+		} else {
+			holder.teamSelectedOption.setVisibility(View.GONE);
 		}
-		
 		holder.teamLogo.setImageResource(rowItem.teamLogo);
 		holder.teamShortName.setText(rowItem.teamShortName);
-		
-		holder.teamSelectedOption.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) { 
-				List<String> favTeams = SharedPreferencesUtil
-						.getFavouriteInSharedPreferencesList(context, "team");
-				if(favTeams.contains(rowItem.teamId)){
-					SharedPreferencesUtil.removeFavouriteFromSharedPreferencesList(context, rowItem.teamId, "team");
-					holder.teamSelectedOption.setImageResource(R.drawable.star_low);
-				}else{
-					SharedPreferencesUtil.saveFavouriteInSharedPreferencesList(context, rowItem.teamId, "team");
-					holder.teamSelectedOption.setImageResource(R.drawable.star_high);
-				}
-			}
-		});
+
 		return convertView;
 	}
 
