@@ -3,7 +3,8 @@
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
     android:background="@color/grey_deep"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+    android:clickable="false">
 
     <ListView
         android:id="@+id/globalNavigationListView"
@@ -11,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/fragmentMenuHeader"
         android:background="@color/grey_container"
+        android:clickable="true"
         android:focusable="true" />
 
 </RelativeLayout>

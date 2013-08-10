@@ -54,12 +54,12 @@ public class GameActivity extends BaseActivity implements PopoverViewDelegate {
 	protected Context context = GameActivity.this;
 	FragmentManager fragmentManager;
 	Fragment mainMenuFragment;
-	FragmentTransaction ft;
+	FragmentTransaction fragmentTransaction;
 	boolean showSlider;
 	ListView listView;
 	PopoverView popoverView, popoverViewDrive;
 	TextView allPlaysTextView, topPlaysTextView,topRatedTextView, watchAllTextView;
-	RelativeLayout playCardLayout;
+	RelativeLayout playCardLayout,commonFragmentMenuHeader;
 	VideoView playCardVideoView;
 	TextView team1BtnPlayers,secondTeamSecondName,team2BtnPlayers;
 	LayoutInflater layoutInflater;
@@ -84,6 +84,8 @@ public class GameActivity extends BaseActivity implements PopoverViewDelegate {
 		} else {
 			rightSideTeamId = "man_uni_id";
 		}
+		
+		fullScreenView = (RelativeLayout) findViewById(R.id.fullScreenView);		
 		DatabaseHelper databaseHelper = new DatabaseHelper((Context)activity);
 		TeamItem rightSideTeamItem=databaseHelper.getTeamInfoByTeamId(rightSideTeamId);
 		RightSideTeamLargeIcon =(ImageView) findViewById(R.id.secondTeamLargeIcon);
@@ -116,12 +118,36 @@ public class GameActivity extends BaseActivity implements PopoverViewDelegate {
 	protected void createCustomActionBar() {
 
 		ActionBar actionBar = getActionBar();
-		View mActionBarView = getLayoutInflater().inflate(
+		final View mActionBarView = getLayoutInflater().inflate(
 				R.layout.game_actionbar, null);
 		actionBar.setCustomView(mActionBarView);
 		actionBar.setDisplayShowHomeEnabled(false);
 		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-
+		
+		fullScreenView.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				commonFragmentMenuHeader =(RelativeLayout) mActionBarView.findViewById(R.id.commonFragmentMenuHeader);
+				commonFragmentMenuHeader.setVisibility(View.INVISIBLE);
+				mActionBarView.findViewById(R.id.activityMenuHeader).setVisibility(View.VISIBLE);
+				fragmentManager = getFragmentManager ();
+				fragmentTransaction = fragmentManager.beginTransaction ();
+				mainMenuFragment = fragmentManager.findFragmentById(
+						R.id.menuFragment);
+				if (mainMenuFragment.isVisible()) {
+					
+					fragmentTransaction.hide(mainMenuFragment);
+					fragmentTransaction.commit();
+					commonFragmentMenuHeader.setVisibility(View.INVISIBLE);
+					sliderView.setVisibility(View.VISIBLE);
+				}
+				
+				fullScreenView.setVisibility(View.INVISIBLE);
+			}
+		});                
+		
+		
 		View scheduleView = mActionBarView.findViewById(R.id.scheduleView);
 
 		scheduleView.setOnClickListener(new OnClickListener() {
@@ -847,7 +873,7 @@ public class GameActivity extends BaseActivity implements PopoverViewDelegate {
 
 	@Override
 	public void popoverViewWillDismiss(PopoverView view) {
-		Log.i("POPOVER", "Will dismiss");
+		Log.i("POPOVER", "Will dismiss");		
 	}
 
 	@Override

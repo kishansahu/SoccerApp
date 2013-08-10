@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.liveclips.soccer.R;
+import com.liveclips.soccer.R.color;
 import com.liveclips.soccer.fragment.TopicMenuFragment;
 import com.liveclips.soccer.session.ApplicationSession;
 
@@ -23,12 +24,12 @@ import com.liveclips.soccer.session.ApplicationSession;
 public class BaseActivity extends Activity {
 
 	RelativeLayout commonFragmentMenuHeader;
-	View activityMenuHeaderView, fragmentMenuHeaderView;
+	View fragmentMenuHeaderView;
 	View sliderView, mActionBarView;
 	FragmentManager fragmentManager;
 	FragmentTransaction fragmentTransaction;
 	Fragment mainMenuFragment;
-	RelativeLayout gameRootView, actionbarcontentscontainer;
+	RelativeLayout fullScreenView, actionbarcontentscontainer;
 	Animation animMove;
 
 	private void performSliderAction() {
@@ -74,7 +75,7 @@ public class BaseActivity extends Activity {
 				fragmentTransaction.addToBackStack(null);
 			}
 			fragmentTransaction.commit();
-
+			fullScreenView.setVisibility(View.INVISIBLE);
 		}
 
 	};
@@ -87,11 +88,11 @@ public class BaseActivity extends Activity {
 		mActionBarView = actionBar.getCustomView();
 		Drawable d = getResources().getDrawable(R.drawable.black_bar);
 		actionBar.setBackgroundDrawable(d);
-		activityMenuHeaderView = mActionBarView
-				.findViewById(R.id.activityMenuHeader);
+		fullScreenView = (RelativeLayout) findViewById(R.id.fullScreenView);
 		sliderView = mActionBarView.findViewById(R.id.sliderView);
 		commonFragmentMenuHeader = (RelativeLayout) mActionBarView
 				.findViewById(R.id.commonFragmentMenuHeader);
+		
 		sliderView.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -105,6 +106,9 @@ public class BaseActivity extends Activity {
 
 				commonFragmentMenuHeader.setVisibility(View.VISIBLE);
 				performSliderAction();
+				
+				fullScreenView.setVisibility(View.VISIBLE);
+				//fullScreenView.setOnClickListener(closeButtonListener);
 			}
 		});
 
