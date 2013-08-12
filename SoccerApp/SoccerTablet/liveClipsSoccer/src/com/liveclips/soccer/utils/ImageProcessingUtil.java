@@ -1,5 +1,7 @@
 package com.liveclips.soccer.utils;
 
+import com.liveclips.soccer.R;
+
 import android.app.Activity;
 import android.graphics.drawable.Drawable;
 

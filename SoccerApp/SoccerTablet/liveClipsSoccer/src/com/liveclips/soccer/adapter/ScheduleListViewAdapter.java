@@ -41,7 +41,7 @@ public class ScheduleListViewAdapter extends ArrayAdapter<ScheduleItem> {
 
 	private class ScheduleViewHolder {
 		TextView weekText;
-		ImageView teamLogoImage;
+		/*ImageView teamLogoImage;*/
 		TextView versusText;
 		TextView teamNameText;
 		TextView teamStatusText;
@@ -61,15 +61,15 @@ public class ScheduleListViewAdapter extends ArrayAdapter<ScheduleItem> {
 					R.layout.game_popover_list_row_item_schedule, null);
 			holder = new ScheduleViewHolder();
 			holder.weekText = (TextView) convertView
-					.findViewById(R.id.week_text);
+					.findViewById(R.id.match_date);
 			holder.versusText = (TextView) convertView
 					.findViewById(R.id.versus_text);
 			holder.teamNameText = (TextView) convertView
 					.findViewById(R.id.team_name);
 			holder.teamStatusText = (TextView) convertView
 					.findViewById(R.id.team_status);
-			holder.teamLogoImage = (ImageView) convertView
-					.findViewById(R.id.team_logo);
+			/*holder.teamLogoImage = (ImageView) convertView
+					.findViewById(R.id.team_logo);*/
 			holder.teamIdTextView = (TextView) convertView
 					.findViewById(R.id.team_id);
 			convertView.setTag(holder);
@@ -78,7 +78,7 @@ public class ScheduleListViewAdapter extends ArrayAdapter<ScheduleItem> {
 
 		holder.teamNameText.setText(rowItem.getTeamName());
 		// holder.teamLogoImage.getResources().getDrawable(rowItem.getTeamLogo());
-		holder.teamLogoImage.setImageResource(rowItem.getTeamLogo());
+		/*holder.teamLogoImage.setImageResource(rowItem.getTeamLogo())*/;
 		holder.teamStatusText.setText(rowItem.getTeamStatus());
 		holder.weekText.setText(rowItem.getWeekText());
 		holder.versusText.setText(rowItem.getVersusText());

@@ -25,11 +25,11 @@ public class ScheduleItem {
 		this.teamName = teamName;
 	}
 
-	public ScheduleItem(String teamName, int teamLogo, String teamStatus,
+	public ScheduleItem(String teamName,String teamStatus,
 			String weekText, String versusText) {
 		//super();
 		this.teamName = teamName;
-		this.teamLogo = teamLogo;
+		/*this.teamLogo = teamLogo;*/
 		this.teamStatus = teamStatus;
 		this.weekText = weekText;
 		this.versusText = versusText;

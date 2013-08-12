@@ -22,7 +22,7 @@ import com.liveclips.soccer.model.TeamItem;
 public class UpdateTeamInformation {
 	
 	public static void updateTeamInfo(View rowObject, Activity activity, Context context){
-		TextView weekTextTextView = (TextView) rowObject.findViewById(R.id.week_text);
+		TextView weekTextTextView = (TextView) rowObject.findViewById(R.id.match_date);
 		String weekTextTextViewValue = (String) weekTextTextView.getText();
 		
 		TextView versusTextTextView = (TextView) rowObject.findViewById(R.id.versus_text);
@@ -45,8 +45,8 @@ public class UpdateTeamInformation {
 		TextView firstTeamFirstNameTextView = (TextView) activity.findViewById(R.id.firstTeamSecondName);
 		firstTeamFirstNameTextView.setText(teamItem.getTeamName());
 		
-		ImageView teamLogoTextView = (ImageView) activity.findViewById(R.id.firstTeamLargeIcon);
-		teamLogoTextView.setImageDrawable(ImageProcessingUtil.getTeamLogoImageDrawableByTeamId(activity, teamId));
+		/*ImageView teamLogoTextView = (ImageView) activity.findViewById(R.id.firstTeamLargeIcon);
+		teamLogoTextView.setImageDrawable(ImageProcessingUtil.getTeamLogoImageDrawableByTeamId(activity, teamId));*/
 		
 	}
 

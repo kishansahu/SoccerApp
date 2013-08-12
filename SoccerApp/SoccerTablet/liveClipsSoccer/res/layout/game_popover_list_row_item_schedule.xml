@@ -1,31 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_height="100dp" >
 
     <TableRow
         android:id="@+id/tableRow1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@color/white"
-        android:gravity="center_vertical" >
+        android:gravity="center_vertical"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp" >
 
         <TextView
-            android:id="@+id/week_text"
+            android:id="@+id/match_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="2dp"
             android:paddingLeft="15dp"
             android:textColor="@color/black" />
         
-        <TextView
+       <TextView
             android:id="@+id/team_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"
             android:textColor="@color/black"
-             />
-
+             /> 
+             
         <TextView
             android:id="@+id/versus_text"
             android:layout_width="wrap_content"
@@ -33,12 +35,12 @@
             android:paddingLeft="20dp"
             android:textColor="@color/black" />
 
-        <ImageView
+        <!-- <ImageView
             android:id="@+id/team_logo"
             android:layout_width="@dimen/list_bar_image_icon_default_width"
             android:layout_height="@dimen/list_bar_image_icon_default_height"
             android:layout_marginLeft="2dp"
-            android:paddingLeft="15dp" />
+            android:paddingLeft="15dp" />  -->
 
         <TextView
             android:id="@+id/team_name"
@@ -46,7 +48,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="2dp"
             android:paddingLeft="15dp"
-            android:textColor="@color/black" />
+            android:textColor="@color/black" 
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/team_status"

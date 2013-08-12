@@ -13,7 +13,7 @@
             android:id="@+id/matchScoreBoardBackground"
             android:layout_width="fill_parent"
             android:layout_height="160dp"
-            android:background="@drawable/nfl_highlights_banner" >
+            android:background="@drawable/highlights_banner" >
 
             <LinearLayout
                 android:id="@+id/firstTeamDescriptionContainer"

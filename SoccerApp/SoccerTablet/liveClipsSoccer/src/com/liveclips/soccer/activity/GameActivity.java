@@ -12,6 +12,7 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -570,6 +571,9 @@ public class GameActivity extends BaseActivity implements PopoverViewDelegate {
 	public void popoverViewDidShow(PopoverView view) {
 
 		Log.d("layoutId", String.valueOf(view.getLayoutId()));
+		TextView schedulePopoverHeader = (TextView) findViewById(R.id.game_activity_schedule_popover_header);
+		schedulePopoverHeader.setText("Arsenal Schedule");
+		
 		if (view.getLayoutId() == R.layout.game_popover_view_schedule) {
 			Log.d("id", String.valueOf(view.getId()));
 			List<ScheduleItem> rowItems = new ArrayList<ScheduleItem>();
@@ -580,8 +584,8 @@ public class GameActivity extends BaseActivity implements PopoverViewDelegate {
 					R.drawable.teamlogo_bor_dor_id, R.drawable.teamlogo_che_id,
 					R.drawable.teamlogo_liv_id, R.drawable.teamlogo_man_cit_id,
 					R.drawable.teamlogo_rea_mad_id, R.drawable.teamlogo_val_id };
-			String[] weekText = { "WEEK 1", "WEEK 2", "WEEK 3", "WEEK 4",
-					"WEEK 5", "WEEK 6", "WEEK 7", "WEEK 8" };
+			String[] matchDate = { "Aug 12", "Aug 13", "Aug 14", "Aug 15",
+					"Aug 19", "Aug 18", "Aug 17", "Aug 16" };
 			String[] teamStatus = { "W 34-13", "L 20-18", "L 31-30", "W 52-28",
 					"Live 21-17", "10/14 4:05 PM", "10/21 4/25 PM",
 					"10/21 1:00 PM" };
@@ -590,8 +594,8 @@ public class GameActivity extends BaseActivity implements PopoverViewDelegate {
 					"kj_id", "ks_id", "ss_id" };
 			for (int i = 0; i < 8; i++) {
 
-				ScheduleItem item = new ScheduleItem(teamNames[i], teamLogo[i],
-						teamStatus[i], weekText[i], versusTexts[i]);
+				ScheduleItem item = new ScheduleItem(teamNames[i],
+						teamStatus[i], matchDate[i], versusTexts[i]);
 				item.setTeamId(teamIds[i]);
 				rowItems.add(item);
 
@@ -614,7 +618,7 @@ public class GameActivity extends BaseActivity implements PopoverViewDelegate {
 			statFirstTeamLabel.setText("Arsenal");
 
 			TextView statSecondTeamLabel = (TextView) findViewById(R.id.statSecondTeam);
-			statSecondTeamLabel.setText("Manchester United");
+			statSecondTeamLabel.setText("Man-Unit");
 
 			List<StatsItem> rowItemsForTeamStats = new ArrayList<StatsItem>();
 			List<StatsItem> rowItemsForKeyPlays = new ArrayList<StatsItem>();
@@ -737,6 +741,12 @@ public class GameActivity extends BaseActivity implements PopoverViewDelegate {
 
 			// Defensive playes for team1
 
+			team1BtnPlayers = (TextView) findViewById(R.id.team1BtnPlayers);
+			team1BtnPlayers.setText("Arsenal");
+
+			team2BtnPlayers = (TextView) findViewById(R.id.team2BtnPlayers);
+			team2BtnPlayers.setText("Man-Uni");
+
 			final SeparatedListAdapter adapter = new SeparatedListAdapter(this);
 			adapter.addSection("OFFENSE",
 					new PlayerListViewAdapter(this,
@@ -840,9 +850,13 @@ public class GameActivity extends BaseActivity implements PopoverViewDelegate {
 							getPlayers("team1", "defensive")));
 					adapter.notifyDataSetChanged();
 					listView.setSelection(0);
-					team1BtnPlayers.setBackgroundColor(0xFFFF8B1D);
-					team2BtnPlayers.setBackgroundColor(0xFFFFFFFF);
-
+					/*
+					 * team1BtnPlayers.setBackgroundColor(0xFFFF8B1D);
+					 * team2BtnPlayers.setBackgroundColor(0xFFFFFFFF);
+					 */
+					team1BtnPlayers.setTextColor(Color.WHITE);
+					team2BtnPlayers.setTextColor(getResources().getColor(
+							R.color.grey_light));
 				}
 			});
 
@@ -863,8 +877,13 @@ public class GameActivity extends BaseActivity implements PopoverViewDelegate {
 							getPlayers("team2", "defensive")));
 					adapter.notifyDataSetChanged();
 					listView.setSelection(0);
-					team2BtnPlayers.setBackgroundColor(0xFFFF8B1D);
-					team1BtnPlayers.setBackgroundColor(0xFFFFFFFF);
+					/*
+					 * team2BtnPlayers.setBackgroundColor(0xFFFF8B1D);
+					 * team1BtnPlayers.setBackgroundColor(0xFFFFFFFF);
+					 */
+					team2BtnPlayers.setTextColor(Color.WHITE);
+					team1BtnPlayers.setTextColor(getResources().getColor(
+							R.color.grey_light));
 				}
 			});
 

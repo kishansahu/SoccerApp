@@ -183,18 +183,15 @@ public class TopicMenuFragment extends Fragment {
 					Fragment teamMenuFragment = new TeamsMenuFragment();
 					ft.replace(R.id.menuFragment, teamMenuFragment);
 					ft.commit();
-				}
-				/*else if
-				 * (selectedItemFromList.getCategoryType()
-				 * .equalsIgnoreCase("6gameSchedule")) { FragmentManager
-				 * fragmentManager = getFragmentManager(); FragmentTransaction
-				 * ft = fragmentManager.beginTransaction(); Fragment
-				 * gameScheduleFragment = new GameScheduleFragment();
-				 * ft.replace(R.id.menuFragment, gameScheduleFragment);
-				 * ft.commit();
-				 * 
-				 * }
-				 */else if (selectedItemFromList.getCategoryType()
+				} else if (selectedItemFromList.getCategoryType()
+						.equalsIgnoreCase("5gameschedule")) {
+					FragmentManager fragmentManager = getFragmentManager();
+					FragmentTransaction ft = fragmentManager.beginTransaction();
+					Fragment gameScheduleFragment = new GameScheduleFragment();
+					ft.replace(R.id.menuFragment, gameScheduleFragment);
+					ft.commit();
+
+				} else if (selectedItemFromList.getCategoryType()
 						.equalsIgnoreCase("6settings")) {
 					FragmentManager fragmentManager = getFragmentManager();
 					FragmentTransaction ft = fragmentManager.beginTransaction();
