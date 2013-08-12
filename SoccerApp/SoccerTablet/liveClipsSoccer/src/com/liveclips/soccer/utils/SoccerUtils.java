@@ -330,6 +330,62 @@ public class SoccerUtils {
 		int[] colors = { 0xff7A7979, 0xff969191, 0xffB5B1B1 };
 		return colors;
 	}
+	public static void setAlertSettingForJsonString(final Activity activity,
+			 final TeamAlertSetting teamAlertSetting) {
+		
+		allPLaysToggleButton = (ToggleButton) activity
+				.findViewById(R.id.all_plays_toggle_button);
+		allPLaysToggleButton.setChecked(teamAlertSetting.isAllPlays());
+	
+
+		topPLaysToggleButton = (ToggleButton) activity
+				.findViewById(R.id.top_plays_toggle_button);
+		topPLaysToggleButton.setChecked(teamAlertSetting.isTopPlays());
+
+
+		scoringPLaysToggleButton = (ToggleButton) activity
+				.findViewById(R.id.scoring_plays_toggle_button);
+		scoringPLaysToggleButton.setChecked(teamAlertSetting.isScoringPlays());
+
+
+		turnoversPLaysToggleButton = (ToggleButton) activity
+				.findViewById(R.id.turnovers_plays_toggle_button);
+		turnoversPLaysToggleButton.setChecked(teamAlertSetting.isTurnOversPlays());
+	
+		redZonePLaysToggleButton = (ToggleButton) activity
+				.findViewById(R.id.red_zone_plays_toggle_button);
+		redZonePLaysToggleButton.setChecked(teamAlertSetting.isRedZonePlays());
+
+		playsOfTheGameToggleButton = (ToggleButton) activity
+				.findViewById(R.id.plays_of_the_game_toggle_button);
+		playsOfTheGameToggleButton.setChecked(teamAlertSetting.isPlaysOfGame());
+
+
+		/**
+		 * Basic alert seek bar handler
+		 */
+
+		basicAlertLevelSeekbar = (SeekBar) activity
+				.findViewById(R.id.basic_alertlevel_seekBar);
+		basicAlertLevelSeekbar.setProgress(teamAlertSetting.getBasicAlert());
+
+		/**
+		 * rushing Play alert seek bar handler
+		 */
+
+		rushingPlayAlertLevelSeekbar = (SeekBar) activity
+				.findViewById(R.id.rushing_plays_seekBar);
+		rushingPlayAlertLevelSeekbar.setProgress(teamAlertSetting.getRushingPlays());
+		
+		/**
+		 * Passing Play alert seek bar handler
+		 */
+
+		passingPlayAlertLevelSeekbar = (SeekBar) activity
+				.findViewById(R.id.passing_plays_seekBar);
+		passingPlayAlertLevelSeekbar.setProgress(teamAlertSetting.getPassingPlays());
+		
+	}
 
 	public static void setUserPreferredAlertSettings(final Activity activity,
 			final TextView alertButton) {

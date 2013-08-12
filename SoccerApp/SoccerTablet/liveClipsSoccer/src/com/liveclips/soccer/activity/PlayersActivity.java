@@ -53,6 +53,7 @@ public class PlayersActivity extends BaseActivity implements
 		setContentView(R.layout.players_activity);
 		imgLoader = new ImageLoader(this);
 		activity = this;
+		fullScreenView = (RelativeLayout) findViewById(R.id.fullScreenView);	
 		fragmentManager = getFragmentManager();
 		PlayCards.getPlayCards(activity,context, "AllPlays");
 		//playCards();
@@ -166,12 +167,27 @@ public class PlayersActivity extends BaseActivity implements
 			@Override
 			public void onClick(View v) {
 				showAddPlayersFragment();
-
+				fullScreenView.setVisibility(View.VISIBLE);
 			}
 		}));
 
 		createCustomActionBar();
-
+		commonFragmentMenuHeader =(RelativeLayout) mActionBarView.findViewById(R.id.commonFragmentMenuHeader);
+		fullScreenView.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				screenHandelingForFragment();
+				ActionBar actionBar = getActionBar();
+				final RelativeLayout actionBarLayout = (RelativeLayout) actionBar
+						.getCustomView();
+				final RelativeLayout fragMenuHeader = (RelativeLayout) actionBarLayout
+						.findViewById(R.id.fragmentMenuHeader);
+				if (fragMenuHeader != null) {
+					actionBarLayout.removeView(fragMenuHeader);
+				}
+				mActionBarView.findViewById(R.id.activityMenuHeader).setVisibility(View.VISIBLE);
+			}
+		});    
 	}
 
 	public void showEmptyMyPlayerBanner(LinearLayout wrapper) {
@@ -182,10 +198,29 @@ public class PlayersActivity extends BaseActivity implements
 		wrapper.addView(emptyView);
 	}
 
+	private void screenHandelingForFragment(){
+
+		
+		commonFragmentMenuHeader.setVisibility(View.INVISIBLE);
+		mActionBarView.findViewById(R.id.activityMenuHeader).setVisibility(View.VISIBLE);
+		fragmentManager = getFragmentManager ();
+		fragmentTransaction = fragmentManager.beginTransaction ();
+		mainMenuFragment = fragmentManager.findFragmentById(
+				R.id.menuFragment);
+		if (mainMenuFragment.isVisible()) {
+			fragmentTransaction.hide(mainMenuFragment);
+			fragmentTransaction.commit();
+			commonFragmentMenuHeader.setVisibility(View.INVISIBLE);
+			sliderView.setVisibility(View.VISIBLE);
+		}
+		fullScreenView.setVisibility(View.INVISIBLE);
+		
+	
+	}
 	protected void createCustomActionBar() {
 
 		ActionBar actionBar = getActionBar();
-		View mActionBarView = getLayoutInflater().inflate(
+		mActionBarView = getLayoutInflater().inflate(
 				R.layout.players_actionbar, null);
 		actionBar.setCustomView(mActionBarView);
 		actionBar.setDisplayShowHomeEnabled(false);
@@ -202,6 +237,31 @@ public class PlayersActivity extends BaseActivity implements
 					+ activity.getString(R.string.alert_level_first));
 		}
 		SoccerUtils.setAlertPopover(activity, popoverView, alertButton);
+
+		/*Handling grey screen events*/
+		fullScreenView.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				commonFragmentMenuHeader =(RelativeLayout) mActionBarView.findViewById(R.id.commonFragmentMenuHeader);
+				commonFragmentMenuHeader.setVisibility(View.INVISIBLE);
+				mActionBarView.findViewById(R.id.activityMenuHeader).setVisibility(View.VISIBLE);
+				fragmentManager = getFragmentManager ();
+				fragmentTransaction = fragmentManager.beginTransaction ();
+				mainMenuFragment = fragmentManager.findFragmentById(
+						R.id.menuFragment);
+				if (mainMenuFragment.isVisible()) {
+					
+					fragmentTransaction.hide(mainMenuFragment);
+					fragmentTransaction.commit();
+					commonFragmentMenuHeader.setVisibility(View.INVISIBLE);
+					sliderView.setVisibility(View.VISIBLE);
+				}
+				
+				fullScreenView.setVisibility(View.INVISIBLE);
+			}
+		});      
+		
 	}
 
 	public void showAddPlayersFragment() {

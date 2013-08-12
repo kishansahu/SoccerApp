@@ -6,6 +6,7 @@ public class TeamAlertSetting implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private String teamId;
+	private String teamName;
 	private boolean allPlays;
 	private boolean topPlays;
 	private boolean scoringPlays;
@@ -98,6 +99,14 @@ public class TeamAlertSetting implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public String getTeamName() {
+		return teamName;
+	}
+
+	public void setTeamName(String teamName) {
+		this.teamName = teamName;
 	}
 
 }

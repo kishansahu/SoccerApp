@@ -49,8 +49,6 @@ import com.liveclips.soccer.utils.PlayCardView;
 import com.liveclips.soccer.utils.SharedPreferencesUtil;
 import com.liveclips.soccer.utils.SoccerUtils;
 
-
-
 /**
  * @author mohitkumar
  * 
@@ -69,8 +67,9 @@ public class HighlightsActivity extends BaseActivity implements
 	private PopoverView popoverView;
 
 	private DownloadImagesThreadPool downloadImagesThreadPool;
-	
-	private TextView allPlaysTextView, topPlaysTextView,topRatedTextView, watchAllTextView;
+
+	private TextView allPlaysTextView, topPlaysTextView, topRatedTextView,
+			watchAllTextView;
 
 	protected void onCreate(Bundle savedInstanceState) {
 
@@ -79,18 +78,37 @@ public class HighlightsActivity extends BaseActivity implements
 		setContentView(R.layout.highlights_activity);
 
 		context = this;
-		highlightsActivity= this;
+		highlightsActivity = this;
+		fullScreenView = (RelativeLayout) findViewById(R.id.fullScreenView);
+		fragmentManager = getFragmentManager();
 		downloadImagesThreadPool = new DownloadImagesThreadPool();
 
 		createCustomActionBar();
-
+		commonFragmentMenuHeader = (RelativeLayout) mActionBarView
+				.findViewById(R.id.commonFragmentMenuHeader);
+		fullScreenView.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				screenHandelingForFragment();
+				ActionBar actionBar = getActionBar();
+				final RelativeLayout actionBarLayout = (RelativeLayout) actionBar
+						.getCustomView();
+				final RelativeLayout fragMenuHeader = (RelativeLayout) actionBarLayout
+						.findViewById(R.id.fragmentMenuHeader);
+				if (fragMenuHeader != null) {
+					actionBarLayout.removeView(fragMenuHeader);
+				}
+				mActionBarView.findViewById(R.id.activityMenuHeader)
+						.setVisibility(View.VISIBLE);
+			}
+		});
 		prepareVideoView();
-		
+
 		allPlaysTextView = (TextView) findViewById(R.id.allPlaysId);
 		topPlaysTextView = (TextView) findViewById(R.id.topPlaysId);
 		topRatedTextView = (TextView) findViewById(R.id.topRatedId);
 		watchAllTextView = (TextView) findViewById(R.id.watchAllId);
-		
+
 		allPlaysTextView.setOnClickListener(allPlaysClickListener);
 		topPlaysTextView.setOnClickListener(topPlaysCilckListener);
 		topRatedTextView.setOnClickListener(topRatedClickListener);
@@ -98,10 +116,28 @@ public class HighlightsActivity extends BaseActivity implements
 
 	}
 
+	private void screenHandelingForFragment() {
+
+		commonFragmentMenuHeader.setVisibility(View.INVISIBLE);
+		mActionBarView.findViewById(R.id.activityMenuHeader).setVisibility(
+				View.VISIBLE);
+		fragmentManager = getFragmentManager();
+		fragmentTransaction = fragmentManager.beginTransaction();
+		mainMenuFragment = fragmentManager.findFragmentById(R.id.menuFragment);
+		if (mainMenuFragment.isVisible()) {
+			fragmentTransaction.hide(mainMenuFragment);
+			fragmentTransaction.commit();
+			commonFragmentMenuHeader.setVisibility(View.INVISIBLE);
+			sliderView.setVisibility(View.VISIBLE);
+		}
+		fullScreenView.setVisibility(View.INVISIBLE);
+
+	}
+
 	protected void createCustomActionBar() {
 
 		ActionBar actionBar = getActionBar();
-		View mActionBarView = getLayoutInflater().inflate(
+		mActionBarView = getLayoutInflater().inflate(
 				R.layout.highlights_actionbar, null);
 		actionBar.setCustomView(mActionBarView);
 		actionBar.setBackgroundDrawable(new ColorDrawable(0xFFFF8B1D));
@@ -118,7 +154,8 @@ public class HighlightsActivity extends BaseActivity implements
 			alertButton.setText("Alerts: "
 					+ highlightsActivity.getString(R.string.alert_level_first));
 		}
-		SoccerUtils.setAlertPopover(highlightsActivity, popoverView, alertButton);
+		SoccerUtils.setAlertPopover(highlightsActivity, popoverView,
+				alertButton);
 
 		Drawable d = getResources().getDrawable(
 				R.drawable.orange_gradient_background);
@@ -315,8 +352,7 @@ public class HighlightsActivity extends BaseActivity implements
 
 			listView = (ListView) findViewById(R.id.week_list);
 			HighlightsWeekListAdapter weekListAdapter = new HighlightsWeekListAdapter(
-					context,
-					R.layout.highlights_popover_list_row_item_week,
+					context, R.layout.highlights_popover_list_row_item_week,
 					HighlightsService.getWeeksDetails("UserId"));
 
 			listView.setAdapter(weekListAdapter);
@@ -327,28 +363,19 @@ public class HighlightsActivity extends BaseActivity implements
 					context);
 			Map<String, List<LeadersTypeItem>> leadersInfoMap = HighlightsService
 					.getLeadersDetails("");
-			separatedListAdapter
-					.addSection(
-							"Offense",
-							new HighlightsLeadersListAdapter(
-									context,
-									R.layout.highlights_popover_list_row_item_leader,
-									leadersInfoMap.get("offense")));
+			separatedListAdapter.addSection("Offense",
+					new HighlightsLeadersListAdapter(context,
+							R.layout.highlights_popover_list_row_item_leader,
+							leadersInfoMap.get("offense")));
 
-			separatedListAdapter
-					.addSection(
-							"Defense",
-							new HighlightsLeadersListAdapter(
-									context,
-									R.layout.highlights_popover_list_row_item_leader,
-									leadersInfoMap.get("defense")));
-			separatedListAdapter
-					.addSection(
-							"Special Teams",
-							new HighlightsLeadersListAdapter(
-									context,
-									R.layout.highlights_popover_list_row_item_leader,
-									leadersInfoMap.get("specialTeams")));
+			separatedListAdapter.addSection("Defense",
+					new HighlightsLeadersListAdapter(context,
+							R.layout.highlights_popover_list_row_item_leader,
+							leadersInfoMap.get("defense")));
+			separatedListAdapter.addSection("Special Teams",
+					new HighlightsLeadersListAdapter(context,
+							R.layout.highlights_popover_list_row_item_leader,
+							leadersInfoMap.get("specialTeams")));
 
 			listView = (ListView) findViewById(R.id.leaders_list);
 
@@ -565,7 +592,7 @@ public class HighlightsActivity extends BaseActivity implements
 		}
 
 	};
-	
+
 	private OnClickListener allPlaysClickListener = new OnClickListener() {
 
 		@Override
@@ -629,6 +656,5 @@ public class HighlightsActivity extends BaseActivity implements
 
 		}
 	};
-
 
 }

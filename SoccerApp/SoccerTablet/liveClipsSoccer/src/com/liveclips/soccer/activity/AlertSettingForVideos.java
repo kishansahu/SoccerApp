@@ -3,7 +3,6 @@ package com.liveclips.soccer.activity;
 import java.util.Collections;
 import java.util.List;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -12,17 +11,31 @@ import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.google.gson.Gson;
 import com.liveclips.soccer.R;
+import com.liveclips.soccer.database.DatabaseHelper;
 import com.liveclips.soccer.model.TeamAlertSetting;
-import com.liveclips.soccer.utils.SoccerUtils;
+import com.liveclips.soccer.model.TeamItem;
 import com.liveclips.soccer.utils.SharedPreferencesUtil;
+import com.liveclips.soccer.utils.SoccerUtils;
+
 
 public class AlertSettingForVideos extends Activity {
+
+	private ToggleButton allPLaysToggleButton, topPLaysToggleButton,
+			scoringPLaysToggleButton, turnoversPLaysToggleButton,
+			redZonePLaysToggleButton, playsOfTheGameToggleButton;
+
+	private SeekBar basicAlertLevelSeekbar, passingPlayAlertLevelSeekbar,
+			rushingPlayAlertLevelSeekbar;
+
 	Button openSelectedTeamPlayButton, backToAvailableTeamListButton;
 	Context context;
 	Activity activity;
@@ -32,75 +45,48 @@ public class AlertSettingForVideos extends Activity {
 	Gson gson;
 	List<String> favTeamList;
 	ToggleButton alertsForAllteams;
-	TextView teamNameGameAlerts;
+	TextView teamNameGameAlerts, alertsHeader, alertPerGameTextview;
 	TeamAlertSetting teamAlertSetting;
-	ActionBar actionBar;
+	String favouriteTeamId;
+	int index = 0;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.user_settings_view_alerts);
-		
-		actionBar = getActionBar();
-		actionBar.hide();
-
-		Bundle extras = getIntent().getExtras();
-		if (extras != null) {
-			previousTeamId = extras.getString("previousTeamId");
-			presentFavouriteTeamId = extras.getString("presentFavouriteTeamId");
-		}
-
 		context = this;
 		activity = this;
 		appSharedPrefs = PreferenceManager.getDefaultSharedPreferences(this
 				.getApplicationContext());
-
+		
 		favTeamList = SharedPreferencesUtil
 				.getFavouriteInSharedPreferencesList(context, "team");
+		setContent();
 		Collections.sort(favTeamList);
-		int favTeamIndex = 0;
-		String favouriteTeamId = favTeamList.get(0);
+		
+	}
 
-		gson = new Gson();
-		prefsEditor = appSharedPrefs.edit();
-		if (!presentFavouriteTeamId.isEmpty()) {
-			favouriteTeamId = presentFavouriteTeamId;
-		}
-		String teamAlertSettingFromSharedprefJson = appSharedPrefs.getString(
-				"teamAlertSettingObject" + favouriteTeamId, "");
+	private void setContent() {
 
-		if (!teamAlertSettingFromSharedprefJson.isEmpty()) {
-			teamAlertSetting = gson.fromJson(
-					teamAlertSettingFromSharedprefJson, TeamAlertSetting.class);
-		} else {
-			teamAlertSetting = new TeamAlertSetting();
-			teamAlertSetting.setTeamId(favouriteTeamId);
-		}
-
-		presentFavouriteTeamId = favouriteTeamId;
-		teamAlertSetting = SoccerUtils.customizeAlertSettingForTeam(activity,
-				teamAlertSetting);
-
-		favTeamIndex = favTeamList.indexOf(favouriteTeamId);
-		if ((favTeamIndex) != 0) {
-			previousTeamId = favTeamList.get(favTeamIndex - 1);
-		}
-		if ((favTeamList.size() - 1) != favTeamIndex) {
-			nextTeamId = favTeamList.get(favTeamIndex + 1);
-		}
-
+		teamAlertSetting = new TeamAlertSetting();
 		teamNameGameAlerts = (TextView) findViewById(R.id.teamNameGameAlerts);
-		teamNameGameAlerts.setText(presentFavouriteTeamId + " Game Alerts");
+		alertsHeader = (TextView) findViewById(R.id.alertsHeader);
+		alertPerGameTextview = (TextView) findViewById(R.id.alert_per_game_textview);
 		openSelectedTeamPlayButton = (Button) findViewById(R.id.openSelectedTeamPlayButton);
 		backToAvailableTeamListButton = (Button) findViewById(R.id.backToAvailableTeamListButton);
 		alertsForAllteams = (ToggleButton) findViewById(R.id.alerts_for_allteams_toggle_button);
+		DatabaseHelper databaseHelper = new DatabaseHelper((Context)activity);
+		TeamItem teamItem=databaseHelper.getTeamInfoByTeamId(favTeamList.get(index));
+		teamNameGameAlerts.setText(teamItem.getTeamName() + " Game Alerts");
 		openSelectedTeamPlayButton
 				.setOnClickListener(new View.OnClickListener() {
 
 					@Override
 					public void onClick(View v) {
+						gson = new Gson();
 						json = gson.toJson(teamAlertSetting);
+						prefsEditor = appSharedPrefs.edit();
 						prefsEditor.putString("teamAlertSettingObject"
-								+ presentFavouriteTeamId, json);
+								+ favTeamList.get(index), json);
 						prefsEditor.commit();
 						if (alertsForAllteams.isChecked()) {
 							for (String favTeamId : favTeamList) {
@@ -112,27 +98,34 @@ public class AlertSettingForVideos extends Activity {
 										+ favTeamId, json);
 								prefsEditor.commit();
 							}
-							nextTeamId = "";
+							index = favTeamList.size();
 						}
-						if (nextTeamId != null && !nextTeamId.isEmpty()) {
-							Intent intent = new Intent(
-									AlertSettingForVideos.this,
-									AlertSettingForVideos.class);
-							intent.putExtra("previousTeamId",
-									presentFavouriteTeamId);
-							intent.putExtra("presentFavouriteTeamId",
-									nextTeamId);
+						
+						index = index + 1;
+						if (index == favTeamList.size()) {
+							Intent intent = new Intent(context,
+									GameActivity.class);
+
 							AlertSettingForVideos.this.startActivity(intent);
+							finish();
 						} else {
+							setContentView(R.layout.user_settings_view_alerts);
+							setContent();
+							String teamAlertSettingFromSharedprefJson = appSharedPrefs
+									.getString("teamAlertSettingObject"
+											+ favTeamList.get(index), "");
+							if (teamAlertSettingFromSharedprefJson.length() > 0) {
+								teamAlertSetting = gson.fromJson(
+										teamAlertSettingFromSharedprefJson,
+										TeamAlertSetting.class);
+								SoccerUtils.setAlertSettingForJsonString(activity,
+										teamAlertSetting);
+							}
 
-							
-							  AlertSettingForVideos.this.startActivity(new
-							  Intent(AlertSettingForVideos.this,
-							  GameActivity.class));
-							 
 						}
-
+					
 					}
+
 				});
 
 		backToAvailableTeamListButton
@@ -140,22 +133,189 @@ public class AlertSettingForVideos extends Activity {
 
 					@Override
 					public void onClick(View v) {
-
-						if (!previousTeamId.isEmpty()) {
-							Intent intent = new Intent(
-									AlertSettingForVideos.this,
-									AlertSettingForVideos.class);
-							intent.putExtra("previousTeamId", previousTeamId);
-							intent.putExtra("presentFavouriteTeamId",
-									presentFavouriteTeamId);
-							AlertSettingForVideos.this.startActivity(intent);
-						} else {
-							Intent intent = new Intent(
-									AlertSettingForVideos.this,
-									UserSelectTeam.class);
-							AlertSettingForVideos.this.startActivity(intent);
+						index = index - 1;
+						if (index >= 0) {
+							String teamAlertSettingFromSharedprefJson = appSharedPrefs
+									.getString("teamAlertSettingObject"
+											+ favTeamList.get(index), "");
+							teamAlertSetting = gson.fromJson(
+									teamAlertSettingFromSharedprefJson,
+									TeamAlertSetting.class);
+							SoccerUtils.setAlertSettingForJsonString(activity,
+									teamAlertSetting);
+						}
+						if (index < 0) {
+							onBackPressed();
 						}
 					}
 				});
+
+		allPLaysToggleButton = (ToggleButton) findViewById(R.id.all_plays_toggle_button);
+
+		allPLaysToggleButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				teamAlertSetting.setAllPlays(allPLaysToggleButton.isChecked());
+			}
+		});
+
+		topPLaysToggleButton = (ToggleButton) findViewById(R.id.top_plays_toggle_button);
+		topPLaysToggleButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				teamAlertSetting.setTopPlays(topPLaysToggleButton.isChecked());
+			}
+		});
+
+		scoringPLaysToggleButton = (ToggleButton) findViewById(R.id.scoring_plays_toggle_button);
+		scoringPLaysToggleButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				teamAlertSetting.setScoringPlays(scoringPLaysToggleButton
+						.isChecked());
+			}
+		});
+
+		turnoversPLaysToggleButton = (ToggleButton) findViewById(R.id.turnovers_plays_toggle_button);
+		turnoversPLaysToggleButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				teamAlertSetting.setTurnOversPlays(turnoversPLaysToggleButton
+						.isChecked());
+			}
+		});
+		redZonePLaysToggleButton = (ToggleButton) findViewById(R.id.red_zone_plays_toggle_button);
+		redZonePLaysToggleButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				teamAlertSetting.setRedZonePlays(redZonePLaysToggleButton
+						.isChecked());
+			}
+		});
+		playsOfTheGameToggleButton = (ToggleButton) findViewById(R.id.plays_of_the_game_toggle_button);
+		playsOfTheGameToggleButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				teamAlertSetting.setPlaysOfGame(playsOfTheGameToggleButton
+						.isChecked());
+			}
+		});
+
+		/**
+		 * Basic alert seek bar handler
+		 */
+
+		basicAlertLevelSeekbar = (SeekBar) findViewById(R.id.basic_alertlevel_seekBar);
+		basicAlertLevelSeekbar
+				.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+					int progressChanged = 0;
+					int progressBarMaxRange = 0;
+
+					public void onProgressChanged(SeekBar seekBar,
+							int progress, boolean fromUser) {
+						progressChanged = progress;
+						progressBarMaxRange = seekBar.getMax();
+						if (progress==1) {
+							alertsHeader.setText("GB at NE Alerts: Low");
+							alertPerGameTextview.setText("  5-10 Alerts per game");
+							
+							passingPlayAlertLevelSeekbar.setProgress(0);
+							rushingPlayAlertLevelSeekbar.setProgress(0);
+							allPLaysToggleButton.setChecked(false);
+							topPLaysToggleButton.setChecked(true);
+							scoringPLaysToggleButton.setChecked(true);
+							turnoversPLaysToggleButton.setChecked(false);
+							redZonePLaysToggleButton.setChecked(false);
+		                    playsOfTheGameToggleButton.setChecked(true);
+							
+						}else if (progress==2) {
+							alertsHeader.setText("GB at NE Alerts: Medium");
+							alertPerGameTextview.setText("  50-60 Alerts per game");
+							
+							passingPlayAlertLevelSeekbar.setProgress(1);
+							rushingPlayAlertLevelSeekbar.setProgress(1);
+							allPLaysToggleButton.setChecked(false);
+							topPLaysToggleButton.setChecked(true);
+							scoringPLaysToggleButton.setChecked(true);
+							turnoversPLaysToggleButton.setChecked(true);
+							redZonePLaysToggleButton.setChecked(true);
+		                    playsOfTheGameToggleButton.setChecked(true);
+							
+						}else if (progress==3) {
+							alertsHeader.setText("GB at NE Alerts: High");
+							alertPerGameTextview.setText("  100+ Alerts per game");
+							
+							passingPlayAlertLevelSeekbar.setProgress(2);
+							rushingPlayAlertLevelSeekbar.setProgress(2);
+							allPLaysToggleButton.setChecked(true);
+							topPLaysToggleButton.setChecked(false);
+							scoringPLaysToggleButton.setChecked(false);
+							turnoversPLaysToggleButton.setChecked(false);
+							redZonePLaysToggleButton.setChecked(false);
+		                    playsOfTheGameToggleButton.setChecked(true);
+						}
+						
+					}
+
+					public void onStopTrackingTouch(SeekBar seekBar) {
+						teamAlertSetting.setBasicAlert(progressChanged);
+					}
+
+					@Override
+					public void onStartTrackingTouch(SeekBar seekBar) {
+						// TODO Auto-generated method stub
+
+					}
+				});
+
+		/**
+		 * rushing Play alert seek bar handler
+		 */
+
+		rushingPlayAlertLevelSeekbar = (SeekBar) findViewById(R.id.rushing_plays_seekBar);
+		rushingPlayAlertLevelSeekbar
+				.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+					int progressChanged = 0;
+
+					public void onProgressChanged(SeekBar seekBar,
+							int progress, boolean fromUser) {
+						progressChanged = progress;
+					}
+
+					public void onStopTrackingTouch(SeekBar seekBar) {
+						teamAlertSetting.setRushingPlays(progressChanged);
+					}
+
+					@Override
+					public void onStartTrackingTouch(SeekBar seekBar) {
+					}
+				});
+
+		/**
+		 * Passing Play alert seek bar handler
+		 */
+
+		passingPlayAlertLevelSeekbar = (SeekBar) findViewById(R.id.passing_plays_seekBar);
+		passingPlayAlertLevelSeekbar
+				.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+					int progressChanged = 0;
+
+					public void onProgressChanged(SeekBar seekBar,
+							int progress, boolean fromUser) {
+						progressChanged = progress;
+					}
+
+					public void onStopTrackingTouch(SeekBar seekBar) {
+						teamAlertSetting.setPassingPlays(progressChanged);
+					}
+
+					@Override
+					public void onStartTrackingTouch(SeekBar seekBar) {
+						// TODO Auto-generated method stub
+
+					}
+				});
+
 	}
+
 }

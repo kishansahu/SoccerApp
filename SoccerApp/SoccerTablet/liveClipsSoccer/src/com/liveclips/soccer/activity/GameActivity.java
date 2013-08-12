@@ -111,21 +111,53 @@ public class GameActivity extends BaseActivity implements PopoverViewDelegate {
 				.setOnClickListener(matchScoreBoardBackgroundClickListener);
 
 		createCustomActionBar();
-
+		commonFragmentMenuHeader =(RelativeLayout) mActionBarView.findViewById(R.id.commonFragmentMenuHeader);
+		fullScreenView.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				screenHandelingForFragment();
+				ActionBar actionBar = getActionBar();
+				final RelativeLayout actionBarLayout = (RelativeLayout) actionBar
+						.getCustomView();
+				final RelativeLayout fragMenuHeader = (RelativeLayout) actionBarLayout
+						.findViewById(R.id.fragmentMenuHeader);
+				if (fragMenuHeader != null) {
+					actionBarLayout.removeView(fragMenuHeader);
+				}
+				mActionBarView.findViewById(R.id.activityMenuHeader).setVisibility(View.VISIBLE);
+			}
+		});    
 		PlayCards.getPlayCards(activity, context, "AllPlays");
 		
 	}
 
+	private void screenHandelingForFragment(){
+		commonFragmentMenuHeader.setVisibility(View.INVISIBLE);
+		mActionBarView.findViewById(R.id.activityMenuHeader).setVisibility(View.VISIBLE);
+		fragmentManager = getFragmentManager ();
+		fragmentTransaction = fragmentManager.beginTransaction ();
+		mainMenuFragment = fragmentManager.findFragmentById(
+				R.id.menuFragment);
+		if (mainMenuFragment.isVisible()) {
+			fragmentTransaction.hide(mainMenuFragment);
+			fragmentTransaction.commit();
+			commonFragmentMenuHeader.setVisibility(View.INVISIBLE);
+			sliderView.setVisibility(View.VISIBLE);
+		}
+		fullScreenView.setVisibility(View.INVISIBLE);
+		
+	
+	}
 	protected void createCustomActionBar() {
 
 		ActionBar actionBar = getActionBar();
-		final View mActionBarView = getLayoutInflater().inflate(
+		mActionBarView = getLayoutInflater().inflate(
 				R.layout.game_actionbar, null);
 		actionBar.setCustomView(mActionBarView);
 		actionBar.setDisplayShowHomeEnabled(false);
 		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
 		
-		fullScreenView.setOnClickListener(new View.OnClickListener() {
+		/*fullScreenView.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
@@ -146,7 +178,7 @@ public class GameActivity extends BaseActivity implements PopoverViewDelegate {
 				
 				fullScreenView.setVisibility(View.INVISIBLE);
 			}
-		});                
+		});             */   
 		
 		
 		View scheduleView = mActionBarView.findViewById(R.id.scheduleView);
