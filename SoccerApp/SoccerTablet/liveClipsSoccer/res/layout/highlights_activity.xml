@@ -13,25 +13,96 @@
             android:id="@+id/matchScoreBoardBackground"
             android:layout_width="fill_parent"
             android:layout_height="160dp"
-            android:background="@drawable/highlights_banner" >
+            android:background="@drawable/highlights_banner" />
 
-            <LinearLayout
-                android:id="@+id/firstTeamDescriptionContainer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="55dp"
-                android:layout_toRightOf="@+id/firstTeamLargeIcon"
-                android:orientation="vertical" >
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="160dp" >
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal" >
-                </LinearLayout>
-            </LinearLayout>
+            <TextView
+                android:id="@+id/allPlaysId"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:background="@color/grey_deep"
+                android:clickable="true"
+                android:drawableBottom="@color/white"
+                android:gravity="center"
+                android:text="All Plays"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-           <!--  <RelativeLayout
+            <View
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/grey_light" />
+
+            <TextView
+                android:id="@+id/topPlaysId"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:layout_toRightOf="@id/allPlaysId"
+                android:background="@color/grey_deep"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="Top Plays"
+                android:textColor="@color/grey_light"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/grey_light" />
+
+            <TextView
+                android:id="@+id/topRatedId"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:layout_toRightOf="@id/topPlaysId"
+                android:background="@color/grey_deep"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="Top Rated"
+                android:textColor="@color/grey_light"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/grey_light" />
+
+            <TextView
+                android:id="@+id/watchAllId"
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:layout_toRightOf="@id/topRatedId"
+                android:background="@color/grey_deep"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="122 Plays \u00A0\u00A0\u00A0\u00A0\u00A0\u00A0 \u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0 Watch All"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/grey_light"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </TableRow>
+        <!-- </RelativeLayout> -->
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="5dp"
+            android:layout_marginTop="200dp" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white" />
+        </TableRow>
+
+        <!--
+            <RelativeLayout
                 android:id="@+id/matchScoreContainer"
                 android:layout_width="250dp"
                 android:layout_height="match_parent"
@@ -54,9 +125,11 @@
                         android:src="@drawable/nfl" >
                     </ImageView>
                 </LinearLayout>
-            </RelativeLayout> -->
-        </RelativeLayout>
+            </RelativeLayout>
+        -->
 
+
+        <!--
         <RelativeLayout
             android:id="@+id/filterBoardBackground"
             android:layout_width="fill_parent"
@@ -111,6 +184,7 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
         </RelativeLayout>
+        -->
 
         <RelativeLayout
             android:id="@+id/combinedLayoutForSelectedCategoryAndPlayCardsId"

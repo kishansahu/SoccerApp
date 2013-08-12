@@ -69,6 +69,8 @@ public class HighlightsActivity extends BaseActivity implements
 	private PopoverView popoverView;
 
 	private DownloadImagesThreadPool downloadImagesThreadPool;
+	
+	private TextView allPlaysTextView, topPlaysTextView,topRatedTextView, watchAllTextView;
 
 	protected void onCreate(Bundle savedInstanceState) {
 
@@ -83,6 +85,16 @@ public class HighlightsActivity extends BaseActivity implements
 		createCustomActionBar();
 
 		prepareVideoView();
+		
+		allPlaysTextView = (TextView) findViewById(R.id.allPlaysId);
+		topPlaysTextView = (TextView) findViewById(R.id.topPlaysId);
+		topRatedTextView = (TextView) findViewById(R.id.topRatedId);
+		watchAllTextView = (TextView) findViewById(R.id.watchAllId);
+		
+		allPlaysTextView.setOnClickListener(allPlaysClickListener);
+		topPlaysTextView.setOnClickListener(topPlaysCilckListener);
+		topRatedTextView.setOnClickListener(topRatedClickListener);
+		watchAllTextView.setOnClickListener(watchAllClickListener);
 
 	}
 
@@ -553,5 +565,70 @@ public class HighlightsActivity extends BaseActivity implements
 		}
 
 	};
+	
+	private OnClickListener allPlaysClickListener = new OnClickListener() {
+
+		@Override
+		public void onClick(View v) {
+			allPlaysTextView.setTextColor(getResources()
+					.getColor(R.color.white));
+			topPlaysTextView.setTextColor(getResources().getColor(
+					R.color.grey_light));
+			topRatedTextView.setTextColor(getResources().getColor(
+					R.color.grey_light));
+			watchAllTextView.setTextColor(getResources().getColor(
+					R.color.grey_light));
+		}
+	};
+
+	private OnClickListener topPlaysCilckListener = new OnClickListener() {
+
+		@Override
+		public void onClick(View v) {
+
+			topPlaysTextView.setTextColor(getResources()
+					.getColor(R.color.white));
+			allPlaysTextView.setTextColor(getResources().getColor(
+					R.color.grey_light));
+			topRatedTextView.setTextColor(getResources().getColor(
+					R.color.grey_light));
+			watchAllTextView.setTextColor(getResources().getColor(
+					R.color.grey_light));
+		}
+	};
+
+	private OnClickListener topRatedClickListener = new OnClickListener() {
+
+		@Override
+		public void onClick(View v) {
+
+			topRatedTextView.setTextColor(getResources()
+					.getColor(R.color.white));
+			allPlaysTextView.setTextColor(getResources().getColor(
+					R.color.grey_light));
+			topPlaysTextView.setTextColor(getResources().getColor(
+					R.color.grey_light));
+			watchAllTextView.setTextColor(getResources().getColor(
+					R.color.grey_light));
+
+		}
+	};
+
+	private OnClickListener watchAllClickListener = new OnClickListener() {
+
+		@Override
+		public void onClick(View v) {
+			watchAllTextView.setTextColor(getResources()
+					.getColor(R.color.white));
+			allPlaysTextView.setTextColor(getResources().getColor(
+					R.color.grey_light));
+			topPlaysTextView.setTextColor(getResources().getColor(
+					R.color.grey_light));
+			topRatedTextView.setTextColor(getResources().getColor(
+					R.color.grey_light));
+
+		}
+	};
+
 
 }
