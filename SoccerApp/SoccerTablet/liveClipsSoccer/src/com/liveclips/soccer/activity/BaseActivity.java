@@ -1,13 +1,11 @@
 package com.liveclips.soccer.activity;
 
-import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.Animation;
@@ -15,7 +13,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.liveclips.soccer.R;
-import com.liveclips.soccer.R.color;
 import com.liveclips.soccer.fragment.TopicMenuFragment;
 import com.liveclips.soccer.session.ApplicationSession;
 

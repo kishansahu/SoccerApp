@@ -71,6 +71,7 @@ public class GameActivity extends BaseActivity implements PopoverViewDelegate {
 	private Activity activity;
 	private String leftSideTeamId = "cs_id";
 	private String rightSideTeamId;
+	private TextView schedulePopoverHeader;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -157,7 +158,7 @@ public class GameActivity extends BaseActivity implements PopoverViewDelegate {
 		actionBar.setDisplayShowHomeEnabled(false);
 		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
 		
-		/*fullScreenView.setOnClickListener(new View.OnClickListener() {
+		fullScreenView.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
@@ -178,7 +179,7 @@ public class GameActivity extends BaseActivity implements PopoverViewDelegate {
 				
 				fullScreenView.setVisibility(View.INVISIBLE);
 			}
-		});             */   
+		});                
 		
 		
 		View scheduleView = mActionBarView.findViewById(R.id.scheduleView);
@@ -603,19 +604,21 @@ public class GameActivity extends BaseActivity implements PopoverViewDelegate {
 	public void popoverViewDidShow(PopoverView view) {
 
 		Log.d("layoutId", String.valueOf(view.getLayoutId()));
-		TextView schedulePopoverHeader = (TextView) findViewById(R.id.game_activity_schedule_popover_header);
-		schedulePopoverHeader.setText("Arsenal Schedule");
-		
+				
 		if (view.getLayoutId() == R.layout.game_popover_view_schedule) {
+			
+			schedulePopoverHeader = (TextView) findViewById(R.id.game_activity_schedule_popover_header);
+			schedulePopoverHeader.setText("Arsenal Schedule");
+			
 			Log.d("id", String.valueOf(view.getId()));
 			List<ScheduleItem> rowItems = new ArrayList<ScheduleItem>();
 			String[] teamNames = { "Titans", "Cardinals", "Ravens", "Bills",
 					"Packers", "Seehawks", "Jets", "Rams" };
-			int[] teamLogo = { R.drawable.teamlogo_atl_mad_id,
-					R.drawable.teamlogo_bay_lev_id,
-					R.drawable.teamlogo_bor_dor_id, R.drawable.teamlogo_che_id,
+			int[] teamLogo = { R.drawable.teamlogo_ars_id,
+					R.drawable.teamlogo_ast_vil_id,
+					R.drawable.teamlogo_car_cit_id, R.drawable.teamlogo_che_id,
 					R.drawable.teamlogo_liv_id, R.drawable.teamlogo_man_cit_id,
-					R.drawable.teamlogo_rea_mad_id, R.drawable.teamlogo_val_id };
+					R.drawable.teamlogo_eve_id, R.drawable.teamlogo_hul_cit_id };
 			String[] matchDate = { "Aug 12", "Aug 13", "Aug 14", "Aug 15",
 					"Aug 19", "Aug 18", "Aug 17", "Aug 16" };
 			String[] teamStatus = { "W 34-13", "L 20-18", "L 31-30", "W 52-28",
