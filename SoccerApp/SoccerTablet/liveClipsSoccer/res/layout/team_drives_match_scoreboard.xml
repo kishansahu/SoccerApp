@@ -5,7 +5,6 @@
     android:layout_height="160dp"
     android:layout_alignParentRight="true"
     android:layout_gravity="right"
-    android:background="@drawable/scorecard_background"
     android:visibility="visible" >
 
     <View

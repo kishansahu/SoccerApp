@@ -29,7 +29,6 @@ import android.widget.LinearLayout.LayoutParams;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.liveclips.soccer.R;
@@ -472,16 +471,16 @@ public class GameActivity extends BaseActivity implements PopoverViewDelegate {
 
 		if (teamName.equals("team1") && teamType.equals("offensive")) {
 			final List<PlayerItem> offensivePlayerList = new ArrayList<PlayerItem>();
-			String offensivePlayerNamesForTeam1[] = { "Graham Harrell",
-					"Alex Green", "Randall Cobb", "Andrew Quarless" };
-			String offensivePlayerNumbersForTeam1[] = { "#6 | QB", "#20 | RB",
-					"#83 | WR", "#87 | TE" };
-			String offensivePlayerData1ForTeam1[] = { "20/29", "11 CAR",
-					"9 REC", "8 REC" };
-			String offensivePlayerData2ForTeam1[] = { "329 YDS", "64 YDS",
-					"53 YDS", "89 YDS" };
-			String offensivePlayerData3ForTeam1[] = { "2 TD", "1 TD", "0 TD",
-					"1 TD" };
+			String offensivePlayerNamesForTeam1[] = { "Messi",
+					"Ronaldo", "David Villa", "David Villa" };
+			String offensivePlayerNumbersForTeam1[] = { "#10 | Midfielder", "#9 | Winger",
+					"#24 | Forward", "#24 | Forward " };
+			String offensivePlayerData1ForTeam1[] = { "G 1", "G 2",
+					"G 0", "G 0" };
+			String offensivePlayerData2ForTeam1[] = { "A 0", "A 5",
+					"A 10", "A 10" };
+			String offensivePlayerData3ForTeam1[] = { "SG 1", "SG 2", "SG 5",
+					"SG 5" };
 
 			String offensivPlayerImagesForTeam1[] = {
 					"http://www.messi.com/images/headlines/messi-profile.jpg",
@@ -505,16 +504,16 @@ public class GameActivity extends BaseActivity implements PopoverViewDelegate {
 			playerList = offensivePlayerList;
 		} else if (teamName.equals("team1") && teamType.equals("defensive")) {
 			final List<PlayerItem> defensivePlayerList = new ArrayList<PlayerItem>();
-			String defensivePlayerNamesForTeam1[] = { "Mike Daniels",
-					"Josh Bell", "Johnny Jolly" };
-			String defensivePlayerNumbersForTeam1[] = { "#92 | DE", "#75 | DT",
-					"#50 | DL" };
-			String defensivePlayerData1ForTeam1[] = { "20/29", "11 CAR",
-					"9 REC" };
-			String defensivePlayerData2ForTeam1[] = { "329 YDS", "64 YDS",
-					"53 YDS" };
-			String defensivePlayerData3ForTeam1[] = { "2 TD", "1 TD", "0 TD" };
-
+			String defensivePlayerNamesForTeam1[] = { "Messi",
+					"Ronaldo", "David Villa", "David Villa" };
+			String defensivePlayerNumbersForTeam1[] = { "#10 | Midfielder", "#9 | Winger",
+					"#24 | Forward", "#24 | Forward " };
+			String defensivePlayerData1ForTeam1[] = { "G 1", "G 2",
+					"G 0", "G 0" };
+			String defensivePlayerData2ForTeam1[] = { "A 0", "A 5",
+					"A 10", "A 10" };
+			String defensivePlayerData3ForTeam1[] = { "SG 1", "SG 2", "SG 5",
+			"SG 5" };
 			String defensivePlayerImages[] = {
 					"http://www.messi.com/images/headlines/messi-profile.jpg",
 					"http://3.bp.blogspot.com/-eWrRNjbd5O0/T0tCMmG97cI/AAAAAAAAADo/NR03H4TPqk4/s1600/CutRonaldo.png",
@@ -612,8 +611,8 @@ public class GameActivity extends BaseActivity implements PopoverViewDelegate {
 			
 			Log.d("id", String.valueOf(view.getId()));
 			List<ScheduleItem> rowItems = new ArrayList<ScheduleItem>();
-			String[] teamNames = { "Titans", "Cardinals", "Ravens", "Bills",
-					"Packers", "Seehawks", "Jets", "Rams" };
+			String[] teamNames = { "Nowrwich City", "Schalke", "Queens Park", "Reading",
+					"Man Utd", "Fulham", "Montpellier", "Everton" };
 			int[] teamLogo = { R.drawable.teamlogo_ars_id,
 					R.drawable.teamlogo_ast_vil_id,
 					R.drawable.teamlogo_car_cit_id, R.drawable.teamlogo_che_id,
@@ -621,10 +620,10 @@ public class GameActivity extends BaseActivity implements PopoverViewDelegate {
 					R.drawable.teamlogo_eve_id, R.drawable.teamlogo_hul_cit_id };
 			String[] matchDate = { "Aug 12", "Aug 13", "Aug 14", "Aug 15",
 					"Aug 19", "Aug 18", "Aug 17", "Aug 16" };
-			String[] teamStatus = { "W 34-13", "L 20-18", "L 31-30", "W 52-28",
-					"Live 21-17", "10/14 4:05 PM", "10/21 4/25 PM",
-					"10/21 1:00 PM" };
-			String[] versusTexts = { "@", "vs", "@", "@", "vs", "@", "vs", "@" };
+			String[] teamStatus = { "W 3-1", "L 3-1", "L 4-2", "W 1-0",
+					"Live 2-1", "4:05 PM", "4:25 PM",
+					"1:00 PM" };
+			String[] versusTexts = { "@", "vs", "vs", "@", "@", "@", "vs", "@" };
 			String[] teamIds = { "wf_id", "ns_id", "mh_id", "tc_id", "bb_id",
 					"kj_id", "ks_id", "ss_id" };
 			for (int i = 0; i < 8; i++) {
@@ -730,11 +729,11 @@ public class GameActivity extends BaseActivity implements PopoverViewDelegate {
 
 					TextView firstTeamStatYardsScoreLabelInPopUp = (TextView) findViewById(R.id.firstTeamStatYardsScore);
 					firstTeamStatYardsScoreLabelInPopUp.setText(statScore1
-							.getText() + " Yards");
+							.getText());
 
 					TextView secondTeamStatYardsScoreLabelInPopUp = (TextView) findViewById(R.id.secondTeamStatYardsScore);
 					secondTeamStatYardsScoreLabelInPopUp.setText(statScore2
-							.getText() + " Yards");
+							.getText());
 
 					// String highestScore=
 					// NflUtils.getHighestNumber(statScore1.getText().toString(),
@@ -747,22 +746,22 @@ public class GameActivity extends BaseActivity implements PopoverViewDelegate {
 					// highestScore);
 
 					TextView firstTeamStatYardsWidthLabel = (TextView) findViewById(R.id.firstTeamStatYardsWidth);
-					firstTeamStatYardsWidthLabel.setWidth(Integer
+					firstTeamStatYardsWidthLabel.setWidth(20*Integer
 							.parseInt(statScore1.getText().toString()));
 
 					TextView secondTeamStatYardsWidthLabel = (TextView) findViewById(R.id.secondTeamStatYardsWidth);
-					secondTeamStatYardsWidthLabel.setWidth(Integer
+					secondTeamStatYardsWidthLabel.setWidth(20*Integer
 							.parseInt(statScore2.getText().toString()));
 
 					TextView statFirstTeamLabel = (TextView) findViewById(R.id.statFirstTeam);
 					TextView firstTeamNameStatYardsCategoryLabel = (TextView) findViewById(R.id.firstTeamNameStatYardsCategory);
 					// firstTeamNameStatYardsCategoryLabel.setText(statFirstTeamLabel.getText());
-					firstTeamNameStatYardsCategoryLabel.setText("GB");
+					firstTeamNameStatYardsCategoryLabel.setText("MU");
 
 					TextView statSecondTeamLabel = (TextView) findViewById(R.id.statSecondTeam);
 					TextView secondTeamNameStatYardsCategoryLabel = (TextView) findViewById(R.id.secondTeamNameStatYardsCategory);
 					// secondTeamNameStatYardsCategoryLabel.setText(statSecondTeamLabel.getText());
-					secondTeamNameStatYardsCategoryLabel.setText("NE");
+					secondTeamNameStatYardsCategoryLabel.setText("AR");
 					popoverView.dissmissPopover(false);
 				}
 			});
@@ -964,8 +963,7 @@ public class GameActivity extends BaseActivity implements PopoverViewDelegate {
 			watchAllTextView.setTextColor(getResources().getColor(
 					R.color.grey_light));
 
-			Toast.makeText(GameActivity.this, "top plays button clicked",
-					Toast.LENGTH_SHORT).show();
+			
 		}
 	};
 
@@ -983,8 +981,7 @@ public class GameActivity extends BaseActivity implements PopoverViewDelegate {
 			watchAllTextView.setTextColor(getResources().getColor(
 					R.color.grey_light));
 
-			Toast.makeText(GameActivity.this, "top Rated button clicked",
-					Toast.LENGTH_SHORT).show();
+			
 		}
 	};
 
@@ -1001,8 +998,7 @@ public class GameActivity extends BaseActivity implements PopoverViewDelegate {
 			topRatedTextView.setTextColor(getResources().getColor(
 					R.color.grey_light));
 
-			Toast.makeText(GameActivity.this, "watch all button clicked",
-					Toast.LENGTH_SHORT).show();
+			
 		}
 	};
 

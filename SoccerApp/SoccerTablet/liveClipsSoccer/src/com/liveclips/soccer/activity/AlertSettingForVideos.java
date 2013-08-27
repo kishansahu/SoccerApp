@@ -100,7 +100,7 @@ public class AlertSettingForVideos extends Activity {
 							}
 							index = favTeamList.size();
 						}
-						
+												
 						index = index + 1;
 						if (index == favTeamList.size()) {
 							Intent intent = new Intent(context,
