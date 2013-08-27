@@ -47,11 +47,10 @@ public class SoccerUtils {
 	}
 
 	static ToggleButton allPLaysToggleButton, topPLaysToggleButton,
-			scoringPLaysToggleButton, turnoversPLaysToggleButton,
-			redZonePLaysToggleButton, playsOfTheGameToggleButton;
+			scoringPLaysToggleButton, savesToggleButton,
+			redCardsToggleButton,yellowCardsToggleButton, playsOfTheGameToggleButton;
 
-	static SeekBar basicAlertLevelSeekbar, passingPlayAlertLevelSeekbar,
-			rushingPlayAlertLevelSeekbar;
+	static SeekBar basicAlertLevelSeekbar;
 
 	public static void setScoreBannerShrinked(boolean isScoreBannerShrinked) {
 		SoccerUtils.isScoreBannerShrinked = isScoreBannerShrinked;
@@ -197,24 +196,24 @@ public class SoccerUtils {
 			}
 		});
 
-		turnoversPLaysToggleButton = (ToggleButton) activity
-				.findViewById(R.id.turnovers_plays_toggle_button);
-		turnoversPLaysToggleButton.setChecked(teamAlertSetting
+		savesToggleButton = (ToggleButton) activity
+				.findViewById(R.id.saves_toggle_button);
+		savesToggleButton.setChecked(teamAlertSetting
 				.isTurnOversPlays());
-		turnoversPLaysToggleButton.setOnClickListener(new OnClickListener() {
+		savesToggleButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				teamAlertSetting.setTurnOversPlays(turnoversPLaysToggleButton
+				teamAlertSetting.setTurnOversPlays(savesToggleButton
 						.isChecked());
 			}
 		});
-		redZonePLaysToggleButton = (ToggleButton) activity
-				.findViewById(R.id.red_zone_plays_toggle_button);
-		redZonePLaysToggleButton.setChecked(teamAlertSetting.isRedZonePlays());
-		redZonePLaysToggleButton.setOnClickListener(new OnClickListener() {
+		redCardsToggleButton = (ToggleButton) activity
+				.findViewById(R.id.red_cards_toggle_button);
+		redCardsToggleButton.setChecked(teamAlertSetting.isRedZonePlays());
+		redCardsToggleButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				teamAlertSetting.setRedZonePlays(redZonePLaysToggleButton
+				teamAlertSetting.setRedZonePlays(redCardsToggleButton
 						.isChecked());
 			}
 		});
@@ -249,60 +248,6 @@ public class SoccerUtils {
 
 					public void onStopTrackingTouch(SeekBar seekBar) {
 						teamAlertSetting.setBasicAlert(progressChanged);
-					}
-
-					@Override
-					public void onStartTrackingTouch(SeekBar seekBar) {
-						// TODO Auto-generated method stub
-
-					}
-				});
-
-		/**
-		 * rushing Play alert seek bar handler
-		 */
-
-		rushingPlayAlertLevelSeekbar = (SeekBar) activity
-				.findViewById(R.id.rushing_plays_seekBar);
-		rushingPlayAlertLevelSeekbar.setProgress(teamAlertSetting
-				.getRushingPlays());
-		rushingPlayAlertLevelSeekbar
-				.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
-					int progressChanged = 0;
-
-					public void onProgressChanged(SeekBar seekBar,
-							int progress, boolean fromUser) {
-						progressChanged = progress;
-					}
-
-					public void onStopTrackingTouch(SeekBar seekBar) {
-						teamAlertSetting.setRushingPlays(progressChanged);
-					}
-
-					@Override
-					public void onStartTrackingTouch(SeekBar seekBar) {
-					}
-				});
-
-		/**
-		 * Passing Play alert seek bar handler
-		 */
-
-		passingPlayAlertLevelSeekbar = (SeekBar) activity
-				.findViewById(R.id.passing_plays_seekBar);
-		passingPlayAlertLevelSeekbar.setProgress(teamAlertSetting
-				.getPassingPlays());
-		passingPlayAlertLevelSeekbar
-				.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
-					int progressChanged = 0;
-
-					public void onProgressChanged(SeekBar seekBar,
-							int progress, boolean fromUser) {
-						progressChanged = progress;
-					}
-
-					public void onStopTrackingTouch(SeekBar seekBar) {
-						teamAlertSetting.setPassingPlays(progressChanged);
 					}
 
 					@Override
@@ -348,13 +293,13 @@ public class SoccerUtils {
 		scoringPLaysToggleButton.setChecked(teamAlertSetting.isScoringPlays());
 
 
-		turnoversPLaysToggleButton = (ToggleButton) activity
-				.findViewById(R.id.turnovers_plays_toggle_button);
-		turnoversPLaysToggleButton.setChecked(teamAlertSetting.isTurnOversPlays());
+		savesToggleButton = (ToggleButton) activity
+				.findViewById(R.id.saves_toggle_button);
+		savesToggleButton.setChecked(teamAlertSetting.isTurnOversPlays());
 	
-		redZonePLaysToggleButton = (ToggleButton) activity
-				.findViewById(R.id.red_zone_plays_toggle_button);
-		redZonePLaysToggleButton.setChecked(teamAlertSetting.isRedZonePlays());
+		redCardsToggleButton = (ToggleButton) activity
+				.findViewById(R.id.red_cards_toggle_button);
+		redCardsToggleButton.setChecked(teamAlertSetting.isRedZonePlays());
 
 		playsOfTheGameToggleButton = (ToggleButton) activity
 				.findViewById(R.id.plays_of_the_game_toggle_button);
@@ -368,23 +313,7 @@ public class SoccerUtils {
 		basicAlertLevelSeekbar = (SeekBar) activity
 				.findViewById(R.id.basic_alertlevel_seekBar);
 		basicAlertLevelSeekbar.setProgress(teamAlertSetting.getBasicAlert());
-
-		/**
-		 * rushing Play alert seek bar handler
-		 */
-
-		rushingPlayAlertLevelSeekbar = (SeekBar) activity
-				.findViewById(R.id.rushing_plays_seekBar);
-		rushingPlayAlertLevelSeekbar.setProgress(teamAlertSetting.getRushingPlays());
-		
-		/**
-		 * Passing Play alert seek bar handler
-		 */
-
-		passingPlayAlertLevelSeekbar = (SeekBar) activity
-				.findViewById(R.id.passing_plays_seekBar);
-		passingPlayAlertLevelSeekbar.setProgress(teamAlertSetting.getPassingPlays());
-		
+	
 	}
 
 	public static void setUserPreferredAlertSettings(final Activity activity,
@@ -396,10 +325,10 @@ public class SoccerUtils {
 		scoringPLaysToggleButton
 				.setChecked(SharedPreferencesUtil.getBooleanPreferences(
 						activity, "scoring_plays_toggle_button"));
-		turnoversPLaysToggleButton.setChecked(SharedPreferencesUtil
+		savesToggleButton.setChecked(SharedPreferencesUtil
 				.getBooleanPreferences(activity,
 						"turnovers_plays_toggle_button"));
-		redZonePLaysToggleButton
+		redCardsToggleButton
 				.setChecked(SharedPreferencesUtil.getBooleanPreferences(
 						activity, "red_zone_plays_toggle_button"));
 		playsOfTheGameToggleButton.setChecked(SharedPreferencesUtil
@@ -407,13 +336,7 @@ public class SoccerUtils {
 						"plays_of_the_game_toggle_button"));
 		basicAlertLevelSeekbar.setProgress(SharedPreferencesUtil
 				.getIntegerPreferences(activity,
-						"basicAlertLevelSeekbarPosition"));
-		rushingPlayAlertLevelSeekbar.setProgress(SharedPreferencesUtil
-				.getIntegerPreferences(activity,
-						"rushingPlayAlertLevelSeekbarPosition"));
-		passingPlayAlertLevelSeekbar.setProgress(SharedPreferencesUtil
-				.getIntegerPreferences(activity,
-						"passingPlayAlertLevelSeekbarPosition"));
+						"basicAlertLevelSeekbarPosition"));	
 	}
 
 	public static void customizeAlertSetting(final Activity activity,
@@ -451,24 +374,24 @@ public class SoccerUtils {
 			}
 		});
 
-		turnoversPLaysToggleButton = (ToggleButton) activity
-				.findViewById(R.id.turnovers_plays_toggle_button);
-		turnoversPLaysToggleButton.setOnClickListener(new OnClickListener() {
+		savesToggleButton = (ToggleButton) activity
+				.findViewById(R.id.saves_toggle_button);
+		savesToggleButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				SharedPreferencesUtil.saveBooleanPreferences(activity,
 						"turnovers_plays_toggle_button",
-						turnoversPLaysToggleButton.isChecked());
+						savesToggleButton.isChecked());
 			}
 		});
-		redZonePLaysToggleButton = (ToggleButton) activity
-				.findViewById(R.id.red_zone_plays_toggle_button);
-		redZonePLaysToggleButton.setOnClickListener(new OnClickListener() {
+		redCardsToggleButton = (ToggleButton) activity
+				.findViewById(R.id.red_cards_toggle_button);
+		redCardsToggleButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				SharedPreferencesUtil.saveBooleanPreferences(activity,
 						"red_zone_plays_toggle_button",
-						redZonePLaysToggleButton.isChecked());
+						redCardsToggleButton.isChecked());
 			}
 		});
 		playsOfTheGameToggleButton = (ToggleButton) activity
@@ -538,60 +461,7 @@ public class SoccerUtils {
 
 					}
 				});
-
-		/**
-		 * rushing Play alert seek bar handler
-		 */
-
-		rushingPlayAlertLevelSeekbar = (SeekBar) activity
-				.findViewById(R.id.rushing_plays_seekBar);
-		rushingPlayAlertLevelSeekbar
-				.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
-					int progressChanged = 0;
-
-					public void onProgressChanged(SeekBar seekBar,
-							int progress, boolean fromUser) {
-						progressChanged = progress;
-					}
-
-					public void onStopTrackingTouch(SeekBar seekBar) {
-						SharedPreferencesUtil.saveIntegerPreferences(activity,
-								"rushingPlayAlertLevelSeekbarPosition",
-								progressChanged);
-					}
-
-					@Override
-					public void onStartTrackingTouch(SeekBar seekBar) {
-					}
-				});
-
-		/**
-		 * Passing Play alert seek bar handler
-		 */
-
-		passingPlayAlertLevelSeekbar = (SeekBar) activity
-				.findViewById(R.id.passing_plays_seekBar);
-		passingPlayAlertLevelSeekbar
-				.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
-					int progressChanged = 0;
-
-					public void onProgressChanged(SeekBar seekBar,
-							int progress, boolean fromUser) {
-						progressChanged = progress;
-					}
-
-					public void onStopTrackingTouch(SeekBar seekBar) {
-						SharedPreferencesUtil.saveIntegerPreferences(activity,
-								"passingPlayAlertLevelSeekbarPosition",
-								progressChanged);
-					}
-
-					@Override
-					public void onStartTrackingTouch(SeekBar seekBar) {
-						// TODO Auto-generated method stub
-
-					}
-				});
+	
 	}
 
 	public static void setAlertPopover(final Activity activity,

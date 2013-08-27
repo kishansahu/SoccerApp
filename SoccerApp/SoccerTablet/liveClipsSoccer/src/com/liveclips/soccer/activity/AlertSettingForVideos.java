@@ -30,8 +30,8 @@ import com.liveclips.soccer.utils.SoccerUtils;
 public class AlertSettingForVideos extends Activity {
 
 	private ToggleButton allPLaysToggleButton, topPLaysToggleButton,
-			scoringPLaysToggleButton, turnoversPLaysToggleButton,
-			redZonePLaysToggleButton, playsOfTheGameToggleButton;
+			scoringPLaysToggleButton, savesToggleButton,
+			redCardToggleButton,yellowCardToggleButton, playOfTheGameToggleButton;
 
 	private SeekBar basicAlertLevelSeekbar, passingPlayAlertLevelSeekbar,
 			rushingPlayAlertLevelSeekbar;
@@ -176,27 +176,38 @@ public class AlertSettingForVideos extends Activity {
 			}
 		});
 
-		turnoversPLaysToggleButton = (ToggleButton) findViewById(R.id.turnovers_plays_toggle_button);
-		turnoversPLaysToggleButton.setOnClickListener(new OnClickListener() {
+		savesToggleButton = (ToggleButton) findViewById(R.id.saves_toggle_button);
+		savesToggleButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				teamAlertSetting.setTurnOversPlays(turnoversPLaysToggleButton
+				teamAlertSetting.setTurnOversPlays(savesToggleButton
 						.isChecked());
 			}
 		});
-		redZonePLaysToggleButton = (ToggleButton) findViewById(R.id.red_zone_plays_toggle_button);
-		redZonePLaysToggleButton.setOnClickListener(new OnClickListener() {
+		redCardToggleButton = (ToggleButton) findViewById(R.id.red_card_toggle_button);
+		redCardToggleButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				teamAlertSetting.setRedZonePlays(redZonePLaysToggleButton
+				teamAlertSetting.setRedZonePlays(redCardToggleButton
 						.isChecked());
 			}
 		});
-		playsOfTheGameToggleButton = (ToggleButton) findViewById(R.id.plays_of_the_game_toggle_button);
-		playsOfTheGameToggleButton.setOnClickListener(new OnClickListener() {
+		
+		yellowCardToggleButton = (ToggleButton) findViewById(R.id.yellow_cards_toggle_button);
+		yellowCardToggleButton.setOnClickListener(new OnClickListener() {
+			
 			@Override
 			public void onClick(View v) {
-				teamAlertSetting.setPlaysOfGame(playsOfTheGameToggleButton
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		playOfTheGameToggleButton = (ToggleButton) findViewById(R.id.play_of_the_game_toggle_button);
+		playOfTheGameToggleButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				teamAlertSetting.setPlaysOfGame(playOfTheGameToggleButton
 						.isChecked());
 			}
 		});
@@ -218,41 +229,35 @@ public class AlertSettingForVideos extends Activity {
 						if (progress==1) {
 							alertsHeader.setText("GB at NE Alerts: Low");
 							alertPerGameTextview.setText("  5-10 Alerts per game");
-							
-							passingPlayAlertLevelSeekbar.setProgress(0);
-							rushingPlayAlertLevelSeekbar.setProgress(0);
+														
 							allPLaysToggleButton.setChecked(false);
 							topPLaysToggleButton.setChecked(true);
 							scoringPLaysToggleButton.setChecked(true);
-							turnoversPLaysToggleButton.setChecked(false);
-							redZonePLaysToggleButton.setChecked(false);
-		                    playsOfTheGameToggleButton.setChecked(true);
+							savesToggleButton.setChecked(false);
+							redCardToggleButton.setChecked(false);
+		                    playOfTheGameToggleButton.setChecked(true);
 							
 						}else if (progress==2) {
 							alertsHeader.setText("GB at NE Alerts: Medium");
 							alertPerGameTextview.setText("  50-60 Alerts per game");
 							
-							passingPlayAlertLevelSeekbar.setProgress(1);
-							rushingPlayAlertLevelSeekbar.setProgress(1);
 							allPLaysToggleButton.setChecked(false);
 							topPLaysToggleButton.setChecked(true);
 							scoringPLaysToggleButton.setChecked(true);
-							turnoversPLaysToggleButton.setChecked(true);
-							redZonePLaysToggleButton.setChecked(true);
-		                    playsOfTheGameToggleButton.setChecked(true);
+							savesToggleButton.setChecked(true);
+							redCardToggleButton.setChecked(true);
+		                    playOfTheGameToggleButton.setChecked(true);
 							
 						}else if (progress==3) {
 							alertsHeader.setText("GB at NE Alerts: High");
 							alertPerGameTextview.setText("  100+ Alerts per game");
 							
-							passingPlayAlertLevelSeekbar.setProgress(2);
-							rushingPlayAlertLevelSeekbar.setProgress(2);
 							allPLaysToggleButton.setChecked(true);
 							topPLaysToggleButton.setChecked(false);
 							scoringPLaysToggleButton.setChecked(false);
-							turnoversPLaysToggleButton.setChecked(false);
-							redZonePLaysToggleButton.setChecked(false);
-		                    playsOfTheGameToggleButton.setChecked(true);
+							savesToggleButton.setChecked(false);
+							redCardToggleButton.setChecked(false);
+		                    playOfTheGameToggleButton.setChecked(true);
 						}
 						
 					}
@@ -267,55 +272,6 @@ public class AlertSettingForVideos extends Activity {
 
 					}
 				});
-
-		/**
-		 * rushing Play alert seek bar handler
-		 */
-
-		rushingPlayAlertLevelSeekbar = (SeekBar) findViewById(R.id.rushing_plays_seekBar);
-		rushingPlayAlertLevelSeekbar
-				.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
-					int progressChanged = 0;
-
-					public void onProgressChanged(SeekBar seekBar,
-							int progress, boolean fromUser) {
-						progressChanged = progress;
-					}
-
-					public void onStopTrackingTouch(SeekBar seekBar) {
-						teamAlertSetting.setRushingPlays(progressChanged);
-					}
-
-					@Override
-					public void onStartTrackingTouch(SeekBar seekBar) {
-					}
-				});
-
-		/**
-		 * Passing Play alert seek bar handler
-		 */
-
-		passingPlayAlertLevelSeekbar = (SeekBar) findViewById(R.id.passing_plays_seekBar);
-		passingPlayAlertLevelSeekbar
-				.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
-					int progressChanged = 0;
-
-					public void onProgressChanged(SeekBar seekBar,
-							int progress, boolean fromUser) {
-						progressChanged = progress;
-					}
-
-					public void onStopTrackingTouch(SeekBar seekBar) {
-						teamAlertSetting.setPassingPlays(progressChanged);
-					}
-
-					@Override
-					public void onStartTrackingTouch(SeekBar seekBar) {
-						// TODO Auto-generated method stub
-
-					}
-				});
-
 	}
 
 }

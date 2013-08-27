@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="@color/black" >
 
     <TextView
         android:id="@+id/alertsHeader"
@@ -21,7 +22,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/blue_gradient_background"
+        
         android:gravity="center_vertical"
         android:paddingBottom="2dip"
         android:paddingLeft="5dip"
@@ -40,8 +41,8 @@
             android:id="@+id/basic_alertlevel_seekBar"
             android:layout_width="360dp"
             android:layout_height="wrap_content"
-            android:max="100"
-            android:progress="1" />
+            android:max="3"
+            android:progress="0" />
 
         <TableLayout
             android:layout_width="360dp"
@@ -122,7 +123,8 @@
                 android:id="@+id/all_plays_toggle_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp" />
+                android:layout_marginRight="10dp" 
+                android:textColor="@color/white"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -152,7 +154,8 @@
                 android:id="@+id/top_plays_toggle_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp" />
+                android:layout_marginRight="10dp"
+                android:textColor="@color/white" />
         </LinearLayout>
     </LinearLayout>
 
@@ -182,7 +185,8 @@
                 android:id="@+id/scoring_plays_toggle_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp" />
+                android:layout_marginRight="10dp" 
+                android:textColor="@color/white"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -197,11 +201,11 @@
         android:layout_height="wrap_content" >
 
         <TextView
-            android:id="@+id/turnovers_plays_label_textview"
+            android:id="@+id/saves_label_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="Turnovers" />
+            android:text="Saves" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -209,10 +213,11 @@
             android:gravity="right" >
 
             <ToggleButton
-                android:id="@+id/turnovers_plays_toggle_button"
+                android:id="@+id/saves_toggle_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp" />
+                android:layout_marginRight="10dp"
+                android:textColor="@color/white" />
         </LinearLayout>
     </LinearLayout>
 
@@ -227,11 +232,11 @@
         android:layout_height="wrap_content" >
 
         <TextView
-            android:id="@+id/red_zone_plays_label_textview"
+            android:id="@+id/red_cards_label_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="Red Zone Plays" />
+            android:text="Red Cards" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -239,10 +244,11 @@
             android:gravity="right" >
 
             <ToggleButton
-                android:id="@+id/red_zone_plays_toggle_button"
+                android:id="@+id/red_cards_toggle_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp" />
+                android:layout_marginRight="10dp"
+                android:textColor="@color/white" />
         </LinearLayout>
     </LinearLayout>
 
@@ -250,112 +256,6 @@
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:layout_marginBottom="10dp"
-        android:background="#777777" >
-    </View>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <TextView
-            android:id="@+id/passing_plays_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:paddingRight="2dp"
-            android:text="Passing Plays" />
-
-        <SeekBar
-            android:id="@+id/passing_plays_seekBar"
-            android:layout_width="360dp"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/passing_plays_textview"
-            android:max="99" />
-
-        <LinearLayout
-            android:layout_width="225dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/passing_plays_seekBar"
-            android:layout_toRightOf="@id/passing_plays_textview"
-            android:paddingLeft="10dp" >
-
-            <TextView
-                android:id="@+id/passing_plays_first_position_textview"
-                android:layout_width="75dp"
-                android:layout_height="wrap_content"
-                android:text=">20 YDS" />
-
-            <TextView
-                android:id="@+id/passing_plays_second_position_textview"
-                android:layout_width="75dp"
-                android:layout_height="wrap_content"
-                android:text=">10 YDS" />
-
-            <TextView
-                android:id="@+id/passing_plays_third_position_textview"
-                android:layout_width="75dp"
-                android:layout_height="wrap_content"
-                android:text="ALL" />
-        </LinearLayout>
-    </RelativeLayout>
-
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        android:background="#777777" >
-    </View>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <TextView
-            android:id="@+id/rushing_plays_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="Rushing Plays" />
-
-        <SeekBar
-            android:id="@+id/rushing_plays_seekBar"
-            android:layout_width="360dp"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/rushing_plays_textview"
-            android:max="99" />
-
-        <LinearLayout
-            android:layout_width="225dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/rushing_plays_seekBar"
-            android:layout_toRightOf="@id/rushing_plays_textview"
-            android:paddingLeft="10dp" >
-
-            <TextView
-                android:id="@+id/rushing_plays_first_position_textview"
-                android:layout_width="75dp"
-                android:layout_height="wrap_content"
-                android:text=">10 YDS" />
-
-            <TextView
-                android:id="@+id/rushing_plays_second_position_textview"
-                android:layout_width="75dp"
-                android:layout_height="wrap_content"
-                android:text=">5 YDS" />
-
-            <TextView
-                android:id="@+id/rushing_plays_third_position_textview"
-                android:layout_width="75dp"
-                android:layout_height="wrap_content"
-                android:text="ALL" />
-        </LinearLayout>
-    </RelativeLayout>
-
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="10dp"
         android:background="#777777" >
     </View>
 
@@ -379,7 +279,8 @@
                 android:id="@+id/plays_of_the_game_toggle_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp" />
+                android:layout_marginRight="10dp" 
+                android:textColor="@color/white"/>
         </LinearLayout>
     </LinearLayout>
 
