@@ -1,12 +1,13 @@
 package com.liveclips.soccer.activity;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,16 +16,8 @@ import android.widget.ListView;
 
 import com.google.gson.Gson;
 import com.liveclips.soccer.R;
-import com.liveclips.soccer.adapter.SeparatedListAdapter;
-import com.liveclips.soccer.adapter.TeamMenuListViewAdapter;
 import com.liveclips.soccer.commons.UserTypeEnum;
-import com.liveclips.soccer.database.DatabaseHelper;
-import com.liveclips.soccer.dto.LeagueTeamDto;
-import com.liveclips.soccer.model.League;
-import com.liveclips.soccer.model.TeamItem;
-import com.liveclips.soccer.model.TeamMenuItems;
 import com.liveclips.soccer.model.User;
-import com.liveclips.soccer.utils.ImageProcessingUtil;
 import com.liveclips.soccer.utils.PropertyReader;
 import com.liveclips.soccer.utils.SharedPreferencesUtil;
 import com.liveclips.soccer.utils.SoccerUtils;
@@ -37,35 +30,42 @@ public class UserSelectTeam extends Activity {
 	ActionBar actionBar;
 	Gson gson;
 	User user;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		activity = this;
 		context = this;
-		appCommonProperties= PropertyReader
-				.getPropertiesFormAssetDirectory("appcommonproperties.properties",
-						activity);
-		List<String> favouriteTeamIds= SharedPreferencesUtil.getFavouriteInSharedPreferencesList(
-				context,
-				appCommonProperties.getProperty("teamEntityName"));
+		appCommonProperties = PropertyReader.getPropertiesFormAssetDirectory(
+				"appcommonproperties.properties", activity);
+		List<String> favouriteTeamIds = SharedPreferencesUtil
+				.getFavouriteInSharedPreferencesList(context,
+						appCommonProperties.getProperty("teamEntityName"));
 		gson = new Gson();
-		String json= SharedPreferencesUtil.getStringPreferences(activity,appCommonProperties.getProperty("userObject"));
-		user= (User) gson.fromJson(json, User.class);
-		
-		if (!favouriteTeamIds.isEmpty() || user.getUserType().equals(UserTypeEnum.GUESTUSER)) {
-			UserSelectTeam.this.startActivity(new Intent(
-					UserSelectTeam.this, GameActivity.class));
-		}
-		setContentView(R.layout.user_select_favourite_teams);
-		
+		String json = SharedPreferencesUtil.getStringPreferences(activity,
+				appCommonProperties.getProperty("userObject"));
+		user = (User) gson.fromJson(json, User.class);
+
+		/**
+		 * Check if User is required to select any team for favorites
+		 */
+		if (!favouriteTeamIds.isEmpty()
+				|| user.getUserType().equals(UserTypeEnum.GUESTUSER)) {
+			UserSelectTeam.this.startActivity(new Intent(UserSelectTeam.this,
+					GameActivity.class));
+		} else {
+			setContentView(R.layout.user_select_favourite_teams);
+			getActionBar().hide();
+			ListView listView = (ListView) findViewById(R.id.available_team_list);
+			SoccerUtils.setTeamsContent(listView, activity, true);
+	
 		actionBar = getActionBar();
 		actionBar.hide();
-		
-		ListView listView = (ListView) findViewById(R.id.available_team_list);
-		SoccerUtils.setTeamsContent(listView, activity,true);
+		SoccerUtils.setTeamsContent(listView, activity, true);
 		linkToSetAlertsButton = (Button) findViewById(R.id.linkToSetAlertsButton);
 		linkToSetAlertsButton.setOnClickListener(new View.OnClickListener() {
 
+			@SuppressWarnings("deprecation")
 			@Override
 			public void onClick(View v) {
 				if (SharedPreferencesUtil.getFavouriteInSharedPreferencesList(
@@ -77,11 +77,24 @@ public class UserSelectTeam extends Activity {
 							"presentFavouriteTeamId", "");
 					UserSelectTeam.this
 							.startActivity(userSelectTeamActivityIntent);
+				} else {
+					AlertDialog alertDialog = new AlertDialog.Builder(
+	                        UserSelectTeam.this).create();
+					alertDialog.setTitle("Select Favorite Team");
+					alertDialog.setMessage("Please select at least one team to proceed");
+					alertDialog.setButton("OK",
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int which) {
+									// here you can add functions
+								}
+							});
+					alertDialog.setIcon(R.drawable.tick);
+					alertDialog.show();
 				}
 
 			}
 		});
 	}
-
-	
+	}
 }

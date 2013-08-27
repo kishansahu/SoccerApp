@@ -4,6 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="horizontal" >
 
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+        
     <RelativeLayout
         android:id="@+id/gameRootView"
         android:layout_width="wrap_content"
@@ -165,12 +169,22 @@
                     android:scrollbarAlwaysDrawHorizontalTrack="true" >
                 </LinearLayout>
             </HorizontalScrollView>
+              </RelativeLayout>
         </RelativeLayout>
 
-        <FrameLayout
-            android:id="@+id/menuFragment"
-            android:layout_width="300dp"
-            android:layout_height="match_parent" />
-    </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/fullScreenView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.8"
+            android:background="@color/grey"
+            android:visibility="invisible" >
+        </RelativeLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/menuFragment"
+        android:layout_width="300dp"
+        android:layout_height="match_parent" />
 
 </merge>

@@ -40,6 +40,7 @@ public class AddPlayersFragment extends Fragment {
 	List<LiveClipsContentListItem> addPlayerContentList;
 	String[] anySearchForPlayersMenuItems = { "Tom Brady", "Rob Gronkowski", };
 	ListView findPLayerByCategoryListView;
+	RelativeLayout fullScreenView;
 	boolean showSettingFragment;
 
 	@Override
@@ -54,6 +55,7 @@ public class AddPlayersFragment extends Fragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		context = (Context) getActivity();
 		addPlayerContentList = new ArrayList<LiveClipsContentListItem>();
+		fullScreenView = (RelativeLayout) getActivity().findViewById(R.id.fullScreenView);
 		for (String teamId : SharedPreferencesUtil
 				.getFavouriteInSharedPreferencesList(context, "team")) {
 			LiveClipsContentListItem liveClipsContentListItem = new LiveClipsContentListItem();
@@ -163,6 +165,7 @@ public class AddPlayersFragment extends Fragment {
 					if (sliderView.getVisibility() != View.VISIBLE)
 						sliderView.setVisibility(View.VISIBLE);
 					activityHeaderLayout.setVisibility(View.VISIBLE);
+					fullScreenView.setVisibility(View.INVISIBLE);
 				}
 			});
 		}
