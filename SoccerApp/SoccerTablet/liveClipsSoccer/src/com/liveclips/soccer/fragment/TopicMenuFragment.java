@@ -128,8 +128,10 @@ public class TopicMenuFragment extends Fragment {
 		if (!user.getUserType().equals(UserTypeEnum.GUESTUSER)) {
 			LiveClipsContentListItem liveClipsContentListItem = new LiveClipsContentListItem();
 			liveClipsContentListItem.setCategoryType("6settings");
+			liveClipsContentListItem.setTopicMenu(true);
 			liveClipsContentListItem.setRowText(appCommonProperties
 					.getProperty("6settings"));
+			liveClipsContentListItem.setLeftSideImage("6settings");
 			liveClipsContentListItems.add(liveClipsContentListItem);
 		}
 
