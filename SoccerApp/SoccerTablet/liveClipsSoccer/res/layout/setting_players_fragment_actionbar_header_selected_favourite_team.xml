@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="90dp"
         android:layout_centerVertical="true"
-        android:text="Patriots"
+        android:text=""
         android:textColor="@color/white"
         android:textSize="21sp"
         android:textStyle="bold" >

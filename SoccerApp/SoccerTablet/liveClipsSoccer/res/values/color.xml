@@ -11,7 +11,9 @@
 	<color name="blue_grey">#647377</color>
 	<color name="gray_play_card">#1A1A1A</color>
 	<color name="grey_light">#BDC1B5</color>
-	<color name="grey_container">#262626</color>
+	<color name="grey_container">#242424</color>
+	<color name="list_font">#bdbdbd</color>
+	<color name="list_separator">#ffffffff</color>
 	<color name="red">#C40F0F</color>
 	<color name="grey_deep">#262626</color>
 	<color name="grey_light">#595959</color>

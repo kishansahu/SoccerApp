@@ -131,7 +131,7 @@
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dp"
-        android:background="#777777" >
+        android:background="@color/list_separator" >
     </View>
 
     <LinearLayout
@@ -162,7 +162,7 @@
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dp"
-        android:background="#777777" >
+        android:background="@color/list_separator" >
     </View>
 
     <LinearLayout
@@ -193,7 +193,7 @@
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dp"
-        android:background="#777777" >
+        android:background="@color/list_separator" >
     </View>
 
     <LinearLayout
@@ -224,7 +224,7 @@
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dp"
-        android:background="#777777" >
+        android:background="@color/list_separator" >
     </View>
 
     <LinearLayout
@@ -256,7 +256,7 @@
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:layout_marginBottom="10dp"
-        android:background="#777777" >
+        android:background="@color/list_separator" >
     </View>
 
     <LinearLayout
@@ -287,7 +287,7 @@
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dp"
-        android:background="#777777" >
+        android:background="@color/list_separator" >
     </View>
 
 </LinearLayout>

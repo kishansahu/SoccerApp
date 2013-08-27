@@ -22,7 +22,7 @@ public class BaseActivity extends Activity {
 
 	RelativeLayout commonFragmentMenuHeader;
 	View fragmentMenuHeaderView;
-	View sliderView, mActionBarView;
+	View sliderView, mActionBarView,sliderViewSpinner;
 	FragmentManager fragmentManager;
 	FragmentTransaction fragmentTransaction;
 	Fragment mainMenuFragment;
@@ -73,6 +73,10 @@ public class BaseActivity extends Activity {
 			}
 			fragmentTransaction.commit();
 			fullScreenView.setVisibility(View.INVISIBLE);
+			if (sliderViewSpinner != null
+					&& (sliderViewSpinner.getVisibility() == View.INVISIBLE)) {
+				sliderViewSpinner.setVisibility(View.VISIBLE);
+			}
 		}
 
 	};
@@ -86,28 +90,33 @@ public class BaseActivity extends Activity {
 		Drawable d = getResources().getDrawable(R.drawable.black_bar);
 		actionBar.setBackgroundDrawable(d);
 		fullScreenView = (RelativeLayout) findViewById(R.id.fullScreenView);
-		sliderView = mActionBarView.findViewById(R.id.sliderView);
-		commonFragmentMenuHeader = (RelativeLayout) mActionBarView
-				.findViewById(R.id.commonFragmentMenuHeader);
-		
-		sliderView.setOnClickListener(new View.OnClickListener() {
+		if (mActionBarView != null) {
+			sliderView = mActionBarView.findViewById(R.id.sliderView);
+			sliderViewSpinner = mActionBarView
+					.findViewById(R.id.sliderViewSpinner);
+			commonFragmentMenuHeader = (RelativeLayout) mActionBarView
+					.findViewById(R.id.commonFragmentMenuHeader);
 
-			@Override
-			public void onClick(View v) {
-				fragmentTransaction = fragmentManager.beginTransaction();
-				mainMenuFragment = getFragmentManager().findFragmentById(
-						R.id.menuFragment);
-				mainMenuFragment = new TopicMenuFragment();
-				((ApplicationSession) getApplication())
-						.setMainMenuFragment(mainMenuFragment);
+			sliderView.setOnClickListener(new View.OnClickListener() {
 
-				commonFragmentMenuHeader.setVisibility(View.VISIBLE);
-				performSliderAction();
-				
-				fullScreenView.setVisibility(View.VISIBLE);
-				//fullScreenView.setOnClickListener(closeButtonListener);
-			}
-		});
+				@Override
+				public void onClick(View v) {
+					mainMenuFragment = getFragmentManager().findFragmentById(
+							R.id.menuFragment);
+					mainMenuFragment = new TopicMenuFragment();
+					((ApplicationSession) getApplication())
+							.setMainMenuFragment(mainMenuFragment);
+
+					commonFragmentMenuHeader.setVisibility(View.VISIBLE);
+					performSliderAction();
+					if (sliderViewSpinner != null
+							&& (sliderViewSpinner.getVisibility() == View.VISIBLE)) {
+						sliderViewSpinner.setVisibility(View.INVISIBLE);
+					}
+					fullScreenView.setVisibility(View.VISIBLE);
+				}
+			});
+		}
 
 	}
 

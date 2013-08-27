@@ -27,7 +27,9 @@ import android.widget.RelativeLayout;
 
 import com.liveclips.soccer.R;
 import com.liveclips.soccer.adapter.AddPlayerCategoriesBySettingsListAdapter;
+import com.liveclips.soccer.database.DatabaseHelper;
 import com.liveclips.soccer.model.LiveClipsContentListItem;
+import com.liveclips.soccer.model.TeamItem;
 import com.liveclips.soccer.utils.SharedPreferencesUtil;
 
 public class AddPlayersFragment extends Fragment {
@@ -56,10 +58,13 @@ public class AddPlayersFragment extends Fragment {
 		context = (Context) getActivity();
 		addPlayerContentList = new ArrayList<LiveClipsContentListItem>();
 		fullScreenView = (RelativeLayout) getActivity().findViewById(R.id.fullScreenView);
+		
 		for (String teamId : SharedPreferencesUtil
 				.getFavouriteInSharedPreferencesList(context, "team")) {
+			TeamItem teamItem= new DatabaseHelper((Context) getActivity())
+			.getTeamInfoByTeamId( teamId);
 			LiveClipsContentListItem liveClipsContentListItem = new LiveClipsContentListItem();
-			liveClipsContentListItem.setRowText(teamId);
+			liveClipsContentListItem.setRowText(teamItem.getTeamName());
 			liveClipsContentListItem.setEntityId(teamId);
 			liveClipsContentListItem.setCategoryType("team");
 			addPlayerContentList.add(liveClipsContentListItem);

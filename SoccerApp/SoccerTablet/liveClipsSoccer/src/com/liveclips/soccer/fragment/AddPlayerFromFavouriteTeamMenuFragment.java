@@ -23,8 +23,10 @@ import com.liveclips.soccer.R;
 import com.liveclips.soccer.adapter.AddPlayerCategoriesBySettingsListAdapter;
 import com.liveclips.soccer.adapter.AddPlayerListAdapter;
 import com.liveclips.soccer.adapter.SeparatedListAdapter;
+import com.liveclips.soccer.database.DatabaseHelper;
 import com.liveclips.soccer.model.LiveClipsContentListItem;
 import com.liveclips.soccer.model.PlayerItem;
+import com.liveclips.soccer.model.TeamItem;
 import com.liveclips.soccer.utils.ImageProcessingUtil;
 import com.liveclips.soccer.utils.SharedPreferencesUtil;
 
@@ -33,6 +35,7 @@ public class AddPlayerFromFavouriteTeamMenuFragment extends Fragment {
 
 	ListView findPLayerByCategoryListView;
 	String favouriteTeamId;
+	String favouriteTeamName="";
 	boolean showSettingFragment;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,6 +64,10 @@ public class AddPlayerFromFavouriteTeamMenuFragment extends Fragment {
 		RelativeLayout fragMenuHeader = (RelativeLayout)actionBarLayout.findViewById(R.id.fragmentMenuHeader);
 		actionBarLayout.removeView(fragMenuHeader);
 		actionBarLayout.addView(activityHeaderView, 300, 52);
+		TeamItem teamItem= new DatabaseHelper((Context)getActivity()).getTeamInfoByTeamId(favouriteTeamId);
+		TextView menuTitle= (TextView) getActivity().findViewById(R.id.playerMenuTitle);
+		favouriteTeamName= teamItem.getTeamName();
+		menuTitle.setText(teamItem.getTeamName());
 		final ImageView backToAddPlayerFragmentButton = (ImageView) activityHeaderView
 				.findViewById(R.id.backToAddPlayerFragment);
 		backToAddPlayerFragmentButton
@@ -92,13 +99,13 @@ public class AddPlayerFromFavouriteTeamMenuFragment extends Fragment {
 		List<String> playersIdList = SharedPreferencesUtil.getFavouriteInSharedPreferencesList((Context)getActivity(), "player");
 		//quarterBackTeam
 		List<String> quarterBackPlayers= new ArrayList<String>();
-		quarterBackPlayers.add("12 Tom Brady");
-		quarterBackPlayers.add("15 Ryan Mallett");
+		quarterBackPlayers.add("2 Rafeael");
+		quarterBackPlayers.add("3 Patrice Evra");
 		quarterBackPlayers.add("5 Tim Tebow");
 		
 		//runningbackteam
 		List<String> runningBackPlayers= new ArrayList<String>();
-		runningBackPlayers.add("39 Ben Bartholomew");
+		runningBackPlayers.add("23 Tom Cleverley");
 		runningBackPlayers.add("29 LeGarrette Blout");
 		runningBackPlayers.add("38 Brandon Bolden");
 		runningBackPlayers.add("46 James Develin");
@@ -134,8 +141,8 @@ public class AddPlayerFromFavouriteTeamMenuFragment extends Fragment {
 			}
 			
 		SeparatedListAdapter adapter = new SeparatedListAdapter(getActivity());
-		adapter.addSection("Quarter back", new AddPlayerListAdapter((Context)getActivity(), quarterBackPlayersList));
-		adapter.addSection("Running backs", new AddPlayerListAdapter((Context)getActivity(), runningBackPlayersList));
+		adapter.addSection("Defender", new AddPlayerListAdapter((Context)getActivity(), quarterBackPlayersList));
+		adapter.addSection("Midfielder", new AddPlayerListAdapter((Context)getActivity(), runningBackPlayersList));
 		findPLayerByCategoryListView = (ListView) getActivity().findViewById(
 				R.id.findPLayerByCategoryListView);
 		findPLayerByCategoryListView.setAdapter(adapter);
@@ -143,7 +150,7 @@ public class AddPlayerFromFavouriteTeamMenuFragment extends Fragment {
 		favouriteTeamLogo.setImageDrawable(ImageProcessingUtil.getTeamLogoImageDrawableByTeamId(getActivity(), favouriteTeamId));
 		
 		TextView favTeamHeader = (TextView)  getActivity().findViewById(R.id.setting_addplayer_favteam_Header);
-		favTeamHeader.setText(favouriteTeamId);
+		favTeamHeader.setText(favouriteTeamName);
 		/* On click of category specific player selection*/
 		findPLayerByCategoryListView
 				.setOnItemClickListener(new OnItemClickListener() {

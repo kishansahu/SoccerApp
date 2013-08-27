@@ -3,7 +3,7 @@
     android:id="@+id/LinearLayout1"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@color/black"
+    android:background="@color/grey_container"
     android:orientation="horizontal" >
 		
     	 <ImageView
@@ -31,7 +31,7 @@
             android:textSize="17sp"
             android:layout_marginLeft="10dp"
             android:gravity="center"
-            android:textColor="@color/white"
+            android:textColor="@color/list_font"
             android:textStyle="bold" />
        
         <TextView
