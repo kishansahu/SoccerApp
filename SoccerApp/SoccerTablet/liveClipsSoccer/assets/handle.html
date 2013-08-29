@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+	<head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <title>LiveClips</title>
+        <meta name="description" content=""/>
+        <meta name="viewport" content="width=device-width"/>
+        <link rel="icon" type="image/png" href="img/logo_icon.png">
+		
+        <link rel="stylesheet" type="text/css" href="css/jquery.jscrollpane.css"/>
+        <link rel="stylesheet" type="text/css" href="css/liveclips.css"/>
+		<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.10.3.custom.css"/>
+		
+        <script type="text/javascript" src="js/vendor/jquery-1.10.2.min.js"></script>
+        <script type="text/javascript" src="js/vendor/jquery.mousewheel.js"></script>
+        <script type="text/javascript" src="js/vendor/mwheelIntent.js"></script>
+        <script type="text/javascript" src="js/vendor/jquery.jscrollpane.min.js"></script>
+        
+		<script type="text/javascript" src="js/vendor/jquery-ui-1.10.3.custom.min.js"></script>
+		<script type="text/javascript">
+		
+		function loadValueToPage(TeamTopName,TeamBottomName,TimeElasped,TeamTopRedCard,TeamBottomRedCard,
+								 TeamTopYellowCard,TeamBottomYellowCard,TeamTopGoal,TeamBottomGoal,
+								 TeamTopReplacement,TeamBottomReplacement)
+		{
+			document.getElementById("TeamTopName").value = TeamTopName;
+			document.getElementById("TeamBottomName").value = TeamBottomName;
+			document.getElementById("TimeElasped").value = TimeElasped;
+			document.getElementById("TeamTopRedCard").value= TeamTopRedCard;
+			document.getElementById("TeamBottomRedCard").value = TeamBottomRedCard;
+			document.getElementById("TeamTopYellowCard").value = TeamTopYellowCard;
+			document.getElementById("TeamBottomYellowCard").value = TeamBottomYellowCard;
+			document.getElementById("TeamTopGoal").value = TeamTopGoal;
+			document.getElementById("TeamBottomGoal").value = TeamBottomGoal;
+			document.getElementById("TeamTopReplacement").value = TeamTopReplacement;
+			document.getElementById("TeamBottomReplacement").value = TeamBottomReplacement;
+		}
+		
+		</script>
+		<script type="text/javascript" src="js/vendor/newCanvas.js"></script>
+    </head>
+    <body>
+		<form>
+			<input id="TeamTopName" name="TeamTopName" type="hidden" value="" />
+			<input id="TeamBottomName" name="TeamBottomName" type="hidden" value="" />
+			
+			<input id="TimeElasped" name="TimeElasped" type="hidden" value="" />
+			
+			<input id="TeamTopRedCard" name="TeamTopRedCard" type="hidden" value="" />
+			<input id="TeamBottomRedCard" name="TeamBottomRedCard" type="hidden" value="" />
+			
+			<input id="TeamTopYellowCard" name="TeamTopYellowCard" type="hidden" value="" />
+			<input id="TeamBottomYellowCard" name="TeamBottomYellowCard" type="hidden" value="" />
+			
+			<input id="TeamTopGoal" name="TeamTopGoal" type="hidden" value="" />
+			<input id="TeamBottomGoal" name="TeamBottomGoal" type="hidden" value="" />
+			
+			<input id="TeamTopReplacement" name="TeamTopReplacement" type="hidden" value="" />
+			<input id="TeamBottomReplacement" name="TeamBottomReplacement" type="hidden" value="" />
+			
+			<div class="content-container"> <!-- only exists for menu-overlay -->
+				<div class="content">
+					<section class="main">           
+						<div class="field-position">
+							<canvas id="myCanvas" width="500" height="100" style="border:none;">
+								Your browser does not support the HTML5 canvas tag.
+							</canvas>
+							<div class="canvas-message"> Display Message</div><br/>
+							<script>
+							function executeCanvas()
+							{
+							var myJsonVariable = 
+								{
+									"TeamTopName" : document.getElementById("TeamTopName").value,
+									"TeamBottomName" : document.getElementById("TeamBottomName").value,
+									"TimeElasped" : document.getElementById("TimeElasped").value,
+									"TimeGap" : "5",
+									"TeamTopRedCard" : document.getElementById("TeamTopRedCard").value,
+									"TeamBottomRedCard" : document.getElementById("TeamBottomRedCard").value,
+									"TeamTopYellowCard" : document.getElementById("TeamTopYellowCard").value,
+									"TeamBottomYellowCard" : document.getElementById("TeamBottomYellowCard").value,
+									"TeamTopGoal" : document.getElementById("TeamTopGoal").value,
+									"TeamBottomGoal" : document.getElementById("TeamBottomGoal").value,
+									"TeamTopReplacement" : document.getElementById("TeamTopReplacement").value,
+									"TeamBottomReplacement" : document.getElementById("TeamBottomReplacement").value
+								};
+								
+								$('#myCanvas').DrawCanvas(myJsonVariable);
+								 }
+							</script>
+						</div>
+					</section> <!-- end section.main -->
+				</div><!-- end .content -->        
+			</div> <!-- end .content-container -->
+		</form>
+	</body>
+</html>

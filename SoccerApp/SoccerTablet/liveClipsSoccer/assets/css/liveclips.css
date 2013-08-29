@@ -1,0 +1,54 @@
+
+body {
+	font-family: Helvetica;
+	font-size: 12px;
+	color: #D9D9D9;
+	background-color: black;
+}
+
+.container {
+	width: 1000px;
+	margin: 0 auto;
+	position: relative;
+	background: #000000;
+}
+.content {
+	padding: 10px 20px;
+	overflow: hidden;
+}
+
+/* Added by QA Infotech*/
+.content .field-position{
+    position:relative;
+    width:638px;
+    height:100px;
+}
+.content .field-position #myCanvas{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.content .field-position .canvas-message{
+    background: rgb(38, 38, 38);
+    position: absolute;
+    display: none;
+    padding: 10px;
+    max-width: 120px;
+    border:1px solid rgb(97, 73, 5);
+    -webkit-box-shadow: 0 0 5px rgb(97, 73, 5);
+       -moz-box-shadow: 0 0 5px rgb(97, 73, 5);
+            box-shadow: 0 0 5px rgb(97, 73, 5);
+}
+/*End*/
+
+.content-container {
+	position: relative;
+}
+
+section.main {
+	width: 640px;
+	margin-right: 20px;
+	float: left;
+}
+
+
