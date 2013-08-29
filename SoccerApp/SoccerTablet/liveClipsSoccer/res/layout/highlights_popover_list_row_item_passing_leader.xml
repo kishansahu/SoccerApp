@@ -15,19 +15,22 @@
             android:layout_width="160dp"
             android:layout_height="@dimen/list_bar_default_height"
             android:layout_marginLeft="5dp"
-            android:gravity="center_vertical" />
+            android:gravity="center_vertical"
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/passing_team_name"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/passing_yards"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/black" />
 
         <ImageView
             android:id="@+id/disclosure_button"

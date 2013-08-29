@@ -20,19 +20,22 @@
             android:id="@+id/team_name"
             android:layout_width="100dp"
             android:layout_height="35dp"
-            android:layout_marginLeft="5dp" />
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/black"/>
 
         <TextView
             android:id="@+id/match_wins"
             android:layout_width="50dp"
             android:layout_height="35dp"
-            android:layout_marginLeft="5dp" />
+            android:layout_marginLeft="5dp" 
+            android:textColor="@color/black"/>
 
         <TextView
             android:id="@+id/match_losses"
             android:layout_width="50dp"
             android:layout_height="35dp"
-            android:layout_marginLeft="5dp" />
+            android:layout_marginLeft="5dp" 
+            android:textColor="@color/black"/>
 
         <ImageView
             android:id="@+id/disclouser"

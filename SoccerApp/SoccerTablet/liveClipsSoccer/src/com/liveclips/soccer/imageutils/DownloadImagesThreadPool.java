@@ -43,7 +43,7 @@ import android.widget.ImageView;
 		 */
 		synchronized public Future<Boolean> submit(ImageView bmImage, String input) {
 			totalTaskCount.incrementAndGet();
-			return completionService.submit(new DownloadImageTask(bmImage, input));
+			return completionService.submit(new DownloadImage(bmImage, input));
 		}
 	
 		/**

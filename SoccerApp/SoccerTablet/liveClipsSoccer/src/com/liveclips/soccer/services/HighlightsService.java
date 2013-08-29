@@ -11,7 +11,7 @@ import java.util.Map;
 import com.liveclips.soccer.model.LeadersTypeItem;
 import com.liveclips.soccer.model.PassingLeaderItem;
 import com.liveclips.soccer.model.TeamItem;
-import com.liveclips.soccer.model.WeekItem;
+import com.liveclips.soccer.model.MonthItem;
 
 
 /**
@@ -25,29 +25,30 @@ public class HighlightsService {
 	 * @param userID
 	 * @return
 	 */
-	public static List<WeekItem> getWeeksDetails(String userID){
+	public static List<MonthItem> getMonthDetails(String userID){
 		
-		List<WeekItem> weekItems = new ArrayList<WeekItem>();
-		WeekItem item1 = new WeekItem();
-		item1.setWeekName("Week 1");
-		weekItems.add(item1);
+		List<MonthItem> monthItems = new ArrayList<MonthItem>();
+		MonthItem item1 = new MonthItem();
+		item1.setWeekName("Month 1");
+		monthItems.add(item1);
 		
-		WeekItem item2 = new WeekItem();
-		item2.setWeekName("Week 2");
-		weekItems.add(item2);
+		MonthItem item2 = new MonthItem();
+		item2.setWeekName("Month 2");
+		monthItems.add(item2);
 		
-		WeekItem item3 = new WeekItem();
-		item3.setWeekName("Week 3");
-		weekItems.add(item3);
+		MonthItem item3 = new MonthItem();
+		item3.setWeekName("Month 3");
+		monthItems.add(item3);
 		
-		WeekItem item4 = new WeekItem();
-		item4.setWeekName("Week 4");
-		weekItems.add(item4);
+		MonthItem item4 = new MonthItem();
+		item4.setWeekName("Month 4");
+		monthItems.add(item4);
 		
-		WeekItem item5 = new WeekItem();
-		item5.setWeekName("Week 5");
-		weekItems.add(item5);
-		return weekItems;
+		MonthItem item5 = new MonthItem();
+		item5.setWeekName("Month 5");
+		monthItems.add(item5);
+		
+		return monthItems;
 		
 	}
 

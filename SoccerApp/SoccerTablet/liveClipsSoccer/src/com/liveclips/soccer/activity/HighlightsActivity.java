@@ -28,12 +28,11 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.liveclips.soccer.R;
 import com.liveclips.soccer.adapter.EmptyHeaderSeparatedListAdapter;
 import com.liveclips.soccer.adapter.HighlightsLeadersListAdapter;
-import com.liveclips.soccer.adapter.HighlightsWeekListAdapter;
+import com.liveclips.soccer.adapter.HighlightsMonthsListAdapter;
 import com.liveclips.soccer.adapter.PassingLeaderListViewAdapter;
 import com.liveclips.soccer.adapter.SeparatedListAdapter;
 import com.liveclips.soccer.adapter.SeparatedSectionHeaderListAdapter;
@@ -55,19 +54,11 @@ import com.liveclips.soccer.utils.SoccerUtils;
  */
 public class HighlightsActivity extends BaseActivity implements
 		PopoverViewDelegate {
-
-	private ArrayList<String> playCardTopDetail = new ArrayList<String>();
-
-	private ArrayList<String> playCardBottomDetail = new ArrayList<String>();
+	
 	private Activity highlightsActivity;
 	private Context context;
-
-	private ListView listView;
-
 	private PopoverView popoverView;
-
-	private DownloadImagesThreadPool downloadImagesThreadPool;
-
+	
 	private TextView allPlaysTextView, topPlaysTextView, topRatedTextView,
 			watchAllTextView;
 
@@ -79,13 +70,15 @@ public class HighlightsActivity extends BaseActivity implements
 
 		context = this;
 		highlightsActivity = this;
+		
 		fullScreenView = (RelativeLayout) findViewById(R.id.fullScreenView);
-		fragmentManager = getFragmentManager();
-		downloadImagesThreadPool = new DownloadImagesThreadPool();
+		fragmentManager = getFragmentManager();		
 
 		createCustomActionBar();
+		
 		commonFragmentMenuHeader = (RelativeLayout) mActionBarView
 				.findViewById(R.id.commonFragmentMenuHeader);
+		
 		fullScreenView.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -161,27 +154,23 @@ public class HighlightsActivity extends BaseActivity implements
 				R.drawable.orange_gradient_background);
 		actionBar.setBackgroundDrawable(d);
 
-		LinearLayout weekLinearLayout = (LinearLayout) mActionBarView
-				.findViewById(R.id.weekLayout);
-		weekLinearLayout.setOnClickListener(weekOnClickListener);
+		TextView monthsPopover = (TextView) mActionBarView
+				.findViewById(R.id.monthsPopover);
+		monthsPopover.setOnClickListener(monthsOnClickListener);
 
-		TextView leaderLinearLayout = (TextView) mActionBarView
-				.findViewById(R.id.leadersLayout);
-		leaderLinearLayout.setOnClickListener(leaderOnClickListener);
+		TextView leadersPopover = (TextView) mActionBarView
+				.findViewById(R.id.leadersPopover);
+		leadersPopover.setOnClickListener(leadersOnClickListener);
 
-		TextView milestonesLinearLayout = (TextView) mActionBarView
-				.findViewById(R.id.milestonesLayout);
-		milestonesLinearLayout.setOnClickListener(milestonesOnClickListener);
-
-		TextView standingLinearLayout = (TextView) mActionBarView
-				.findViewById(R.id.standingLayout);
-		standingLinearLayout.setOnClickListener(standingOnClickListener);
+		TextView tablesPopover = (TextView) mActionBarView
+				.findViewById(R.id.tablesPopover);
+		tablesPopover.setOnClickListener(tablesOnClickListener);
 	}
 
 	/**
-	 * Week listener
+	 * months listener
 	 */
-	private OnClickListener weekOnClickListener = new OnClickListener() {
+	private OnClickListener monthsOnClickListener = new OnClickListener() {
 
 		@Override
 		public void onClick(View v) {
@@ -190,32 +179,25 @@ public class HighlightsActivity extends BaseActivity implements
 				popoverView.removeAllViews();
 			}
 			popoverView = new PopoverView(HighlightsActivity.this,
-					R.layout.highlights_popover_view_week);
+					R.layout.highlights_popover_view_months);
 
-			popoverView.setContentSizeForViewInPopover(new Point(210, 300));
+			popoverView.setContentSizeForViewInPopover(new Point(250, 400));
 			popoverView.setDelegate(HighlightsActivity.this);
-			View button = (View) findViewById(R.id.weekLayout);
+			
+			View button = (View) findViewById(R.id.monthsPopover);
+			
 			popoverView.showPopoverFromRectInViewGroup(rootView,
 					PopoverView.getFrameForView(button),
 					PopoverView.PopoverArrowDirectionUp, true);
-			ImageView doneImageView = (ImageView) popoverView
-					.findViewById(R.id.doneButtonImage);
-			doneImageView.setOnClickListener(new View.OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
-					popoverView.removeAllViews();
-
-				}
-			});
-
 		}
 	};
 
+	
 	/**
-	 * leaders listener
+	 *  leaders Listener
 	 */
-	private OnClickListener leaderOnClickListener = new OnClickListener() {
+	
+	private OnClickListener leadersOnClickListener = new OnClickListener() {
 
 		@Override
 		public void onClick(View v) {
@@ -228,51 +210,17 @@ public class HighlightsActivity extends BaseActivity implements
 
 			popoverView.setContentSizeForViewInPopover(new Point(250, 400));
 			popoverView.setDelegate(HighlightsActivity.this);
-			View button = (View) findViewById(R.id.leadersLayout);
+			View button = (View) findViewById(R.id.leadersPopover);
 			popoverView.showPopoverFromRectInViewGroup(rootView,
 					PopoverView.getFrameForView(button),
 					PopoverView.PopoverArrowDirectionUp, true);
-			ImageView doneImageView = (ImageView) popoverView
-					.findViewById(R.id.doneButtonImage);
-			doneImageView.setOnClickListener(new View.OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
-					popoverView.removeAllViews();
-
-				}
-			});
-
-		}
-	};
-
-	private OnClickListener milestonesOnClickListener = new OnClickListener() {
-
-		@Override
-		public void onClick(View v) {
-			Toast.makeText(context, "Milestone Handler", Toast.LENGTH_SHORT);
-			/*
-			 * RelativeLayout rootView = (RelativeLayout)
-			 * findViewById(R.id.highlightsRootView); if (popoverView != null) {
-			 * popoverView.removeAllViews(); } popoverView = new
-			 * PopoverView(NFLHighlightsActivity.this,
-			 * R.layout.popover_nfl_week_item);
-			 * 
-			 * popoverView.setContentSizeForViewInPopover(new Point(320, 400));
-			 * popoverView.setDelegate(NFLHighlightsActivity.this); View button
-			 * = (View) findViewById(R.id.weekLayout);
-			 * popoverView.showPopoverFromRectInViewGroup(rootView,
-			 * PopoverView.getFrameForView(button),
-			 * PopoverView.PopoverArrowDirectionUp, true);
-			 */
-
 		}
 	};
 
 	/**
 	 * standing listener
 	 */
-	private OnClickListener standingOnClickListener = new OnClickListener() {
+	private OnClickListener tablesOnClickListener = new OnClickListener() {
 
 		@Override
 		public void onClick(View v) {
@@ -285,28 +233,19 @@ public class HighlightsActivity extends BaseActivity implements
 
 			popoverView.setContentSizeForViewInPopover(new Point(320, 400));
 			popoverView.setDelegate(HighlightsActivity.this);
-			View button = (View) findViewById(R.id.standingLayout);
+			View button = (View) findViewById(R.id.tablesPopover);
 			popoverView.showPopoverFromRectInViewGroup(rootView,
 					PopoverView.getFrameForView(button),
 					PopoverView.PopoverArrowDirectionUp, true);
-
-			ImageView doneImageView = (ImageView) popoverView
-					.findViewById(R.id.doneButtonImage);
-			doneImageView.setOnClickListener(new View.OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
-					popoverView.removeAllViews();
-
-				}
-			});
-
 		}
 	};
 
 	private void prepareVideoView() {
 
 		LinearLayout playCardParentLinearLayout = (LinearLayout) findViewById(R.id.parentLayoutOfPlayCardsId);
+
+		ArrayList<String> playCardTopDetail = new ArrayList<String>();
+		ArrayList<String> playCardBottomDetail = new ArrayList<String>();
 
 		playCardParentLinearLayout.removeAllViews();
 
@@ -340,22 +279,23 @@ public class HighlightsActivity extends BaseActivity implements
 
 	@Override
 	public void popoverViewWillShow(PopoverView view) {
-		Log.d("layoutId", String.valueOf(view.getLayoutId()));
+		Log.d("HighlightsActivity", "layoutId : " + String.valueOf(view.getLayoutId()));
 
 	}
 
 	@Override
 	public void popoverViewDidShow(PopoverView view) {
+		ListView listView;
 		Log.d("layoutId", String.valueOf(view.getLayoutId()));
-		if (view.getLayoutId() == R.layout.highlights_popover_view_week) {
+		if (view.getLayoutId() == R.layout.highlights_popover_view_months) {
 			Log.d("id", String.valueOf(view.getId()));
 
-			listView = (ListView) findViewById(R.id.week_list);
-			HighlightsWeekListAdapter weekListAdapter = new HighlightsWeekListAdapter(
-					context, R.layout.highlights_popover_list_row_item_week,
-					HighlightsService.getWeeksDetails("UserId"));
+			listView = (ListView) findViewById(R.id.months_list);
+			HighlightsMonthsListAdapter monthsListAdapter = new HighlightsMonthsListAdapter(
+					context, R.layout.highlights_popover_list_row_item_month,
+					HighlightsService.getMonthDetails("UserId"));
 
-			listView.setAdapter(weekListAdapter);
+			listView.setAdapter(monthsListAdapter);
 
 		} else if (view.getLayoutId() == R.layout.highlights_popover_view_leaders) {
 
@@ -377,6 +317,7 @@ public class HighlightsActivity extends BaseActivity implements
 							R.layout.highlights_popover_list_row_item_leader,
 							leadersInfoMap.get("specialTeams")));
 
+			
 			listView = (ListView) findViewById(R.id.leaders_list);
 
 			listView.setAdapter(separatedListAdapter);
@@ -526,7 +467,7 @@ public class HighlightsActivity extends BaseActivity implements
 
 			popoverView.setContentSizeForViewInPopover(new Point(330, 400));
 			popoverView.setDelegate(HighlightsActivity.this);
-			View button = (View) findViewById(R.id.leadersLayout);
+			View button = (View) findViewById(R.id.leadersPopover);
 			popoverView.showPopoverFromRectInViewGroup(rootView,
 					PopoverView.getFrameForView(button),
 					PopoverView.PopoverArrowDirectionUp, true);
@@ -538,23 +479,10 @@ public class HighlightsActivity extends BaseActivity implements
 
 				@Override
 				public void onClick(View v) {
-					leaderOnClickListener.onClick(popoverView);
+					leadersOnClickListener.onClick(popoverView);
 
 				}
 			});
-
-			ImageView doneImageView = (ImageView) popoverView
-					.findViewById(R.id.doneButtonImage);
-
-			doneImageView.setOnClickListener(new View.OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
-					popoverView.removeAllViews();
-
-				}
-			});
-
 		}
 
 	};

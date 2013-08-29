@@ -36,8 +36,7 @@
                 android:id="@+id/selectedPlayerTeamPic"
                 android:layout_width="180dp"
                 android:layout_height="102dp"
-                android:alpha=".5"
-                android:src="@drawable/ne" >
+                android:alpha=".5" >
             </ImageView>
 
             <ImageView

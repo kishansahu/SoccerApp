@@ -15,7 +15,8 @@
             android:layout_weight="0.6"
             android:layout_marginLeft="10dp"
             android:gravity="center_vertical"
-            android:layout_height="@dimen/list_bar_default_height" />
+            android:layout_height="@dimen/list_bar_default_height"
+            android:textColor="@color/black" />
 
          <ImageView
             android:id="@+id/disclosure_button"

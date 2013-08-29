@@ -29,14 +29,7 @@
             android:textSize="25sp"
             android:textStyle="bold" >
         </TextView>
-
-        <ImageView
-            android:id="@+id/doneButtonImage"
-            android:layout_width="65dp"
-            android:layout_height="32dp"
-            android:layout_gravity="center"
-            android:src="@drawable/done_button" />
-    </LinearLayout>
+   </LinearLayout>
 
     <LinearLayout
         style="?android:attr/listSeparatorTextViewStyle"

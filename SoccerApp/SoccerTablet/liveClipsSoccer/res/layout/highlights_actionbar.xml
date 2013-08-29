@@ -50,35 +50,22 @@
         </Spinner>
     </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/weekLayout"
-        android:layout_width="100dp"
-        android:layout_height="fill_parent"
-        android:layout_marginLeft="305dp"
-        android:layout_marginTop="3dp"
-        android:orientation="vertical" >
-
-        <TextView
-            android:id="@+id/weekNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="28dp"
-            android:layout_gravity="center"
-            android:text="5" />
-
-        <TextView
-            android:id="@+id/weeks"
-            android:layout_width="wrap_content"
-            android:layout_height="22dp"
-            android:layout_gravity="center"
-            android:text="WEEK"
-            android:textColor="@color/white" />
-    </LinearLayout>
-
     <TextView
-        android:id="@+id/leadersLayout"
+        android:id="@+id/monthsPopover"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginLeft="405dp"
+        android:layout_marginTop="3dp"
+        android:drawableTop="@drawable/icon_schedule"
+        android:text="MONTHS"
+        android:textColor="@color/white" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/leadersPopover"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginLeft="525dp"
         android:layout_marginTop="3dp"
         android:drawableTop="@drawable/icon_drives"
         android:text="LEADERS"
@@ -86,24 +73,13 @@
     </TextView>
 
     <TextView
-        android:id="@+id/milestonesLayout"
+        android:id="@+id/tablesPopover"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginLeft="505dp"
-        android:layout_marginTop="3dp"
-        android:drawableTop="@drawable/icon_schedule"
-        android:text="MILESTONES"
-        android:textColor="@color/white" >
-    </TextView>
-
-    <TextView
-        android:id="@+id/standingLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_marginLeft="605dp"
+        android:layout_marginLeft="645dp"
         android:layout_marginTop="3dp"
         android:drawableTop="@drawable/icon_stats"
-        android:text="STANDING"
+        android:text="TABLES"
         android:textColor="@color/white" >
     </TextView>
 

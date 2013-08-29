@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/leadersScrollView"
+    android:id="@+id/weekScrollView"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
@@ -12,22 +12,23 @@
         android:orientation="horizontal" >
 
         <TextView
-            android:id="@+id/leaders_text"
+            android:id="@+id/match_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="LEADERS"
-            android:layout_weight="0.6"
-            android:textAlignment="center"
+            android:text="MONTHS"
+            android:layout_weight="1"
             android:textColor="#FFFFFF"
             android:textSize="25sp"
             android:textStyle="bold"
             android:gravity="center_horizontal" >
-        </TextView>        
+        </TextView>
+     
     </LinearLayout>
 
     <ListView
-        android:id="@+id/leaders_list"
+        android:id="@+id/months_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content" >
+    </ListView>
 
 </LinearLayout>
