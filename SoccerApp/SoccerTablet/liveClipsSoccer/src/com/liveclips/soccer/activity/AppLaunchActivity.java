@@ -2,13 +2,10 @@ package com.liveclips.soccer.activity;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
+import android.os.Handler;
 
 import com.liveclips.soccer.R;
 import com.liveclips.soccer.database.LCSQLiteHelper;
@@ -32,14 +29,14 @@ public class AppLaunchActivity extends Activity {
 		/**
 		 * Start the Sign Up options activity for user to login application.
 		 */
-		/*
-		 * new Handler().postDelayed(new Runnable() {
-		 * 
-		 * @Override public void run() { final Intent mainIntent = new
-		 * Intent(AppLaunchActivity.this, SignUpOptionsActivity.class);
-		 * AppLaunchActivity.this.startActivity(mainIntent);
-		 * AppLaunchActivity.this.finish(); } }, 3000);
-		 */
+		
+		  new Handler().postDelayed(new Runnable() {
+		  
+		  @Override public void run() { final Intent mainIntent = new
+		  Intent(AppLaunchActivity.this, SignUpOptionsActivity.class);
+		  AppLaunchActivity.this.startActivity(mainIntent);
+		  AppLaunchActivity.this.finish(); } }, 3000);
+		 /*
 		final WebView w = (WebView) findViewById(R.id.playCardBackSideTimeLineWebView);
 		w.getSettings().setLoadWithOverviewMode(true);
 		w.getSettings().setUseWideViewPort(true);
@@ -67,5 +64,5 @@ public class AppLaunchActivity extends Activity {
 	private void loadValueToPage(WebView w) {
 		w.loadUrl("javascript:loadValueToPage('Liver Pool','Aston Villa','75','18.00,Red card message|25,second message','35,first message|30.00,second message','23,mn','45,mn','34,bv','42,kj','45,mn','60,mn');executeCanvas();");
 	}
-
-}
+*/
+}}
