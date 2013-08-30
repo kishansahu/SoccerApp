@@ -62,7 +62,7 @@ public class PlayerListViewAdapter extends ArrayAdapter<PlayerItem> {
 			
 			ImageView playerImage = ((ImageView) convertView
 					.findViewById(R.id.popover_player_pic));
-			imgLoader.DisplayImage(rowItem.playerImage, playerImage);
+			imgLoader.DisplayImage(rowItem.getPlayerImage(), playerImage);
 			
 			
 			/*holder.playerImage = (ImageView) convertView
@@ -88,17 +88,17 @@ public class PlayerListViewAdapter extends ArrayAdapter<PlayerItem> {
 
 		ImageView playerImage = ((ImageView) convertView
 				.findViewById(R.id.popover_player_pic));
-		imgLoader.DisplayImage(rowItem.playerImage, playerImage);
+		imgLoader.DisplayImage(rowItem.getPlayerImage(), playerImage);
 		
 		
 		
 		//holder.playerImage.setImageResource(rowItem.playerImage);
-		holder.playerName.setText(rowItem.playerName);
-		holder.playerDetails.setText(rowItem.playerDetails);
-		holder.playerData1.setText(rowItem.playerdata1);
-		holder.playerData2.setText(rowItem.playerdata2);
-		holder.playerData3.setText(rowItem.playerdata3);
-		holder.playerData4.setText(rowItem.playerdata4);
+		holder.playerName.setText(rowItem.getPlayerName());
+		holder.playerDetails.setText(rowItem.getPlayerDetails());
+		holder.playerData1.setText(rowItem.getPlayerdata1());
+		holder.playerData2.setText(rowItem.getPlayerdata2());
+		holder.playerData3.setText(rowItem.getPlayerdata3());
+		holder.playerData4.setText(rowItem.getPlayerdata4());
 		
 		return convertView;
 	}

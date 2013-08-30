@@ -30,6 +30,7 @@ import com.liveclips.soccer.adapter.SeparatedListAdapter;
 import com.liveclips.soccer.adapter.StatsListViewAdapter;
 import com.liveclips.soccer.commons.PlayCards;
 import com.liveclips.soccer.database.DatabaseHelper;
+import com.liveclips.soccer.dto.SoccerData;
 import com.liveclips.soccer.model.PlayerItem;
 import com.liveclips.soccer.model.ScheduleItem;
 import com.liveclips.soccer.model.StatsItem;
@@ -81,21 +82,26 @@ public class GameActivity extends BaseActivity implements PopoverViewDelegate {
 		RightSideTeamLargeIcon = (ImageView) findViewById(R.id.secondTeamLargeIcon);
 		RightSideTeamLargeIcon.setImageDrawable(ImageProcessingUtil
 				.getTeamLogoImageDrawableByTeamId(activity, rightSideTeamId));
+		
 		secondTeamSecondName = (TextView) findViewById(R.id.secondTeamSecondName);
 		secondTeamSecondName.setText(rightSideTeamItem.getTeamName());
+		
 		allPlaysTextView = (TextView) findViewById(R.id.allPlaysId);
 		topPlaysTextView = (TextView) findViewById(R.id.topPlaysId);
 		topRatedTextView = (TextView) findViewById(R.id.topRatedId);
 		watchAllTextView = (TextView) findViewById(R.id.watchAllId);
+		
 		statTab = (LinearLayout) findViewById(R.id.statTab);
 		playerTab = (LinearLayout) findViewById(R.id.playerTab);
 		drivesTab = (LinearLayout) findViewById(R.id.drivesTab);
 
 		matchScoreBoardTabContainer = (LinearLayout) findViewById(R.id.matchScoreBoardTabContainer);
+		
 		allPlaysTextView.setOnClickListener(allPlaysClickListener);
 		topPlaysTextView.setOnClickListener(topPlaysCilckListener);
 		topRatedTextView.setOnClickListener(topRatedClickListener);
 		watchAllTextView.setOnClickListener(watchAllClickListener);
+		
 		RelativeLayout matchScoreBoardBackground = (RelativeLayout) findViewById(R.id.matchScoreBoardBackground);
 		matchScoreBoardBackground
 				.setOnClickListener(matchScoreBoardBackgroundClickListener);
@@ -103,6 +109,7 @@ public class GameActivity extends BaseActivity implements PopoverViewDelegate {
 		createCustomActionBar();
 		commonFragmentMenuHeader = (RelativeLayout) mActionBarView
 				.findViewById(R.id.commonFragmentMenuHeader);
+		
 		fullScreenView.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -436,131 +443,13 @@ public class GameActivity extends BaseActivity implements PopoverViewDelegate {
 		List<PlayerItem> playerList = null;
 
 		if (teamName.equals("team1") && teamType.equals("offensive")) {
-			final List<PlayerItem> offensivePlayerList = new ArrayList<PlayerItem>();
-			String offensivePlayerNamesForTeam1[] = { "Messi", "Ronaldo",
-					"David Villa", "David Villa" };
-			String offensivePlayerNumbersForTeam1[] = { "#10 | Midfielder",
-					"#9 | Winger", "#24 | Forward", "#24 | Forward " };
-			String offensivePlayerData1ForTeam1[] = { "G 1", "G 2", "G 0",
-					"G 0" };
-			String offensivePlayerData2ForTeam1[] = { "A 0", "A 5", "A 10",
-					"A 10" };
-			String offensivePlayerData3ForTeam1[] = { "SG 1", "SG 2", "SG 5",
-					"SG 5" };
-
-			String offensivPlayerImagesForTeam1[] = {
-					"http://www.messi.com/images/headlines/messi-profile.jpg",
-					"http://3.bp.blogspot.com/-eWrRNjbd5O0/T0tCMmG97cI/AAAAAAAAADo/NR03H4TPqk4/s1600/CutRonaldo.png",
-					"http://findanewclub.co.uk/blog/wp-content/uploads/2012/06/David-Villa11.jpg",
-					"http://findanewclub.co.uk/blog/wp-content/uploads/2012/06/David-Villa11.jpg" };
-
-			PlayerItem item;
-
-			for (int i = 0; i < offensivePlayerNamesForTeam1.length; i++) {
-				item = new PlayerItem();
-				item.setPlayerdata1(offensivePlayerData1ForTeam1[i]);
-				item.setPlayerdata2(offensivePlayerData2ForTeam1[i]);
-				item.setPlayerdata3(offensivePlayerData3ForTeam1[i]);
-				item.setPlayerImage(offensivPlayerImagesForTeam1[i]);
-				item.setPlayerName(offensivePlayerNamesForTeam1[i]);
-				item.setplayerDetails(offensivePlayerNumbersForTeam1[i]);
-				offensivePlayerList.add(item);
-			}
-
-			playerList = offensivePlayerList;
+			playerList = SoccerData.getPlayers("team1", "offensive");
 		} else if (teamName.equals("team1") && teamType.equals("defensive")) {
-			final List<PlayerItem> defensivePlayerList = new ArrayList<PlayerItem>();
-			String defensivePlayerNamesForTeam1[] = { "Messi", "Ronaldo",
-					"David Villa", "David Villa" };
-			String defensivePlayerNumbersForTeam1[] = { "#10 | Midfielder",
-					"#9 | Winger", "#24 | Forward", "#24 | Forward " };
-			String defensivePlayerData1ForTeam1[] = { "G 1", "G 2", "G 0",
-					"G 0" };
-			String defensivePlayerData2ForTeam1[] = { "A 0", "A 5", "A 10",
-					"A 10" };
-			String defensivePlayerData3ForTeam1[] = { "SG 1", "SG 2", "SG 5",
-					"SG 5" };
-			String defensivePlayerImages[] = {
-					"http://www.messi.com/images/headlines/messi-profile.jpg",
-					"http://3.bp.blogspot.com/-eWrRNjbd5O0/T0tCMmG97cI/AAAAAAAAADo/NR03H4TPqk4/s1600/CutRonaldo.png",
-					"http://findanewclub.co.uk/blog/wp-content/uploads/2012/06/David-Villa11.jpg",
-					"http://findanewclub.co.uk/blog/wp-content/uploads/2012/06/David-Villa11.jpg" };
-
-			PlayerItem item = new PlayerItem();
-
-			for (int i = 0; i < defensivePlayerNamesForTeam1.length; i++) {
-				item = new PlayerItem();
-				item.setPlayerdata1(defensivePlayerData1ForTeam1[i]);
-				item.setPlayerdata2(defensivePlayerData2ForTeam1[i]);
-				item.setPlayerdata3(defensivePlayerData3ForTeam1[i]);
-				item.setPlayerImage(defensivePlayerImages[i]);
-				item.setPlayerName(defensivePlayerNamesForTeam1[i]);
-				item.setplayerDetails(defensivePlayerNumbersForTeam1[i]);
-				defensivePlayerList.add(item);
-			}
-			playerList = defensivePlayerList;
+			playerList = SoccerData.getPlayers("team1", "defensive");
 		} else if (teamName.equals("team2") && teamType.equals("offensive")) {
-			final List<PlayerItem> offensivePlayerList = new ArrayList<PlayerItem>();
-			String offensivePlayerNamesForTeam1[] = { "Tom Brady",
-					"Stevan Ridley", "Wes Welker" };
-			String offensivePlayerNumbersForTeam1[] = { "#91 | QB", "#22 | RB",
-					"#83 | WR", "#87 | TE", "#43 | QB" };
-			String offensivePlayerData1ForTeam1[] = { "20/29", "11 CAR",
-					"8 REC" };
-			String offensivePlayerData2ForTeam1[] = { "64 YDS", "53 YDS",
-					"89 YDS" };
-			String offensivePlayerData3ForTeam1[] = { "0 TD", "0 TD", "1 TD" };
-
-			String offensivPlayerImagesForTeam1[] = {
-					"http://www.messi.com/images/headlines/messi-profile.jpg",
-					"http://3.bp.blogspot.com/-eWrRNjbd5O0/T0tCMmG97cI/AAAAAAAAADo/NR03H4TPqk4/s1600/CutRonaldo.png",
-					"http://findanewclub.co.uk/blog/wp-content/uploads/2012/06/David-Villa11.jpg",
-					"http://findanewclub.co.uk/blog/wp-content/uploads/2012/06/David-Villa11.jpg" };
-
-			PlayerItem item;
-
-			for (int i = 0; i < offensivePlayerNamesForTeam1.length; i++) {
-				item = new PlayerItem();
-				item.setPlayerdata1(offensivePlayerData1ForTeam1[i]);
-				item.setPlayerdata2(offensivePlayerData2ForTeam1[i]);
-				item.setPlayerdata3(offensivePlayerData3ForTeam1[i]);
-				item.setPlayerImage(offensivPlayerImagesForTeam1[i]);
-				item.setPlayerName(offensivePlayerNamesForTeam1[i]);
-				item.setplayerDetails(offensivePlayerNumbersForTeam1[i]);
-				offensivePlayerList.add(item);
-			}
-
-			playerList = offensivePlayerList;
+			playerList = SoccerData.getPlayers("team2", "offensive");
 		} else if (teamName.equals("team2") && teamType.equals("defensive")) {
-			final List<PlayerItem> defensivePlayerList = new ArrayList<PlayerItem>();
-			String defensivePlayerNamesForTeam1[] = { "Jake Bequette",
-					"Vince Wilfork", "Rob Ninkovich" };
-			String defensivePlayerNumbersForTeam1[] = { "#92 | DE", "#75 | DT",
-					"#50 | DL" };
-			String defensivePlayerData1ForTeam1[] = { "20/29", "11 CAR",
-					"9 REC" };
-			String defensivePlayerData2ForTeam1[] = { "329 YDS", "64 YDS",
-					"53 YDS" };
-			String defensivePlayerData3ForTeam1[] = { "2 TD", "1 TD", "0 TD" };
-
-			String defensivePlayerImages[] = {
-					"http://172.16.9.39:8081/nfl-images/nfl_players_images/00-0004091.png",
-					"http://172.16.9.39:8081/nfl-images/nfl_players_images/00-0004541.png",
-					"http://172.16.9.39:8081/nfl-images/nfl_players_images/00-0000585.png",
-					"http://findanewclub.co.uk/blog/wp-content/uploads/2012/06/David-Villa11.jpg" };
-			PlayerItem item = new PlayerItem();
-
-			for (int i = 0; i < defensivePlayerNamesForTeam1.length; i++) {
-				item = new PlayerItem();
-				item.setPlayerdata1(defensivePlayerData1ForTeam1[i]);
-				item.setPlayerdata2(defensivePlayerData2ForTeam1[i]);
-				item.setPlayerdata3(defensivePlayerData3ForTeam1[i]);
-				item.setPlayerImage(defensivePlayerImages[i]);
-				item.setPlayerName(defensivePlayerNamesForTeam1[i]);
-				item.setplayerDetails(defensivePlayerNumbersForTeam1[i]);
-				defensivePlayerList.add(item);
-			}
-			playerList = defensivePlayerList;
+			playerList = SoccerData.getPlayers("team2", "defensive");
 		}
 		return playerList;
 	}
@@ -577,28 +466,8 @@ public class GameActivity extends BaseActivity implements PopoverViewDelegate {
 
 			Log.d("id", String.valueOf(view.getId()));
 			List<ScheduleItem> rowItems = new ArrayList<ScheduleItem>();
-			String[] teamNames = { "Nowrwich City", "Schalke", "Queens Park",
-					"Reading", "Man Utd", "Fulham", "Montpellier", "Everton" };
-			int[] teamLogo = { R.drawable.teamlogo_ars_id,
-					R.drawable.teamlogo_ast_vil_id,
-					R.drawable.teamlogo_car_cit_id, R.drawable.teamlogo_che_id,
-					R.drawable.teamlogo_liv_id, R.drawable.teamlogo_man_cit_id,
-					R.drawable.teamlogo_eve_id, R.drawable.teamlogo_hul_cit_id };
-			String[] matchDate = { "Aug 12", "Aug 13", "Aug 14", "Aug 15",
-					"Aug 19", "Aug 18", "Aug 17", "Aug 16" };
-			String[] teamStatus = { "W 3-1", "L 3-1", "L 4-2", "W 1-0",
-					"Live 2-1", "4:05 PM", "4:25 PM", "1:00 PM" };
-			String[] versusTexts = { "@", "vs", "vs", "@", "@", "@", "vs", "@" };
-			String[] teamIds = { "wf_id", "ns_id", "mh_id", "tc_id", "bb_id",
-					"kj_id", "ks_id", "ss_id" };
-			for (int i = 0; i < 8; i++) {
-
-				ScheduleItem item = new ScheduleItem(teamNames[i],
-						teamStatus[i], matchDate[i], versusTexts[i]);
-				item.setTeamId(teamIds[i]);
-				rowItems.add(item);
-
-			}
+			rowItems = SoccerData.getSchedule();
+			
 			listView = (ListView) findViewById(R.id.game_schedule_list);
 			ScheduleListViewAdapter adapter = new ScheduleListViewAdapter(this,
 					R.layout.game_popover_list_row_item_schedule, rowItems);
@@ -614,33 +483,9 @@ public class GameActivity extends BaseActivity implements PopoverViewDelegate {
 
 			List<StatsItem> rowItemsForTeamStats = new ArrayList<StatsItem>();
 			List<StatsItem> rowItemsForKeyPlays = new ArrayList<StatsItem>();
-
-			String[] teamStatsType = { "Goals", "Shots on Goal", "Shots",
-					"Saves", "Corner Kicks", "Penalty Kicks",
-					"Fouls Committed", "Offsides", "Yellow Cards", "Red Cards" };
-			String[] teamStatsScore1 = { "2", "6", "14", "1", "6", "1", "15",
-					"2", "1", "1" };
-			String[] teamStatsScore2 = { "0", "2", "7", "4", "1", "0", "15",
-					"3", "2", "0" };
-
-			String[] keyPlaysStatstype = { "Crossovers", "Headers" };
-			String[] keyPlaysStatsScore1 = { "3", "5" };
-			String[] keyPlaysStatsScore2 = { "2", "3" };
-
-			for (int i = 0; i < teamStatsType.length; i++) {
-				StatsItem item = new StatsItem(teamStatsType[i],
-						teamStatsScore1[i], teamStatsScore2[i],
-						R.drawable.disclosure);
-
-				rowItemsForTeamStats.add(item);
-			}
-			for (int i = 0; i < keyPlaysStatstype.length; i++) {
-				StatsItem item = new StatsItem(keyPlaysStatstype[i],
-						keyPlaysStatsScore1[i], keyPlaysStatsScore2[i],
-						R.drawable.disclosure);
-
-				rowItemsForKeyPlays.add(item);
-			}
+			
+			rowItemsForTeamStats = SoccerData.getTeamStats();
+			rowItemsForKeyPlays = SoccerData.getKeyPlaysStats();
 
 			SeparatedListAdapter adapter = new SeparatedListAdapter(this);
 			adapter.addSection("Team Plays", new StatsListViewAdapter(this,
@@ -688,7 +533,6 @@ public class GameActivity extends BaseActivity implements PopoverViewDelegate {
 					secondTeamStatYardsScoreLabelInPopUp.setText(statScore2
 							.getText());
 
-				
 					TextView firstTeamStatYardsWidthLabel = (TextView) findViewById(R.id.firstTeamStatYardsWidth);
 					firstTeamStatYardsWidthLabel.setWidth(20 * Integer
 							.parseInt(statScore1.getText().toString()));

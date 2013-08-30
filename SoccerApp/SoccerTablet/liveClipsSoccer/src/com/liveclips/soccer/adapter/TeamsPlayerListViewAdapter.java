@@ -57,8 +57,8 @@ public class TeamsPlayerListViewAdapter extends ArrayAdapter<PlayerItem> {
 				.findViewById(R.id.team_category_team_icon);
 		PlayerItem rowItem = getItem(position);
 
-		holder.teamImage.setBackgroundResource(rowItem.teamLogo);
-		holder.playerName.setText(rowItem.playerName);
+		holder.teamImage.setBackgroundResource(rowItem.getTeamLogo());
+		holder.playerName.setText(rowItem.getPlayerName());
 
 		return convertView;
 	}

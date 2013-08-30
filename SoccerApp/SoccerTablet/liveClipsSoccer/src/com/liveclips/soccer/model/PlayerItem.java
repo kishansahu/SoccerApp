@@ -3,19 +3,24 @@ package com.liveclips.soccer.model;
 import java.util.Comparator;
 
 public class PlayerItem implements Comparable<PlayerItem> {
-	public String playerdata1;
-	public String playerdata2;
-	public String playerdata3;
-	public String playerdata4;
-	public String playerName;
-	public String playerDetails;
-	public String playerGameDetails;
-	public String playerImage;
-	public String teamName;
-	public String playerTeamId;
-	public int teamLogo;
-	public String playerNumber;
-	public String playerId;
+	private String playerdata1;
+	private String playerdata2;
+	private String playerdata3;
+	private String playerdata4;
+	
+	private String playerId;
+	private String playerName;
+	private String playerNumber;
+	private String playerPosition;
+	
+	private String playerDetails;
+	private String playerGameDetails;
+	private String playerImage;
+	private String teamName;
+	private String playerTeamId;
+	private int teamLogo;
+	private int playerFavourite;
+	private boolean isPLayerFavouriteActive;
 	
 	public String getPlayerTeamId() {
 		return playerTeamId;
@@ -32,11 +37,6 @@ public class PlayerItem implements Comparable<PlayerItem> {
 	public void setPlayerId(String playerId) {
 		this.playerId = playerId;
 	}
-
-	public String playerPosition;
-	public int playerFavourite;
-	public boolean isPLayerFavouriteActive;
-
 	public String getPlayerGameDetails() {
 		return playerGameDetails;
 	}
