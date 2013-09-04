@@ -57,12 +57,13 @@
 			
 			<input id="TeamTopReplacement" name="TeamTopReplacement" type="hidden" value="" />
 			<input id="TeamBottomReplacement" name="TeamBottomReplacement" type="hidden" value="" />
-			
+			<img src="arrows.png" style="display:none;"/>
+			<img src="ball.png" style="display:none;"/>
 			<div class="content-container"> <!-- only exists for menu-overlay -->
 				<div class="content">
 					<section class="main">           
 						<div class="field-position">
-							<canvas id="myCanvas" width="500" height="100" style="border:none;">
+							<canvas id="myCanvas" width="450" height="100" style="border:none;">
 								Your browser does not support the HTML5 canvas tag.
 							</canvas>
 							<div class="canvas-message"> Display Message</div><br/>
@@ -70,8 +71,9 @@
 							function executeCanvas()
 							{
 							var myJsonVariable = 
-								{
-									"TeamTopName" : document.getElementById("TeamTopName").value,
+								{   "ballImg" : "ball.png",
+							        "arrowImg" : "arrows.png",
+							        "TeamTopName" : document.getElementById("TeamTopName").value,									
 									"TeamBottomName" : document.getElementById("TeamBottomName").value,
 									"TimeElasped" : document.getElementById("TimeElasped").value,
 									"TimeGap" : "5",
