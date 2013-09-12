@@ -227,7 +227,7 @@ public class AlertSettingForVideos extends Activity {
 						progressChanged = progress;
 						progressBarMaxRange = seekBar.getMax();
 						if (progress==1) {
-							alertsHeader.setText("GB at NE Alerts: Low");
+							alertsHeader.setText("Alerts: Low");
 							alertPerGameTextview.setText("  5-10 Alerts per game");
 														
 							allPLaysToggleButton.setChecked(false);
@@ -238,7 +238,7 @@ public class AlertSettingForVideos extends Activity {
 		                    playOfTheGameToggleButton.setChecked(true);
 							
 						}else if (progress==2) {
-							alertsHeader.setText("GB at NE Alerts: Medium");
+							alertsHeader.setText("Alerts: Medium");
 							alertPerGameTextview.setText("  50-60 Alerts per game");
 							
 							allPLaysToggleButton.setChecked(false);
@@ -249,7 +249,7 @@ public class AlertSettingForVideos extends Activity {
 		                    playOfTheGameToggleButton.setChecked(true);
 							
 						}else if (progress==3) {
-							alertsHeader.setText("GB at NE Alerts: High");
+							alertsHeader.setText("Alerts: High");
 							alertPerGameTextview.setText("  100+ Alerts per game");
 							
 							allPLaysToggleButton.setChecked(true);
